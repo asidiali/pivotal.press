@@ -5,6 +5,10 @@ import moment from 'moment';
 import request from 'request';
 import styles from './styles';
 
+function sortStoriesByCreatedTime(a, b) {
+  return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+}
+
 export default class ProjectStoriesView extends React.Component {
 
   state = {
@@ -15,18 +19,15 @@ export default class ProjectStoriesView extends React.Component {
     const headers = new Headers();
     const projectId = this.props.params.projectId;
     headers.append('X-TrackerToken', ls('pp-api'));
-    if (ls(`pp-project-${this.props.params.projectId}-stories`)) {
+    // TODO paginate requests
+    fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/stories?limit=1000`, {
+      mode: 'cors',
+      headers,
+      method: 'GET',
+    }).then(res => res.json()).then((res) => {
+      ls.set(`pp-project-${projectId}-stories`, res);
       this.setState({project_stories_fetched: true});
-    } else {
-      fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/stories`, {
-        mode: 'cors',
-        headers,
-        method: 'GET',
-      }).then(res => res.json()).then((res) => {
-        ls.set(`pp-project-${projectId}-stories`, res);
-        this.setState({project_stories_fetched: true});
-      });
-    }
+    });
   }
 
   render() {
@@ -36,10 +37,14 @@ export default class ProjectStoriesView extends React.Component {
         <span onClick={() => hashHistory.push('/projects')}>&lt; Projects</span>
         <h3>Stories</h3>
         <div style={styles.storiesWrapper}>
-          {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).map((story, storyIndex) => (
+          {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
             <div key={storyIndex} style={styles.storyCard}>
-              {story.name}
-              <span>Last updated {moment(story.updated_at).fromNow()}</span>
+              <ul style={styles.storyDetails}>
+                <li style={styles.storyDetail}>{story.story_type}</li>
+                <li style={styles.storyDetail}>{story.current_state}</li>
+              </ul>
+              <p style={styles.storyName}>{story.name}</p>
+              <span style={styles.lastUpdated}>Last updated {moment(story.updated_at).fromNow()}</span>
             </div>
           )) : false}
         </div>
