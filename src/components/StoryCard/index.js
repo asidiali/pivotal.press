@@ -13,9 +13,7 @@ function renderStatusColor(state) {
 }
 
 const StoryCard = props => (
-  <div key={props.storyIndex} style={Object.assign({}, styles.storyCard, {
-    backgroundColor: (props.story.current_state === 'accepted' || props.story.current_state === 'unstarted') ? '#f2f2f2' : '#fff',
-  })}>
+  <div key={props.storyIndex} style={styles.storyCard}>
     <ul style={styles.storyDetails}>
       <li style={Object.assign({}, styles.storyDetail, {
         fontFamily: 'Source Code pro',
@@ -33,9 +31,7 @@ const StoryCard = props => (
     </ul>
     <p style={styles.storyName}>
       {props.story.name}
-      <span style={Object.assign({}, styles.storyGradient, {
-        background: (props.story.current_state === 'accepted' || props.story.current_state === 'unstarted') ? 'linear-gradient(to top, rgb(242, 242, 242), rgba(242, 242, 242, 0))' : 'linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0))',
-      })} />
+      <span style={styles.storyGradient} />
     </p>
     {props.story.labels.length ? (
       <div style={styles.labelsWrapper}>
