@@ -12,7 +12,9 @@ const Layout = props => (
     overflowX: 'hidden',
     overflowY: 'auto',
   }}>
-    {props.children}
+    {React.cloneElement(props.children, {
+      setViewTitle: props.setViewTitle,
+    })}
   </div>
 );
 

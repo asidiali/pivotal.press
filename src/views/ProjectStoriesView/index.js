@@ -24,6 +24,7 @@ export default class ProjectStoriesView extends React.Component {
     const headers = new Headers();
     const projectId = this.props.params.projectId;
     headers.append('X-TrackerToken', ls('pp-api'));
+    this.props.setViewTitle(ls(`pp-project-${projectId}-details`).name);
     // TODO paginate requests
     fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/stories?limit=1000`, {
       mode: 'cors',

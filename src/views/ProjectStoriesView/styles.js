@@ -20,6 +20,7 @@ export default {
     borderRight: '1px solid #ddd',
     borderLeft: '1px solid #ddd',
     borderBottom: '2px solid #ddd',
+    cursor: 'pointer',
     '@media (max-width: 1200px)': {
       width: '32.33%',
     },

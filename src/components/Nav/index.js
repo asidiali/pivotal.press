@@ -9,6 +9,9 @@ const Nav = props => (
       <Icon icon="dashboard" style={{marginRight: 10}} />
       Pivotal.Press
     </span>
+    <span style={styles.viewTitle}>
+      {props.viewTitle}
+    </span>
     <span style={styles.loggedInUser}>
       {ls('pp-me').name || ''}
       <Icon icon="account_circle" style={{marginLeft: 10}} />

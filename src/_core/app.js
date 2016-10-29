@@ -4,17 +4,33 @@ import {Nav} from '../components';
 import {StyleRoot} from 'radium';
 import styles from './styles';
 
-const App = props => (
-  <StyleRoot>
-    <div style={styles.base}>
-      <Nav />
-      {props.children}
-    </div>
-  </StyleRoot>
-);
+class App extends React.Component {
 
-App.propTypes = {
-  children: PropTypes.node,
-};
+  static propTypes = {
+    children: PropTypes.node,
+  };
+
+  state = {
+    viewTitle: '',
+  };
+
+  setViewTitle = viewTitle => {
+    console.log(viewTitle);
+    this.setState({ viewTitle });
+  }
+
+  render() {
+    return (
+      <StyleRoot>
+        <div style={styles.base}>
+          <Nav viewTitle={this.state.viewTitle} />
+          {React.cloneElement(this.props.children, {
+            setViewTitle: this.setViewTitle,
+          })}
+        </div>
+      </StyleRoot>
+    );
+  }
+}
 
 export default App;

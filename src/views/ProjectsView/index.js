@@ -1,14 +1,20 @@
 import React from 'react';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
+import radium from 'radium';
 import request from 'request';
 import styles from './styles';
 
+@radium
 export default class ProjectsView extends React.Component {
 
   state = {
     projects_fetched: false,
   };
+
+  componentWillMount() {
+    this.props.setViewTitle('Projects');
+  }
 
   componentDidMount() {
     const headers = new Headers();
@@ -26,14 +32,13 @@ export default class ProjectsView extends React.Component {
   render() {
     return (
       <div style={styles.base}>
-        <h1 style={styles.viewTitle}>Projects</h1>
         <div style={styles.projectsWrapper}>
           {this.state.projects_fetched ? ls('pp-projects').map((project, projectIndex) => (
             <div key={projectIndex} style={styles.projectCard} onClick={() => {
-              ls.set(`pp-project-${project.id}-details`);
+              ls.set(`pp-project-${project.id}-details`, project);
               hashHistory.push(`/projects/${project.id}`)
             }}>
-              {project.name}
+              <span style={styles.projectName}>{project.name}</span>
             </div>
           )) : false}
         </div>
