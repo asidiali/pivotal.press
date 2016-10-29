@@ -8,7 +8,6 @@ const Layout = props => (
     left: 0,
     right: 0,
     width: '100vw',
-    height: '100vh',
     overflowX: 'hidden',
     overflowY: 'auto',
   }}>
