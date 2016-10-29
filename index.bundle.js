@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "68b850d17045cd0ba3d4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0810c60a25fa92ed7272"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -96834,7 +96834,7 @@
 	  labelsWrapper: {
 	    margin: 'auto -5px 0',
 	    display: 'flex',
-	    flexFlow: 'row nowrap',
+	    flexFlow: 'row wrap',
 	    flex: '0 0 auto'
 	  },
 	  labelItem: {
@@ -97098,7 +97098,7 @@
 	  },
 	  projectCard: {
 	    backgroundColor: '#fff',
-	    width: '24%',
+	    width: '32.33%',
 	    height: 250,
 	    borderRadius: 3,
 	    flex: '0 0 auto',
@@ -97116,13 +97116,10 @@
 	    fontSize: '1.2em',
 	    overflow: 'hidden',
 	    cursor: 'pointer',
-	    '@media (max-width: 1200px)': {
-	      width: '32.33%'
-	    },
-	    '@media (max-width: 900px)': {
+	    '@media (max-width: 1440px)': {
 	      width: '49%'
 	    },
-	    '@media (max-width: 600px)': {
+	    '@media (max-width: 768px)': {
 	      width: '99%'
 	    }
 	  },

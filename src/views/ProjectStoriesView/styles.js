@@ -34,7 +34,7 @@ export default {
   labelsWrapper: {
     margin: 'auto -5px 0',
     display: 'flex',
-    flexFlow: 'row nowrap',
+    flexFlow: 'row wrap',
     flex: '0 0 auto',
   },
   labelItem: {

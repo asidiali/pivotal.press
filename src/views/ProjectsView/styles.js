@@ -8,7 +8,7 @@ export default {
   },
   projectCard: {
     backgroundColor: '#fff',
-    width: '24%',
+    width: '32.33%',
     height: 250,
     borderRadius: 3,
     flex: '0 0 auto',
@@ -26,13 +26,10 @@ export default {
     fontSize: '1.2em',
     overflow: 'hidden',
     cursor: 'pointer',
-    '@media (max-width: 1200px)': {
-      width: '32.33%',
-    },
-    '@media (max-width: 900px)': {
+    '@media (max-width: 1440px)': {
       width: '49%',
     },
-    '@media (max-width: 600px)': {
+    '@media (max-width: 768px)': {
       width: '99%',
     },
   },
