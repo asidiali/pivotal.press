@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "bdaab6aefa8bc47fb1f0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e1bebcb9faa485b285c4"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -32572,7 +32572,10 @@
 	    margin: 'auto 10px',
 	    fontWeight: 700,
 	    fontSize: '1em',
-	    flex: '0 0 auto',
+	    flex: 1,
+	    textOverflow: 'ellipsis',
+	    whiteSpace: 'nowrap',
+	    overflow: 'hidden',
 	    color: '#fff',
 	    textTransform: 'uppercase',
 	    '@media (max-width: 768px)': {
