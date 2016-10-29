@@ -1,6 +1,7 @@
 import {
   Icon,
   Loader,
+  StoryCard,
 } from '../../components';
 
 import React from 'react';
@@ -43,49 +44,17 @@ export default class ProjectStoriesView extends React.Component {
     });
   }
 
-  renderStatusColor = state => {
-    return Object.assign({}, styles.storyDetail, {
-      background: statusColors[state].bg,
-      color: statusColors[state].text,
-      margin: 'auto 0 auto auto',
-    });
-  }
-
   render() {
     console.log(this.props.params.projectId);
     return (
       <div style={styles.base}>
         <div style={styles.storiesWrapper}>
           {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
-            <div key={storyIndex} style={styles.storyCard}>
-              <ul style={styles.storyDetails}>
-                <li style={Object.assign({}, styles.storyDetail, {
-                  fontFamily: 'Source Code pro',
-                })}>
-                  <Icon icon="content_copy" style={{ marginRight: 5 }} />
-                  {story.id}
-                </li>
-                <li style={styles.storyDetail}>
-                  <Icon icon={typeIcons[story.story_type]} style={{ marginRight: 5 }} />
-                  {story.story_type}
-                </li>
-                <li style={this.renderStatusColor(story.current_state)}>
-                  {statuses.indexOf(story.current_state)} - {story.current_state}
-                </li>
-              </ul>
-              <p style={styles.storyName}>
-                {story.name}
-                <span style={styles.storyGradient}></span>
-              </p>
-              {story.labels.length ? (
-                <div style={styles.labelsWrapper}>
-                  {story.labels.map((label, labelIndex) => (
-                    <span key={labelIndex} style={styles.labelItem}>{label.name}</span>
-                  ))}
-                </div>
-              ) : false}
-              <span style={styles.lastUpdated}>Last updated {moment(story.updated_at).fromNow()}</span>
-            </div>
+            <StoryCard
+              key={storyIndex}
+              story={story}
+              storyIndex={storyIndex}
+            />
           )) : (
             <Loader />
           )}
