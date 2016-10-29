@@ -1,6 +1,8 @@
 import {
   Icon,
+  Loader,
 } from '../../components';
+
 import React from 'react';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
@@ -84,7 +86,9 @@ export default class ProjectStoriesView extends React.Component {
               ) : false}
               <span style={styles.lastUpdated}>Last updated {moment(story.updated_at).fromNow()}</span>
             </div>
-          )) : false}
+          )) : (
+            <Loader />
+          )}
         </div>
       </div>
     );
