@@ -39,6 +39,13 @@ A PivotalTracker front-end app.
     - [ ] labels
 - [ ] Misc
   - [ ] improve story search query functionality (by word)
+  - [ ] add owner/member detail to story cards
+
+---
+
+# Contributing
+
+All help is welcome! Please be sure to checkout the [contribution guidelines](#).
 
 ## Contributors
 - Adam Sidiali [[Gh](http://github.com/asidiali)] [[Tw](http://twitter.com/adamsidiali)]
