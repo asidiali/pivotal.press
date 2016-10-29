@@ -1,4 +1,5 @@
 import React from 'react';
+import {hashHistory} from 'react-router';
 import ls from 'local-storage';
 import request from 'request';
 import styles from './styles';
@@ -26,11 +27,13 @@ export default class ProjectsView extends React.Component {
     return (
       <div style={styles.base}>
         my projects
-        {ls('pp-projects').length ? ls('pp-projects').map(project => (
-          <div>
-            {project.name}
-          </div>
-        )) : false}
+        <div style={styles.projectsWrapper}>
+          {ls('pp-projects').length ? ls('pp-projects').map((project, projectIndex) => (
+            <div key={projectIndex} style={styles.projectCard} onClick={() => hashHistory.push(`/projects/${project.id}`)}>
+              {project.name}
+            </div>
+          )) : false}
+        </div>
       </div>
     );
   }

@@ -1,10 +1,10 @@
 export default {
   base: {},
-  projectsWrapper: {
+  storiesWrapper: {
     display: 'flex',
     flexFlow: 'row wrap',
   },
-  projectCard: {
+  storyCard: {
     backgroundColor: '#fff',
     width: 200,
     height: 200,

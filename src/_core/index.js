@@ -1,5 +1,6 @@
 import {
   HomeView,
+  ProjectStoriesView,
   ProjectsView,
 } from '../views';
 import {
@@ -18,6 +19,7 @@ function run() {
       <Route component={App}>
         <Route path="/" component={HomeView} />
         <Route path="/projects" component={ProjectsView} />
+        <Route path="/projects/:projectId" component={ProjectStoriesView} />
       </Route>
     </Router>,
     document.getElementById('app')
