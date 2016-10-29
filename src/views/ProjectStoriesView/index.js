@@ -237,10 +237,10 @@ export default class ProjectStoriesView extends React.Component {
             targetOrigin={{horizontal: 'left', vertical: 'top'}}
             onRequestClose={() => this.toggleLabelsPopover()}
           >
-            <Menu maxHeight={350}>
+            <Menu maxHeight={350} style={{ width: 200, overflowX: 'hidden', textOverflow: 'ellpsis', whiteSpace: 'nowrap'}}>
               <MenuItem leftIcon={<Icon icon="label" />} onClick={() => this.handleLabelChange()} primaryText="All Labels" />
               {this.state.project_labels_fetched ? ls(`pp-project-${this.props.params.projectId}-labels`).sort(this.sortActiveLabels).map((label, labelIndex) => (
-                <MenuItem key={`label-${labelIndex}`}onClick={() => this.handleLabelChange(label.id)} leftIcon={<Icon icon="label_outline" style={{color: '#aaa'}} />} value={label.id} primaryText={label.name} style={{ borderTop: '1px solid #eee', backgroundColor: (this.state.labelFilters.includes(label.id) ? '#AED6F1' : '#fff') }} />
+                <MenuItem key={`label-${labelIndex}`}onClick={() => this.handleLabelChange(label.id)} leftIcon={<Icon icon="label_outline" style={{color: '#aaa' }} />} value={label.id} primaryText={label.name} style={{ borderTop: '1px solid #eee', flex: 1, fontSize: '0.9em', padding: 0, backgroundColor: (this.state.labelFilters.includes(label.id) ? '#AED6F1' : '#fff') }} />
               )) : false}
             </Menu>
           </Popover>
