@@ -240,7 +240,7 @@ export default class ProjectStoriesView extends React.Component {
             <Menu maxHeight={350}>
               <MenuItem leftIcon={<Icon icon="label" />} onClick={() => this.handleLabelChange()} primaryText="All Labels" />
               {this.state.project_labels_fetched ? ls(`pp-project-${this.props.params.projectId}-labels`).sort(this.sortActiveLabels).map((label, labelIndex) => (
-                <MenuItem key={`label-${labelIndex}`}onClick={() => this.handleLabelChange(label.id)} leftIcon={<Icon icon="label_outline" style={{color: '#aaa'}} />} value={label.id} primaryText={label.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee', backgroundColor: (this.state.labelFilters.includes(label.id) ? '#AED6F1' : '#fff') }} />
+                <MenuItem key={`label-${labelIndex}`}onClick={() => this.handleLabelChange(label.id)} leftIcon={<Icon icon="label_outline" style={{color: '#aaa'}} />} value={label.id} primaryText={label.name} style={{ borderTop: '1px solid #eee', backgroundColor: (this.state.labelFilters.includes(label.id) ? '#AED6F1' : '#fff') }} />
               )) : false}
             </Menu>
           </Popover>
