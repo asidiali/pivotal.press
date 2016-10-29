@@ -62,6 +62,7 @@ class App extends React.Component {
           <Nav
             viewTitle={this.state.viewTitle}
             showBack={this.state.showBack}
+            setViewTitle={this.setViewTitle}
             location={this.props.location}
           />
           {React.cloneElement(this.props.children, {
