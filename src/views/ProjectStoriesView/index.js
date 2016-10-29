@@ -55,7 +55,9 @@ export default class ProjectStoriesView extends React.Component {
           {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
             <div key={storyIndex} style={styles.storyCard}>
               <ul style={styles.storyDetails}>
-                <li style={styles.storyDetail}>
+                <li style={Object.assign({}, styles.storyDetail, {
+                  fontFamily: 'Source Code pro',
+                })}>
                   <Icon icon="content_copy" style={{ marginRight: 5 }} />
                   {story.id}
                 </li>
