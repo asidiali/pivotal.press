@@ -10,6 +10,20 @@ A PivotalTracker front-end app.
 1. Start the dev server: `npm run dev`
 2. Navigate to `http://localhost:8080/` to view the app
 
+---
+
+### To do
+- [x] ~~Get user~~
+- [x] ~~Get projects~~
+- [x] ~~Get projects details~~
+- [x] ~~Get stories in project~~
+  - [x] ~~Filter stories by~~
+    - [x] ~~type~~
+    - [x] ~~stage~~
+    - [x] ~~owner~~
+    - [x] ~~labels~~
+- [x] ~~Get labels in project~~
+- [x] ~~Get members in project~~
 
 ## Contributors
 - Adam Sidiali [[Gh](http://github.com/asidiali)] [[Tw](http://twitter.com/adamsidiali)]
