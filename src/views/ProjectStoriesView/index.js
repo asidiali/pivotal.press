@@ -80,9 +80,22 @@ export default class ProjectStoriesView extends React.Component {
     return story.story_type === this.state.storyTypeFilter;
   }
 
+  filterByOwner = story => {
+    if (this.state.ownerFilter === 'all') return true;
+    return story.owned_by_id === this.state.ownerFilter;
+  }
+
   handleStoryTypeChange = (e, t, val) => this.setState({ storyTypeFilter: val });
 
   handleOwnerChange = (e, t, val) => this.setState({ ownerFilter: val });
+
+  renderFilteredStories = (search, type, owner) => {
+    return ls(`pp-project-${this.props.params.projectId}-stories`)
+      .filter(search)
+      .filter(owner)
+      .filter(type)
+      .sort(sortStoriesByCreatedTime)
+  }
 
   render() {
     console.log(this.props.params.projectId);
@@ -142,14 +155,15 @@ export default class ProjectStoriesView extends React.Component {
             maxHeight={300}
           >
             <MenuItem leftIcon={<Icon icon="group" />} value='all' primaryText="All Owners" />
-            {this.state.project_memberships_fetched ? ls(`pp-project-${this.props.params.projectId}-memberships`).map((member) => (
+            <MenuItem leftIcon={<Icon icon="person" />} value={ls('pp-me').id} primaryText="Me" />
+            {this.state.project_memberships_fetched ? ls(`pp-project-${this.props.params.projectId}-memberships`).filter((val) => val.person.id !== ls('pp-me').id).map((member) => (
               <MenuItem leftIcon={<Icon icon="person" style={styles.ownerIcon}/>} value={member.person.id} primaryText={member.person.name} style={{ textTransform: 'capitalize', display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', borderTop: '1px solid #eee' }} />
             )) : false}
           </DropDownMenu>
         </div>
         {this.state.project_stories_fetched ? (
           <div style={styles.storiesWrapper}>
-            {ls(`pp-project-${this.props.params.projectId}-stories`).filter(this.filterBySearch).filter(this.filterByType).length ? ls(`pp-project-${this.props.params.projectId}-stories`).filter(this.filterBySearch).filter(this.filterByType).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
+            {this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner) ? this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner).map((story, storyIndex) => (
               <StoryCard
                 key={storyIndex}
                 story={story}
