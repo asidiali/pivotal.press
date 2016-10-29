@@ -11,6 +11,13 @@ export default {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  pp: {
+    textTransform: 'uppercase',
+    margin: '0 auto 20px',
+    color: '#fff',
+    display: 'flex',
+    alignItems: 'center',
+  },
   form: {
     display: 'flex',
     flexFlow: 'column nowrap',

@@ -19,7 +19,11 @@ export default class HomeView extends React.Component {
   render() {
     return (
       <div style={styles.base}>
-        <p style={{color: '#fff', fontWeight: 700,}}>Login with a valid PivotalTracker API Key:</p>
+        <h2 style={styles.pp}>
+          <Icon icon="dashboard" style={{ margin: 'auto 10px auto auto'}} />
+          Pivotal.Press
+        </h2>
+        <p style={{color: '#ddd', fontWeight: 400,}}>Login with a valid PivotalTracker API Key:</p>
         <form style={styles.form} onSubmit={(e) => {
           e.preventDefault();
           const headers = new Headers();

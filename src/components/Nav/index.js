@@ -33,11 +33,10 @@ class Nav extends React.Component {
     return (
       <nav style={styles.base}>
         <span style={styles.brand}>
-          <Icon icon="dashboard" style={{marginRight: 10}} />
+          <Icon icon="dashboard" style={{marginRight: 10, fontSize: (location.pathname === '/') ? '1.5em' : '1.1em'}} />
           <span style={Object.assign({}, styles.brandText, {
-            '@media (max-width: 768px)': {
-              display: (location.pathname === '/') ? 'block' : 'none',
-            }
+            display: (location.pathname === '/') ? 'none' : 'block',
+            fontSize: (location.pathname === '/') ? '1.5em' : '0.9em',
           })}>Pivotal.Press</span>
         </span>
         <span style={styles.viewTitle}>
