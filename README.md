@@ -13,17 +13,30 @@ A PivotalTracker front-end app.
 ---
 
 ### To do
-- [x] ~~Get user~~
-- [x] ~~Get projects~~
-- [x] ~~Get projects details~~
-- [x] ~~Get stories in project~~
-  - [x] ~~Filter stories by~~
-    - [x] ~~type~~
-    - [x] ~~stage~~
-    - [x] ~~owner~~
-    - [x] ~~labels~~
-- [x] ~~Get labels in project~~
-- [x] ~~Get members in project~~
+- [ ] View
+  - [x] ~~user~~
+  - [x] ~~projects~~
+  - [x] ~~projects details~~
+  - [x] ~~stories in project~~
+    - [x] ~~filter stories by~~
+      - [x] ~~type~~
+      - [x] ~~stage~~
+      - [x] ~~owner~~
+      - [x] ~~labels~~
+  - [x] ~~labels in project~~
+  - [x] ~~members in project~~
+  - [ ] story details
+- [ ] Edit
+  - [ ] project
+    - [ ] name
+    - [ ] stories
+  - [ ] story
+    - [ ] name
+    - [ ] description
+    - [ ] type
+    - [ ] stage
+    - [ ] owner
+    - [ ] labels
 
 ## Contributors
 - Adam Sidiali [[Gh](http://github.com/asidiali)] [[Tw](http://twitter.com/adamsidiali)]
