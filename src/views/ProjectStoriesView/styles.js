@@ -20,6 +20,8 @@ export default {
     display: 'flex',
     flexFlow: 'row nowrap',
     borderTop: '1px solid rgba(0,0,0,0.1)',
+    overflowY: 'hidden',
+    overflowX: 'auto',
   },
   searchInputWrapper: {
     position: 'relative',

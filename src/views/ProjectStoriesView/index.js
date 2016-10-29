@@ -189,7 +189,7 @@ export default class ProjectStoriesView extends React.Component {
               }}
             />
           </div>
-          <Icon icon={typeIcons[this.state.storyTypeFilter]} style={{ fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px'}} />
+          <Icon icon={typeIcons[this.state.storyTypeFilter]} style={{ fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px', flex: '0 0 auto'}} />
           <DropDownMenu
             underlineStyle={{
               margin: 0,
@@ -202,7 +202,7 @@ export default class ProjectStoriesView extends React.Component {
               color: '#fff',
               fontWeight: 700,
             }}
-            style={{ margin: 'auto 0', height: 'auto' }}
+            style={{ margin: 'auto 0', height: 'auto', flex: '0 0 auto' }}
             value={this.state.storyTypeFilter}
             onChange={this.handleStoryTypeChange}
           >
@@ -245,7 +245,7 @@ export default class ProjectStoriesView extends React.Component {
             </Menu>
           </Popover>
 
-          <Icon icon={(this.state.ownerFilter === 'all') ? 'group' : 'person'} style={{ fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px'}} />
+          <Icon icon={(this.state.ownerFilter === 'all') ? 'group' : 'person'} style={{flex: '0 0 auto', fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px'}} />
           <DropDownMenu
             underlineStyle={{
               margin: 0,
@@ -258,7 +258,7 @@ export default class ProjectStoriesView extends React.Component {
               color: '#fff',
               fontWeight: 700,
             }}
-            style={{ margin: 'auto 0', height: 'auto' }}
+            style={{ margin: 'auto 0', height: 'auto', flex: '0 0 auto', }}
             value={this.state.ownerFilter}
             onChange={this.handleOwnerChange}
             maxHeight={300}
@@ -283,7 +283,7 @@ export default class ProjectStoriesView extends React.Component {
               fontWeight: 700,
               textTransform: 'capitalize',
             }}
-            style={{ margin: 'auto 0', height: 'auto' }}
+            style={{ margin: 'auto 0', height: 'auto', flex: '0 0 auto' }}
             value={this.state.stagesFilter}
             onChange={this.handleStagesChange}
             maxHeight={350}
