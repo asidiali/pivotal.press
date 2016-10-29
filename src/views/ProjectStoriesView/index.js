@@ -36,6 +36,14 @@ export default class ProjectStoriesView extends React.Component {
     });
   }
 
+  renderStatusColor = state => {
+    console.log(state);
+    return Object.assign({}, styles.storyDetail, {
+      background: statusColors[state].bg,
+      color: statusColors[state].text,
+    });
+  }
+
   render() {
     console.log(this.props.params.projectId);
     return (
@@ -50,7 +58,9 @@ export default class ProjectStoriesView extends React.Component {
                   <Icon icon={typeIcons[story.story_type]} style={{ marginRight: 5 }} />
                   {story.story_type}
                 </li>
-                <li style={styles.storyDetail}>{story.current_state}</li>
+                <li style={this.renderStatusColor(story.current_state)}>
+                  {statuses.indexOf(story.current_state)} - {story.current_state}
+                </li>
               </ul>
               <p style={styles.storyName}>{story.name}</p>
               <span style={styles.lastUpdated}>Last updated {moment(story.updated_at).fromNow()}</span>
@@ -69,6 +79,43 @@ const typeIcons = {
   release: 'backup',
 };
 
-const statusIcons = {
+const statuses = [
+  'unscheduled',
+  'unstarted',
+  'started',
+  'finished',
+  'delivered',
+  'rejected',
+  'accepted',
+];
 
+const statusColors = {
+  unscheduled: {
+    text: '#888',
+    bg: '#eee',
+  },
+  unstarted: {
+    text: '#eee',
+    bg: '#888',
+  },
+  started: {
+    text: '#fff',
+    bg: '#444',
+  },
+  finished: {
+    text: '#fff',
+    bg: '#3E7293',
+  },
+  delivered: {
+    text: '#fff',
+    bg: '#09a3ed',
+  },
+  accepted: {
+    text: '#fff',
+    bg: '#1bb23a',
+  },
+  rejected: {
+    text: '#fff',
+    bg: 'red',
+  },
 };
