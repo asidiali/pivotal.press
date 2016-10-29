@@ -138,11 +138,11 @@ export default class ProjectStoriesView extends React.Component {
             value={this.state.storyTypeFilter}
             onChange={this.handleStoryTypeChange}
           >
-            <MenuItem leftIcon={<Icon icon="group_work" />} value='all' primaryText="All Types" />
-            <MenuItem leftIcon={<Icon icon="bug_report" />} value='bug' primaryText="Bugs" />
-            <MenuItem leftIcon={<Icon icon="build" />} value='chore' primaryText="Chores" />
-            <MenuItem leftIcon={<Icon icon="extension" />} value='feature' primaryText="Features" />
-            <MenuItem leftIcon={<Icon icon="backup" />} value='release' primaryText="Releases" />
+            <MenuItem leftIcon={<Icon icon="group_work" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='all' primaryText="All Types" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '0px solid #eee' }}  />
+            <MenuItem leftIcon={<Icon icon="bug_report" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='bug' primaryText="Bugs" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
+            <MenuItem leftIcon={<Icon icon="build" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='chore' primaryText="Chores" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
+            <MenuItem leftIcon={<Icon icon="extension" />} value='feature' primaryText="Features" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
+            <MenuItem leftIcon={<Icon icon="backup" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='release' primaryText="Releases" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
           </DropDownMenu>
 
           <Icon icon={(this.state.ownerFilter === 'all') ? 'group' : 'person'} style={{ fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px'}} />
@@ -166,7 +166,7 @@ export default class ProjectStoriesView extends React.Component {
             <MenuItem leftIcon={<Icon icon="group" />} value='all' primaryText="All Owners" />
             <MenuItem leftIcon={<Icon icon="person" />} value={ls('pp-me').id} primaryText="Me" />
             {this.state.project_memberships_fetched ? ls(`pp-project-${this.props.params.projectId}-memberships`).filter((val) => val.person.id !== ls('pp-me').id).map((member) => (
-              <MenuItem leftIcon={<Icon icon="person" style={styles.ownerIcon}/>} value={member.person.id} primaryText={member.person.name} style={{ textTransform: 'capitalize', display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', borderTop: '1px solid #eee' }} />
+              <MenuItem leftIcon={<Icon icon="person" style={styles.ownerIcon}/>} value={member.person.id} primaryText={member.person.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee' }} />
             )) : false}
           </DropDownMenu>
 
@@ -190,7 +190,7 @@ export default class ProjectStoriesView extends React.Component {
           >
             <MenuItem value='all' primaryText="All Stages" />
             {statuses.map((status, statusIndex) => (
-              <MenuItem value={status} primaryText={`${statusIndex} - ${status}`} style={{ textTransform: 'capitalize', display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', borderTop: '1px solid #eee' }} />
+              <MenuItem value={status} primaryText={`${statusIndex} - ${status}`} style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }} />
             ))}
           </DropDownMenu>
 
