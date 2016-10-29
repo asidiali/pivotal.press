@@ -15,6 +15,7 @@ const Layout = props => (
       setViewTitle: props.setViewTitle,
       setShowBack: props.setShowBack,
       showBack: props.showBack,
+      setNotification: props.setNotification,
     })}
   </div>
 );

@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.16.0",
+    "clipboard": "^1.5.15",
     "eslint": "^3.7.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^2.0.0",
@@ -40,6 +41,7 @@
     "eslint-plugin-react": "^6.3.0",
     "html-webpack-plugin": "^2.22.0",
     "local-storage": "^1.4.2",
+    "material-ui": "^0.16.1",
     "moment": "^2.15.2",
     "radium": "^0.18.1",
     "react": "^15.3.2",

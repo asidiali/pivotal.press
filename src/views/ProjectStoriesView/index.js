@@ -4,6 +4,7 @@ import {
   StoryCard,
 } from '../../components';
 
+import Clipboard from 'clipboard';
 import React from 'react';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
@@ -24,6 +25,14 @@ export default class ProjectStoriesView extends React.Component {
   };
 
   componentDidMount() {
+
+    const CB = new Clipboard('.storyId');
+
+    CB.on('success', (e) => {
+        this.props.setNotification(true, `${e.text} copied to clipboard`);
+    });
+
+
     const headers = new Headers();
     const projectId = this.props.params.projectId;
     headers.append('X-TrackerToken', ls('pp-api'));
@@ -54,6 +63,7 @@ export default class ProjectStoriesView extends React.Component {
               key={storyIndex}
               story={story}
               storyIndex={storyIndex}
+              setNotification={this.props.setNotification}
             />
           )) : (
             <Loader />

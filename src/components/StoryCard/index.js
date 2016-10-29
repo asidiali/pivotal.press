@@ -15,9 +15,13 @@ function renderStatusColor(state) {
 const StoryCard = props => (
   <div key={props.storyIndex} style={styles.storyCard}>
     <ul style={styles.storyDetails}>
-      <li style={Object.assign({}, styles.storyDetail, {
-        fontFamily: 'Source Code pro',
-      })}>
+      <li
+        className="storyId"
+        style={Object.assign({}, styles.storyDetail, {
+          fontFamily: 'Source Code pro',
+        })}
+        data-clipboard-text={props.story.id}
+      >
         <Icon icon="content_copy" style={{ marginRight: 5 }} />
         {props.story.id}
       </li>
