@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "83549f63f2e2a21ff140"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "acf947c66be998683f94"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -32592,7 +32592,7 @@
 	    return _react2['default'].createElement(
 	      'div',
 	      { key: props.storyIndex, style: Object.assign({}, _styles2['default'].storyCard, {
-	          backgroundColor: props.story.current_state === 'accepted' || props.story.current_state === 'unstarted' ? '#f1f1f1' : '#fff'
+	          backgroundColor: props.story.current_state === 'accepted' || props.story.current_state === 'unstarted' ? '#f2f2f2' : '#fff'
 	        }) },
 	      _react2['default'].createElement(
 	        'ul',
@@ -32624,7 +32624,7 @@
 	        { style: _styles2['default'].storyName },
 	        props.story.name,
 	        _react2['default'].createElement('span', { style: Object.assign({}, _styles2['default'].storyGradient, {
-	            background: props.story.current_state === 'accepted' || props.story.current_state === 'unstarted' ? 'linear-gradient(to top, rgb(241, 241, 241), rgba(241, 241, 241, 0))' : 'linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0))'
+	            background: props.story.current_state === 'accepted' || props.story.current_state === 'unstarted' ? 'linear-gradient(to top, rgb(242, 242, 242), rgba(242, 242, 242, 0))' : 'linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0))'
 	          }) })
 	      ),
 	      props.story.labels.length ? _react2['default'].createElement(
