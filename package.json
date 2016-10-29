@@ -5,7 +5,8 @@
   "main": "./src/core/app.js",
   "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "webpack && git add . && git commit -m'Build ready for deployment' && git push -u origin master"
   },
   "repository": {
     "type": "git",
