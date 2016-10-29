@@ -1,5 +1,6 @@
 export default {
   base: {},
+  viewTitle: {},
   projectsWrapper: {
     display: 'flex',
     flexFlow: 'row wrap',

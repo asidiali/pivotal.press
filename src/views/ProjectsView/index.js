@@ -13,23 +13,30 @@ export default class ProjectsView extends React.Component {
   componentDidMount() {
     const headers = new Headers();
     headers.append('X-TrackerToken', ls('pp-api'));
-    fetch('https://www.pivotaltracker.com/services/v5/projects', {
-      mode: 'cors',
-      headers,
-      method: 'GET',
-    }).then(res => res.json()).then((res) => {
+    if (this.state.projects_fetched) {
       this.setState({projects_fetched: true});
-      ls.set('pp-projects', res);
-    });
+    } else {
+      fetch('https://www.pivotaltracker.com/services/v5/projects', {
+        mode: 'cors',
+        headers,
+        method: 'GET',
+      }).then(res => res.json()).then((res) => {
+        ls.set('pp-projects', res);
+        this.setState({projects_fetched: true});
+      });
+    }
   }
 
   render() {
     return (
       <div style={styles.base}>
-        my projects
+        <h1 style={styles.viewTitle}>Projects</h1>
         <div style={styles.projectsWrapper}>
-          {ls('pp-projects').length ? ls('pp-projects').map((project, projectIndex) => (
-            <div key={projectIndex} style={styles.projectCard} onClick={() => hashHistory.push(`/projects/${project.id}`)}>
+          {this.state.projects_fetched ? ls('pp-projects').map((project, projectIndex) => (
+            <div key={projectIndex} style={styles.projectCard} onClick={() => {
+              ls.set(`pp-project-${project.id}-details`);
+              hashHistory.push(`/projects/${project.id}`)
+            }}>
               {project.name}
             </div>
           )) : false}

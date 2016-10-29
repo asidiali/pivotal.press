@@ -1,5 +1,6 @@
 import {
   HomeView,
+  Layout,
   ProjectStoriesView,
   ProjectsView,
 } from '../views';
@@ -11,15 +12,22 @@ import {
 
 import App from './app';
 import React from 'react';
+import ls from 'local-storage';
 import {render}             from 'react-dom';
 
-function run() {
+function requireAuth() {
+  if (!ls('pp-api')) setTimeout(hashHistory.push('/'), 500);
+}
+
+function main() {
   render(
     <Router history={hashHistory}>
       <Route component={App}>
         <Route path="/" component={HomeView} />
-        <Route path="/projects" component={ProjectsView} />
-        <Route path="/projects/:projectId" component={ProjectStoriesView} />
+        <Route component={Layout} onEnter={requireAuth}>
+          <Route path="/projects" component={ProjectsView} />
+          <Route path="/projects/:projectId" component={ProjectStoriesView} />
+        </Route>
       </Route>
     </Router>,
     document.getElementById('app')
@@ -28,7 +36,7 @@ function run() {
 
 const loadedStates = ['complete', 'loaded', 'interactive'];
 if (loadedStates.includes(document.readyState) && document.body) {
-  run();
+  main();
 } else {
-  window.addEventListener('DOMContentLoaded', run, false);
+  window.addEventListener('DOMContentLoaded', main, false);
 }
