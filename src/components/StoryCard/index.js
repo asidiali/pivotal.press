@@ -1,5 +1,6 @@
 import Icon from '../Icon';
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import moment from 'moment';
 import radium from 'radium';
 import styles from './styles';
@@ -38,10 +39,11 @@ const StoryCard = props => (
     </p>
     <div style={styles.labelsWrapper}>
       {props.story.labels.length ? props.story.labels.map((label, labelIndex) => (
-          <span key={`${props.storyIndex}-${labelIndex}`} style={styles.labelItem}>{label.name}</span>
+          <span data-tip={props.labelFilters.includes(label.id) ? `Remove "${label.name}" from filter` : `Add "${label.name}" to filter`} key={`${props.storyIndex}-${labelIndex}`} style={styles.labelItem} onClick={() => props.handleLabelChange(label.id)}>{label.name}</span>
         )) : false}
     </div>
     <span style={styles.lastUpdated}>Last updated {moment(props.story.updated_at).fromNow()}</span>
+    <ReactTooltip effect="solid" place="top" />
   </div>
 );
 

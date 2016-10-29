@@ -86,13 +86,8 @@ export default class ProjectStoriesView extends React.Component {
   }
 
   sortActiveLabels = (a, b) => {
-    console.log(this.state.labelFilters.includes(a.id));
-    console.log(this.state.labelFilters.includes(b.id));
     const sortA = this.state.labelFilters.includes(a.id) ? -1 : 1;
     const sortB = this.state.labelFilters.includes(b.id) ? -1 : 1;
-    console.log(sortA);
-    console.log(sortB);
-    console.log(sortA - sortB);
     return sortA - sortB;
   }
 
@@ -244,8 +239,8 @@ export default class ProjectStoriesView extends React.Component {
           >
             <Menu maxHeight={350}>
               <MenuItem leftIcon={<Icon icon="label" />} onClick={() => this.handleLabelChange()} primaryText="All Labels" />
-              {this.state.project_labels_fetched ? ls(`pp-project-${this.props.params.projectId}-labels`).sort(this.sortActiveLabels).map((label) => (
-                <MenuItem onClick={() => this.handleLabelChange(label.id)} leftIcon={<Icon icon="label_outline" style={{color: '#aaa'}} />} value={label.id} primaryText={label.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee', backgroundColor: (this.state.labelFilters.includes(label.id) ? '#AED6F1' : '#fff') }} />
+              {this.state.project_labels_fetched ? ls(`pp-project-${this.props.params.projectId}-labels`).sort(this.sortActiveLabels).map((label, labelIndex) => (
+                <MenuItem key={`label-${labelIndex}`}onClick={() => this.handleLabelChange(label.id)} leftIcon={<Icon icon="label_outline" style={{color: '#aaa'}} />} value={label.id} primaryText={label.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee', backgroundColor: (this.state.labelFilters.includes(label.id) ? '#AED6F1' : '#fff') }} />
               )) : false}
             </Menu>
           </Popover>
@@ -270,8 +265,8 @@ export default class ProjectStoriesView extends React.Component {
           >
             <MenuItem leftIcon={<Icon icon="group" />} value='all' primaryText="All Owners" />
             <MenuItem leftIcon={<Icon icon="person" />} value={ls('pp-me').id} primaryText="Me" />
-            {this.state.project_memberships_fetched ? ls(`pp-project-${this.props.params.projectId}-memberships`).filter((val) => val.person.id !== ls('pp-me').id).map((member) => (
-              <MenuItem leftIcon={<Icon icon="person" style={styles.ownerIcon}/>} value={member.person.id} primaryText={member.person.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee' }} />
+            {this.state.project_memberships_fetched ? ls(`pp-project-${this.props.params.projectId}-memberships`).filter((val) => val.person.id !== ls('pp-me').id).map((member, memberIndex) => (
+              <MenuItem key={`member-${memberIndex}`} leftIcon={<Icon icon="person" style={styles.ownerIcon}/>} value={member.person.id} primaryText={member.person.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee' }} />
             )) : false}
           </DropDownMenu>
 
@@ -295,7 +290,7 @@ export default class ProjectStoriesView extends React.Component {
           >
             <MenuItem value='all' primaryText="All Stages" />
             {statuses.map((status, statusIndex) => (
-              <MenuItem value={status} primaryText={`${statusIndex} - ${status}`} style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }} />
+              <MenuItem key={`status-${statusIndex}`} value={status} primaryText={`${statusIndex} - ${status}`} style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }} />
             ))}
           </DropDownMenu>
 
@@ -309,6 +304,8 @@ export default class ProjectStoriesView extends React.Component {
                 story={story}
                 storyIndex={storyIndex}
                 setNotification={this.props.setNotification}
+                handleLabelChange={this.handleLabelChange}
+                labelFilters={this.state.labelFilters}
               />
             )) : (
               <p style={styles.noStories}>No stories</p>
