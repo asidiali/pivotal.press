@@ -15,6 +15,7 @@ export default {
     borderLeft: '1px solid #ddd',
     borderBottom: '2px solid #ddd',
     cursor: 'pointer',
+    transition: '150ms ease-out',
     '@media (max-width: 1440px)': {
       width: '32.33%',
     },
@@ -24,6 +25,10 @@ export default {
     '@media (max-width: 768px)': {
       width: '99%',
     },
+    ':hover': {
+      boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
+      transition: '150ms ease-out',
+    }
   },
   labelsWrapper: {
     margin: 'auto -5px 0',

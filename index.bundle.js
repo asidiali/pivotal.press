@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3865e53fe54d6a5b9845"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "83549f63f2e2a21ff140"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -32591,7 +32591,9 @@
 	  function StoryCard(props) {
 	    return _react2['default'].createElement(
 	      'div',
-	      { key: props.storyIndex, style: _styles2['default'].storyCard },
+	      { key: props.storyIndex, style: Object.assign({}, _styles2['default'].storyCard, {
+	          backgroundColor: props.story.current_state === 'accepted' || props.story.current_state === 'unstarted' ? '#f1f1f1' : '#fff'
+	        }) },
 	      _react2['default'].createElement(
 	        'ul',
 	        { style: _styles2['default'].storyDetails },
@@ -32621,7 +32623,9 @@
 	        'p',
 	        { style: _styles2['default'].storyName },
 	        props.story.name,
-	        _react2['default'].createElement('span', { style: _styles2['default'].storyGradient })
+	        _react2['default'].createElement('span', { style: Object.assign({}, _styles2['default'].storyGradient, {
+	            background: props.story.current_state === 'accepted' || props.story.current_state === 'unstarted' ? 'linear-gradient(to top, rgb(241, 241, 241), rgba(241, 241, 241, 0))' : 'linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0))'
+	          }) })
 	      ),
 	      props.story.labels.length ? _react2['default'].createElement(
 	        'div',
@@ -47150,6 +47154,7 @@
 	    borderLeft: '1px solid #ddd',
 	    borderBottom: '2px solid #ddd',
 	    cursor: 'pointer',
+	    transition: '150ms ease-out',
 	    '@media (max-width: 1440px)': {
 	      width: '32.33%'
 	    },
@@ -47158,6 +47163,10 @@
 	    },
 	    '@media (max-width: 768px)': {
 	      width: '99%'
+	    },
+	    ':hover': {
+	      boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
+	      transition: '150ms ease-out'
 	    }
 	  },
 	  labelsWrapper: {
