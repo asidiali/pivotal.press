@@ -37,13 +37,11 @@ const StoryCard = props => (
       {props.story.name}
       <span style={styles.storyGradient} />
     </p>
-    {props.story.labels.length ? (
-      <div style={styles.labelsWrapper}>
-        {props.story.labels.map((label, labelIndex) => (
+    <div style={styles.labelsWrapper}>
+      {props.story.labels.length ? props.story.labels.map((label, labelIndex) => (
           <span key={`${props.storyIndex}-${labelIndex}`} style={styles.labelItem}>{label.name}</span>
-        ))}
-      </div>
-    ) : false}
+        )) : false}
+    </div>
     <span style={styles.lastUpdated}>Last updated {moment(props.story.updated_at).fromNow()}</span>
   </div>
 );
