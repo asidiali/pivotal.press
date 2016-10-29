@@ -85,6 +85,18 @@ export default class ProjectStoriesView extends React.Component {
     });
   }
 
+  sortActiveLabels = (a, b) => {
+    console.log(this.state.labelFilters.includes(a.id));
+    console.log(this.state.labelFilters.includes(b.id));
+    const sortA = this.state.labelFilters.includes(a.id) ? -1 : 1;
+    const sortB = this.state.labelFilters.includes(b.id) ? -1 : 1;
+    console.log(sortA);
+    console.log(sortB);
+    console.log(sortA - sortB);
+    return sortA - sortB;
+  }
+
+
   filterBySearch = story => {
     const reg = new RegExp(this.state.searchFilter, 'i', 'g');
     return story.name.match(reg);
@@ -232,7 +244,7 @@ export default class ProjectStoriesView extends React.Component {
           >
             <Menu maxHeight={350}>
               <MenuItem leftIcon={<Icon icon="label" />} onClick={() => this.handleLabelChange()} primaryText="All Labels" />
-              {this.state.project_labels_fetched ? ls(`pp-project-${this.props.params.projectId}-labels`).map((label) => (
+              {this.state.project_labels_fetched ? ls(`pp-project-${this.props.params.projectId}-labels`).sort(this.sortActiveLabels).map((label) => (
                 <MenuItem onClick={() => this.handleLabelChange(label.id)} leftIcon={<Icon icon="label_outline" style={{color: '#aaa'}} />} value={label.id} primaryText={label.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee', backgroundColor: (this.state.labelFilters.includes(label.id) ? '#AED6F1' : '#fff') }} />
               )) : false}
             </Menu>
