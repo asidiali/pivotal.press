@@ -26,8 +26,10 @@ export default class ProjectStoriesView extends React.Component {
 
   state = {
     project_stories_fetched: false,
+    project_memberships_fetched: false,
     searchFilter: '',
     storyTypeFilter: 'all',
+    ownerFilter: 'all',
   };
 
   componentDidMount() {
@@ -57,6 +59,15 @@ export default class ProjectStoriesView extends React.Component {
       ls.set(`pp-project-${projectId}-stories`, res);
       this.setState({project_stories_fetched: true});
     });
+
+    fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/memberships`, {
+      mode: 'cors',
+      headers,
+      method: 'GET',
+    }).then(res => res.json()).then((res) => {
+      ls.set(`pp-project-${projectId}-memberships`, res);
+      this.setState({project_memberships_fetched: true});
+    });
   }
 
   filterBySearch = story => {
@@ -70,6 +81,8 @@ export default class ProjectStoriesView extends React.Component {
   }
 
   handleStoryTypeChange = (e, t, val) => this.setState({ storyTypeFilter: val });
+
+  handleOwnerChange = (e, t, val) => this.setState({ ownerFilter: val });
 
   render() {
     console.log(this.props.params.projectId);
@@ -109,19 +122,47 @@ export default class ProjectStoriesView extends React.Component {
             <MenuItem leftIcon={<Icon icon="extension" />} value='feature' primaryText="Features" />
             <MenuItem leftIcon={<Icon icon="backup" />} value='release' primaryText="Releases" />
           </DropDownMenu>
+
+          <Icon icon={(this.state.ownerFilter === 'all') ? 'group' : 'person'} style={{ fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px'}} />
+          <DropDownMenu
+            underlineStyle={{
+              margin: 0,
+              borderTop: '2px solid rgba(0,0,0,0.15)',
+              display: 'none',
+            }}
+            labelStyle={{
+              paddingLeft: 10,
+              fontSize: '1em',
+              color: '#fff',
+              fontWeight: 700,
+            }}
+            style={{ margin: 'auto 0', height: 'auto' }}
+            value={this.state.ownerFilter}
+            onChange={this.handleOwnerChange}
+            maxHeight={300}
+          >
+            <MenuItem leftIcon={<Icon icon="group" />} value='all' primaryText="All Owners" />
+            {this.state.project_memberships_fetched ? ls(`pp-project-${this.props.params.projectId}-memberships`).map((member) => (
+              <MenuItem leftIcon={<Icon icon="person" style={styles.ownerIcon}/>} value={member.person.id} primaryText={member.person.name} style={{ textTransform: 'capitalize', display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', borderTop: '1px solid #eee' }} />
+            )) : false}
+          </DropDownMenu>
         </div>
-        <div style={styles.storiesWrapper}>
-          {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).filter(this.filterBySearch).filter(this.filterByType).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
-            <StoryCard
-              key={storyIndex}
-              story={story}
-              storyIndex={storyIndex}
-              setNotification={this.props.setNotification}
-            />
-          )) : (
-            <Loader />
-          )}
-        </div>
+        {this.state.project_stories_fetched ? (
+          <div style={styles.storiesWrapper}>
+            {ls(`pp-project-${this.props.params.projectId}-stories`).filter(this.filterBySearch).filter(this.filterByType).length ? ls(`pp-project-${this.props.params.projectId}-stories`).filter(this.filterBySearch).filter(this.filterByType).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
+              <StoryCard
+                key={storyIndex}
+                story={story}
+                storyIndex={storyIndex}
+                setNotification={this.props.setNotification}
+              />
+            )) : (
+              <p style={styles.noStories}>No stories</p>
+            )}
+          </div>
+        ) : (
+          <Loader />
+        )}
       </div>
     );
   }

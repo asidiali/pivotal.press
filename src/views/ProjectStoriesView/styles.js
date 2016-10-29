@@ -44,4 +44,16 @@ export default {
     left: 10,
     color: '#fff',
   },
+  noStories: {
+    margin: '40px auto auto',
+    textAlign: 'center',
+    color: '#aaa',
+    fontSize: '1.1em',
+  },
+  ownerIcon: {
+    fontSize: '1.25em',
+    margin: 0,
+    padding: '5px 0',
+    color: '#aaa'
+  },
 };
