@@ -13,7 +13,8 @@ export default {
   },
   pp: {
     textTransform: 'uppercase',
-    margin: '0 auto 20px',
+    fontWeight: 100,
+    margin: '0 auto 10px',
     color: '#fff',
     display: 'flex',
     alignItems: 'center',
@@ -26,13 +27,14 @@ export default {
   input: {
     padding: '10px 15px',
     fontSize: '1.1em',
+    textAlign: 'center',
     width: 400,
     maxWidth: '95%',
     boxSizing: 'border-box',
     border: 0,
     outline: 'none',
     borderRadius: 3,
-    margin: '20px auto',
+    margin: '10px auto 20px',
   },
   submitBtn: {
     border: 0,

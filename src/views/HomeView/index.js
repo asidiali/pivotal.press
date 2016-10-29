@@ -23,7 +23,8 @@ export default class HomeView extends React.Component {
           <Icon icon="dashboard" style={{ margin: 'auto 10px auto auto'}} />
           Pivotal.Press
         </h2>
-        <p style={{color: '#ddd', fontWeight: 400,}}>Login with a valid PivotalTracker API Key:</p>
+        <h5 style={{ color: '#fff', fontWeight: 400, margin: '0 auto 20px', fontSize: '1.1em'}}>An open-source PivotalTracker client for managing stories.</h5>
+        <p style={{color: '#ddd', fontWeight: 400, fontSize: '0.9em'}}>Login with a valid PivotalTracker API Key:</p>
         <form style={styles.form} onSubmit={(e) => {
           e.preventDefault();
           const headers = new Headers();

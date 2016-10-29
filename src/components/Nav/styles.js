@@ -12,7 +12,7 @@ export default {
     flexFlow: 'row nowrap',
   },
   brand: {
-    fontWeight: 700,
+    fontWeight: 300,
     margin: 'auto 10px auto 20px',
     fontSize: '0.9em',
     letterSpacing: 1,
@@ -21,7 +21,7 @@ export default {
     flexFlow: 'row nowrap',
     alignItems: 'center',
     flex: '0 0 auto',
-    color: '#aaa',
+    color: '#ccc',
     '@media (max-width: 768px)': {
       fontSize: '1.15em',
     }
@@ -34,8 +34,8 @@ export default {
   loggedInUser: {
     margin: 'auto 20px auto auto',
     fontSize: '0.9em',
-    color: '#aaa',
-    fontWeight: 700,
+    color: '#ccc',
+    fontWeight: 400,
     display: 'flex',
     flex: '0 0 auto',
     flexFlow: 'row nowrap',
