@@ -8,7 +8,7 @@ export default {
   storyCard: {
     backgroundColor: '#fff',
     width: '24%',
-    height: 250,
+    height: 280,
     borderRadius: 3,
     flex: '0 0 auto',
     margin: '0.5%',
@@ -31,15 +31,30 @@ export default {
       width: '99%',
     },
   },
+  labelsWrapper: {
+    margin: 'auto -5px 0',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    flex: '0 0 auto',
+  },
+  labelItem: {
+    color: '#aaa',
+    fontSize: '0.8em',
+    textDecoration: 'underline',
+    margin: '0 5px',
+    flex: '0 0 auto',
+  },
   lastUpdated: {
     color: '#ccc',
     fontSize: '0.8em',
-    margin: 'auto 0 5px',
+    margin: '5px 0',
     fontWeight: 700,
+    flex: '0 0 auto',
   },
   storyDetails: {
     listStyle: 'none',
     display: 'flex',
+    flex: '0 0 auto',
     flexFlow: 'row wrap',
     justifyContent: 'flex-start',
     margin: '0 0 20px 0',
@@ -66,5 +81,17 @@ export default {
     fontSize: '1.1em',
     fontWeight: 300,
     color: '#222',
+    height: 140,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  storyGradient: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 9,
+    height: 60,
+    background: 'linear-gradient(to top, #fff, rgba(255,255,255,0))'
   }
 };

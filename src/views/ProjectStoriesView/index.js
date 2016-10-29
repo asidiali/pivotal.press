@@ -71,7 +71,17 @@ export default class ProjectStoriesView extends React.Component {
                   {statuses.indexOf(story.current_state)} - {story.current_state}
                 </li>
               </ul>
-              <p style={styles.storyName}>{story.name}</p>
+              <p style={styles.storyName}>
+                {story.name}
+                <span style={styles.storyGradient}></span>
+              </p>
+              {story.labels.length ? (
+                <div style={styles.labelsWrapper}>
+                  {story.labels.map((label, labelIndex) => (
+                    <span key={labelIndex} style={styles.labelItem}>{label.name}</span>
+                  ))}
+                </div>
+              ) : false}
               <span style={styles.lastUpdated}>Last updated {moment(story.updated_at).fromNow()}</span>
             </div>
           )) : false}
