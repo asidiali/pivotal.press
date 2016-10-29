@@ -1,7 +1,7 @@
 {
-  "name": "react-es7-starter",
+  "name": "pivotal.press",
   "version": "0.1.0",
-  "description": "A boilerplate front-end using React, ES7 & Webpack",
+  "description": "A PivotalTracker front-end app",
   "main": "./src/core/app.js",
   "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/adamsidiali/react-es7-starter.git"
+    "url": "https://github.com/asidiali/pivotal-press.git"
   },
   "author": "adamsidiali",
   "license": "GPL",
   "bugs": {
-    "url": "https://github.com/adamsidiali/react-es7-starter/issues"
+    "url": "https://github.com/asidiali/pivotal-press/issues"
   },
-  "homepage": "https://github.com/adamsidiali/react-es7-starter#readme",
+  "homepage": "https://github.com/asidiali/pivotal-press#readme",
   "devDependencies": {
     "babel-core": "^6.17.0",
     "babel-eslint": "^7.0.0",
@@ -37,11 +37,13 @@
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
     "html-webpack-plugin": "^2.22.0",
+    "local-storage": "^1.4.2",
     "radium": "^0.18.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^2.8.1",
     "react-tap-event-plugin": "^1.0.0",
+    "request": "^2.76.0",
     "webpack": "^1.13.2"
   }
 }

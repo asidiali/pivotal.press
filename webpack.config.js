@@ -39,8 +39,8 @@ module.exports = {
   ],
   node: {
     console: true,
-    fs: null,
-    net: null,
-    tls: null,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
   },
 };
