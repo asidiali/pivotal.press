@@ -24,7 +24,7 @@ A PivotalTracker front-end app.
       - [x] ~~owner~~
       - [x] ~~labels~~
   - [x] ~~labels in project~~
-  - [x] ~~members in project~~
+  - [ ] members in project
   - [ ] story details
 - [ ] Edit
   - [ ] project
