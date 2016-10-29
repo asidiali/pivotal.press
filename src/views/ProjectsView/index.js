@@ -1,3 +1,4 @@
+import {Loader} from '../../components';
 import React from 'react';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
@@ -41,7 +42,9 @@ export default class ProjectsView extends React.Component {
             }}>
               <span style={styles.projectName}>{project.name}</span>
             </div>
-          )) : false}
+          )) : (
+            <Loader />
+          )}
         </div>
       </div>
     );
