@@ -24,6 +24,7 @@ export default {
     },
     '@media (max-width: 768px)': {
       width: '99%',
+      height: 'auto',
     },
     ':hover': {
       boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
@@ -83,17 +84,9 @@ export default {
     fontSize: '1.1em',
     fontWeight: 300,
     color: '#222',
-    height: 140,
+    maxHeight: 140,
     position: 'relative',
     overflow: 'hidden',
-  },
-  storyGradient: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: 9,
-    height: 60,
-    background: 'linear-gradient(to top, #fff, rgba(255,255,255,0))'
+    marginBottom: 20,
   },
 };
