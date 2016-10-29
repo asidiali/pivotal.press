@@ -30,6 +30,7 @@ export default class ProjectStoriesView extends React.Component {
     searchFilter: '',
     storyTypeFilter: 'all',
     ownerFilter: 'all',
+    stagesFilter: 'all',
   };
 
   componentDidMount() {
@@ -85,15 +86,23 @@ export default class ProjectStoriesView extends React.Component {
     return story.owned_by_id === this.state.ownerFilter;
   }
 
+  filterByStage= story => {
+    if (this.state.stagesFilter === 'all') return true;
+    return story.current_state === this.state.stagesFilter;
+  }
+
   handleStoryTypeChange = (e, t, val) => this.setState({ storyTypeFilter: val });
 
   handleOwnerChange = (e, t, val) => this.setState({ ownerFilter: val });
 
-  renderFilteredStories = (search, type, owner) => {
+  handleStagesChange = (e, t, val) => this.setState({ stagesFilter: val });
+
+  renderFilteredStories = (search, type, owner, stage) => {
     return ls(`pp-project-${this.props.params.projectId}-stories`)
       .filter(search)
       .filter(owner)
       .filter(type)
+      .filter(stage)
       .sort(sortStoriesByCreatedTime)
   }
 
@@ -160,10 +169,36 @@ export default class ProjectStoriesView extends React.Component {
               <MenuItem leftIcon={<Icon icon="person" style={styles.ownerIcon}/>} value={member.person.id} primaryText={member.person.name} style={{ textTransform: 'capitalize', display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', borderTop: '1px solid #eee' }} />
             )) : false}
           </DropDownMenu>
+
+          <DropDownMenu
+            underlineStyle={{
+              margin: 0,
+              borderTop: '2px solid rgba(0,0,0,0.15)',
+              display: 'none',
+            }}
+            labelStyle={{
+              paddingLeft: 10,
+              fontSize: '1em',
+              color: '#fff',
+              fontWeight: 700,
+              textTransform: 'capitalize',
+            }}
+            style={{ margin: 'auto 0', height: 'auto' }}
+            value={this.state.stagesFilter}
+            onChange={this.handleStagesChange}
+            maxHeight={300}
+          >
+            <MenuItem value='all' primaryText="All Stages" />
+            {statuses.map((status, statusIndex) => (
+              <MenuItem value={status} primaryText={`${statusIndex} - ${status}`} style={{ textTransform: 'capitalize', display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', borderTop: '1px solid #eee' }} />
+            ))}
+          </DropDownMenu>
+
         </div>
+
         {this.state.project_stories_fetched ? (
           <div style={styles.storiesWrapper}>
-            {this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner) ? this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner).map((story, storyIndex) => (
+            {this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage) ? this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage).map((story, storyIndex) => (
               <StoryCard
                 key={storyIndex}
                 story={story}
