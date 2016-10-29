@@ -9,6 +9,7 @@ export default {
     backgroundColor: '#fff',
     width: '24%',
     height: 250,
+    borderRadius: 3,
     flex: '0 0 auto',
     margin: '0.5%',
     display: 'flex',
@@ -19,6 +20,15 @@ export default {
     borderRight: '1px solid #ddd',
     borderLeft: '1px solid #ddd',
     borderBottom: '2px solid #ddd',
+    '@media (max-width: 1200px)': {
+      width: '32.33%',
+    },
+    '@media (max-width: 900px)': {
+      width: '49%',
+    },
+    '@media (max-width: 600px)': {
+      width: '99%',
+    },
   },
   lastUpdated: {
     color: '#ccc',
@@ -45,7 +55,11 @@ export default {
     fontWeight: 700,
     textTransform: 'uppercase',
     letterSpacing: 1,
-    margin: 'auto 0'
+    margin: 'auto 0',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   storyName: {
     fontSize: '1.1em',

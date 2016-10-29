@@ -16,7 +16,7 @@ import ls from 'local-storage';
 import {render}             from 'react-dom';
 
 function requireAuth() {
-  if (!ls('pp-api')) setTimeout(hashHistory.push('/'), 500);
+  if (!ls('pp-api') || !ls('pp-me')) setTimeout(hashHistory.push('/'), 500);
 }
 
 function main() {

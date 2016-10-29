@@ -1,0 +1,33 @@
+export default {
+  base: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 60,
+    zIndex: 999,
+    backgroundColor: '#fff',
+    borderBottom: '1px solid #ddd',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+  },
+  brand: {
+    fontWeight: 700,
+    margin: 'auto 20px',
+    fontSize: '0.9em',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    alignItems: 'center',
+  },
+  loggedInUser: {
+    margin: 'auto 20px auto auto',
+    fontSize: '0.9em',
+    color: 'rgb(4,55,113)',
+    fontWeight: 700,
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    alignItems: 'center',
+  },
+};

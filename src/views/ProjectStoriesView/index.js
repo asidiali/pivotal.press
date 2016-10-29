@@ -1,7 +1,11 @@
+import {
+  Icon,
+} from '../../components';
 import React from 'react';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
 import moment from 'moment';
+import radium from 'radium';
 import request from 'request';
 import styles from './styles';
 
@@ -9,6 +13,7 @@ function sortStoriesByCreatedTime(a, b) {
   return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
 }
 
+@radium
 export default class ProjectStoriesView extends React.Component {
 
   state = {
@@ -40,7 +45,10 @@ export default class ProjectStoriesView extends React.Component {
           {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
             <div key={storyIndex} style={styles.storyCard}>
               <ul style={styles.storyDetails}>
-                <li style={styles.storyDetail}>{story.story_type}</li>
+                <li style={styles.storyDetail}>
+                  <Icon icon={typeIcons[story.story_type]} style={{ marginRight: 5 }} />
+                  {story.story_type}
+                </li>
                 <li style={styles.storyDetail}>{story.current_state}</li>
               </ul>
               <p style={styles.storyName}>{story.name}</p>
@@ -52,3 +60,14 @@ export default class ProjectStoriesView extends React.Component {
     );
   }
 }
+
+const typeIcons = {
+  feature: 'extension',
+  bug: 'bug_report',
+  chore: 'build',
+  release: 'backup',
+};
+
+const statusIcons = {
+
+};

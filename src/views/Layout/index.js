@@ -3,7 +3,7 @@ import React from 'react';
 const Layout = props => (
   <div style={{
     position: 'absolute',
-    top: 0,
+    top: 60,
     bottom: 0,
     left: 0,
     right: 0,
