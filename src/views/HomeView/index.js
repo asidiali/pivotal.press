@@ -41,6 +41,7 @@ export default class HomeView extends React.Component {
           />
           <button style={styles.submitBtn} type="submit">Login &gt;</button>
         </form>
+        <span style={styles.copy}>&copy; 2016 Adam Sidiali.</span>
       </div>
     );
   }

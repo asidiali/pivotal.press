@@ -39,5 +39,16 @@ export default {
     fontSize: '0.9em',
     fontWeight: 700,
     margin: '0 auto 20px',
+  },
+  copy: {
+    position: 'absolute',
+    bottom: 10,
+    left: 'auto',
+    right: 'auto',
+    margin: 'auto',
+    color: '#333',
+    fontWeight: 700,
+    fontSize: '0.8em',
+    textTransform: 'capitalize',
   }
 };
