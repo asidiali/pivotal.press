@@ -16,9 +16,8 @@ export default class HomeView extends React.Component {
   render() {
     return (
       <div style={styles.base}>
-        <h1>Pivotal.Press</h1>
-        <p>API Key</p>
-        <form onSubmit={(e) => {
+        <p>Login with your PivotalTracker API Key</p>
+        <form style={styles.form} onSubmit={(e) => {
           e.preventDefault();
           const headers = new Headers();
           ls.set('pp-api', e.target.api_key.value);
@@ -34,10 +33,12 @@ export default class HomeView extends React.Component {
           });
         }}>
           <input
+            style={styles.input}
             placeholder="2b68344f1906a491fb65876f58aa78a7"
             type="text"
             name="api_key"
           />
+          <button style={styles.submitBtn} type="submit">Login</button>
         </form>
         <p>logged in as: {ls('pp-api')}</p>
       </div>

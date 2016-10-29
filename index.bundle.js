@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6fbcd735fbd6120e5fab"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "09a05304650df8d9c738"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -17775,18 +17775,13 @@
 	          'div',
 	          { style: _styles2['default'].base },
 	          _react2['default'].createElement(
-	            'h1',
-	            null,
-	            'Pivotal.Press'
-	          ),
-	          _react2['default'].createElement(
 	            'p',
 	            null,
-	            'API Key'
+	            'Login with your PivotalTracker API Key'
 	          ),
 	          _react2['default'].createElement(
 	            'form',
-	            { onSubmit: function () {
+	            { style: _styles2['default'].form, onSubmit: function () {
 	                function onSubmit(e) {
 	                  e.preventDefault();
 	                  var headers = new Headers();
@@ -17808,10 +17803,16 @@
 	                return onSubmit;
 	              }() },
 	            _react2['default'].createElement('input', {
+	              style: _styles2['default'].input,
 	              placeholder: '2b68344f1906a491fb65876f58aa78a7',
 	              type: 'text',
 	              name: 'api_key'
-	            })
+	            }),
+	            _react2['default'].createElement(
+	              'button',
+	              { style: _styles2['default'].submitBtn, type: 'submit' },
+	              'Login'
+	            )
 	          ),
 	          _react2['default'].createElement(
 	            'p',
@@ -27645,16 +27646,55 @@
 /* 480 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	var _default = {
-	  base: {}
+	  base: {
+	    background: 'rgb(62, 114, 147)',
+	    position: 'absolute',
+	    top: 0,
+	    left: 0,
+	    bottom: 0,
+	    right: 0,
+	    display: 'flex',
+	    flexFlow: 'column nowrap',
+	    justifyContent: 'center',
+	    alignItems: 'center',
+	    color: '#fff !important'
+	  },
+	  form: {
+	    display: 'flex',
+	    flexFlow: 'column nowrap',
+	    alignItems: 'center'
+	  },
+	  input: {
+	    padding: 10,
+	    fontSize: '1.1em',
+	    boxSizing: 'border-box',
+	    border: 0,
+	    outline: 'none',
+	    borderRadius: 3,
+	    margin: '20px auto'
+	  },
+	  submitBtn: {
+	    border: 0,
+	    outline: 'none',
+	    backgroundColor: '#1bb23a',
+	    color: '#fff',
+	    padding: '10px 20px',
+	    boxSizing: 'border-box',
+	    borderRadius: 3,
+	    textTransform: 'uppercase',
+	    fontSize: '0.9em',
+	    fontWeight: 700,
+	    margin: '0 auto 20px'
+	  }
 	};
 	var _default2 = _default;
-	exports["default"] = _default2;
+	exports['default'] = _default2;
 	;
 
 	var _temp = function () {
@@ -27662,9 +27702,9 @@
 	    return;
 	  }
 
-	  __REACT_HOT_LOADER__.register(_default, "default", "/Users/adam/projects/pivotal-press/src/views/HomeView/styles.js");
+	  __REACT_HOT_LOADER__.register(_default, 'default', '/Users/adam/projects/pivotal-press/src/views/HomeView/styles.js');
 
-	  __REACT_HOT_LOADER__.register(_default2, "default", "/Users/adam/projects/pivotal-press/src/views/HomeView/styles.js");
+	  __REACT_HOT_LOADER__.register(_default2, 'default', '/Users/adam/projects/pivotal-press/src/views/HomeView/styles.js');
 	}();
 
 	;

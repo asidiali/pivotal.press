@@ -1,3 +1,42 @@
 export default {
-  base: {},
+  base: {
+    background: 'rgb(62, 114, 147)',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#fff !important',
+  },
+  form: {
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    alignItems: 'center',
+  },
+  input: {
+    padding: 10,
+    fontSize: '1.1em',
+    boxSizing: 'border-box',
+    border: 0,
+    outline: 'none',
+    borderRadius: 3,
+    margin: '20px auto',
+  },
+  submitBtn: {
+    border: 0,
+    outline: 'none',
+    backgroundColor: '#1bb23a',
+    color: '#fff',
+    padding: '10px 20px',
+    boxSizing: 'border-box',
+    borderRadius: 3,
+    textTransform: 'uppercase',
+    fontSize: '0.9em',
+    fontWeight: 700,
+    margin: '0 auto 20px',
+  }
 };
