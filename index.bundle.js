@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e1bebcb9faa485b285c4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "68b850d17045cd0ba3d4"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -96935,6 +96935,8 @@
 
 	var _class;
 
+	var _components = __webpack_require__(483);
+
 	var _react = __webpack_require__(382);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -97043,7 +97045,7 @@
 	                  project.name
 	                )
 	              );
-	            }) : false
+	            }) : _react2['default'].createElement(_components.Loader, null)
 	          )
 	        );
 	      }
