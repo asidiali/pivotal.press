@@ -10,6 +10,9 @@ const Nav = props => (
       Pivotal.Press
     </span>
     <span style={styles.viewTitle}>
+      {props.showBack ? (
+        <span onClick={() => hashHistory.push(props.showBack.link)}>{props.showBack.text}&nbsp;&gt;&nbsp;</span>
+      ) : false}
       {props.viewTitle}
     </span>
     <span style={styles.loggedInUser}>

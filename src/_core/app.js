@@ -12,11 +12,16 @@ class App extends React.Component {
 
   state = {
     viewTitle: '',
+    showBack: false,
   };
 
   setViewTitle = viewTitle => {
     console.log(viewTitle);
     this.setState({ viewTitle });
+  }
+
+  setShowBack = showBack => {
+    this.setState({ showBack });
   }
 
   render() {

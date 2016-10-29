@@ -21,10 +21,10 @@ export default {
     borderLeft: '1px solid #ddd',
     borderBottom: '2px solid #ddd',
     cursor: 'pointer',
-    '@media (max-width: 1200px)': {
+    '@media (max-width: 1400px)': {
       width: '32.33%',
     },
-    '@media (max-width: 900px)': {
+    '@media (max-width: 1000px)': {
       width: '49%',
     },
     '@media (max-width: 600px)': {
@@ -40,8 +40,8 @@ export default {
   storyDetails: {
     listStyle: 'none',
     display: 'flex',
-    flexFlow: 'row nowrap',
-    justifyContent: 'space-between',
+    flexFlow: 'row wrap',
+    justifyContent: 'flex-start',
     margin: '0 0 20px 0',
     padding: 0,
   },
@@ -52,11 +52,11 @@ export default {
     padding: '3px 6px',
     boxSizing: 'border-box',
     borderRadius: 3,
-    fontSize: '0.8em',
+    fontSize: '0.75em',
     fontWeight: 700,
     textTransform: 'uppercase',
-    letterSpacing: 1,
-    margin: 'auto 0',
+    letterSpacing: 0,
+    margin: 'auto 5px auto 0',
     display: 'flex',
     flexFlow: 'row nowrap',
     justifyContent: 'center',

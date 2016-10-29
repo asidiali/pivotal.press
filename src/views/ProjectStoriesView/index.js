@@ -10,7 +10,7 @@ import request from 'request';
 import styles from './styles';
 
 function sortStoriesByCreatedTime(a, b) {
-  return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+  return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
 }
 
 @radium
@@ -41,6 +41,7 @@ export default class ProjectStoriesView extends React.Component {
     return Object.assign({}, styles.storyDetail, {
       background: statusColors[state].bg,
       color: statusColors[state].text,
+      margin: 'auto 0 auto auto',
     });
   }
 
@@ -54,6 +55,10 @@ export default class ProjectStoriesView extends React.Component {
           {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
             <div key={storyIndex} style={styles.storyCard}>
               <ul style={styles.storyDetails}>
+                <li style={styles.storyDetail}>
+                  <Icon icon="content_copy" style={{ marginRight: 5 }} />
+                  {story.id}
+                </li>
                 <li style={styles.storyDetail}>
                   <Icon icon={typeIcons[story.story_type]} style={{ marginRight: 5 }} />
                   {story.story_type}
