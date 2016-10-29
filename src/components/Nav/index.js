@@ -74,8 +74,8 @@ class Nav extends React.Component {
               ls.set('pp-me', false);
               ls.set('pp-api', false);
               this.toggleCloseAccountPopover();
+              this.props.setViewTitle();
               setTimeout(() => {
-                this.props.setViewTitle();
                 hashHistory.push('/');
               }, 1000);
             }} />
