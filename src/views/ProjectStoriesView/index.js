@@ -112,7 +112,6 @@ export default class ProjectStoriesView extends React.Component {
 
     if (!story.labels.length) return false;
 
-    console.log(story.labels);
     for (let i = 0; i < story.labels.length; i++) {
       if (this.state.labelFilters.includes(story.labels[i].id)) res = true;
     }
@@ -141,14 +140,20 @@ export default class ProjectStoriesView extends React.Component {
   handleStagesChange = (e, t, val) => this.setState({ stagesFilter: val });
 
   handleLabelChange = (val) => {
-    const labels = this.state.labelFilters;
+    let labels = this.state.labelFilters;
 
-    if (labels.includes(val)) {
-      labels.splice(labels.indexOf(val), 1);
+    if (!val) {
+      labels = [];
     } else {
-      labels.push(val);
+      if (labels.includes(val)) {
+        labels.splice(labels.indexOf(val), 1);
+      } else {
+        labels.push(val);
+      }
     }
-    this.setState({ labelsFilters: labels });
+    console.log(labels);
+
+    this.setState({ labelFilters: labels });
     this.toggleLabelsPopover();
   }
 
@@ -226,7 +231,7 @@ export default class ProjectStoriesView extends React.Component {
             onRequestClose={() => this.toggleLabelsPopover()}
           >
             <Menu maxHeight={350}>
-              <MenuItem leftIcon={<Icon icon="label" />} value='[]' primaryText="All Labels" />
+              <MenuItem leftIcon={<Icon icon="label" />} onClick={() => this.handleLabelChange()} primaryText="All Labels" />
               {this.state.project_labels_fetched ? ls(`pp-project-${this.props.params.projectId}-labels`).map((label) => (
                 <MenuItem onClick={() => this.handleLabelChange(label.id)} leftIcon={<Icon icon="label_outline" style={{color: '#aaa'}} />} value={label.id} primaryText={label.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee', backgroundColor: (this.state.labelFilters.includes(label.id) ? '#AED6F1' : '#fff') }} />
               )) : false}
