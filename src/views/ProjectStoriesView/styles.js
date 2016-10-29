@@ -21,13 +21,13 @@ export default {
     borderLeft: '1px solid #ddd',
     borderBottom: '2px solid #ddd',
     cursor: 'pointer',
-    '@media (max-width: 1400px)': {
+    '@media (max-width: 1440px)': {
       width: '32.33%',
     },
-    '@media (max-width: 1000px)': {
+    '@media (max-width: 996px)': {
       width: '49%',
     },
-    '@media (max-width: 600px)': {
+    '@media (max-width: 768px)': {
       width: '99%',
     },
   },
