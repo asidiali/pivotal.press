@@ -25,6 +25,11 @@ export default class ProjectStoriesView extends React.Component {
     const projectId = this.props.params.projectId;
     headers.append('X-TrackerToken', ls('pp-api'));
     this.props.setViewTitle(ls(`pp-project-${projectId}-details`).name);
+    this.props.setShowBack({
+      link: '/projects',
+      text: 'Projects',
+      clearOnClick: true,
+    });
     // TODO paginate requests
     fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/stories?limit=1000`, {
       mode: 'cors',
@@ -37,7 +42,6 @@ export default class ProjectStoriesView extends React.Component {
   }
 
   renderStatusColor = state => {
-    console.log(state);
     return Object.assign({}, styles.storyDetail, {
       background: statusColors[state].bg,
       color: statusColors[state].text,
@@ -49,8 +53,6 @@ export default class ProjectStoriesView extends React.Component {
     console.log(this.props.params.projectId);
     return (
       <div style={styles.base}>
-        <span onClick={() => hashHistory.push('/projects')}>&lt; Projects</span>
-        <h3>Stories</h3>
         <div style={styles.storiesWrapper}>
           {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
             <div key={storyIndex} style={styles.storyCard}>

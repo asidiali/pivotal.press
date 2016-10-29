@@ -21,6 +21,7 @@ class App extends React.Component {
   }
 
   setShowBack = showBack => {
+    console.log(showBack);
     this.setState({ showBack });
   }
 
@@ -28,9 +29,11 @@ class App extends React.Component {
     return (
       <StyleRoot>
         <div style={styles.base}>
-          <Nav viewTitle={this.state.viewTitle} />
+          <Nav viewTitle={this.state.viewTitle} showBack={this.state.showBack} />
           {React.cloneElement(this.props.children, {
             setViewTitle: this.setViewTitle,
+            setShowBack: this.setShowBack,
+            showBack: this.state.showBack,
           })}
         </div>
       </StyleRoot>
