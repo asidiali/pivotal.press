@@ -57,7 +57,7 @@ export default {
     margin: 'auto 10px',
     fontWeight: 700,
     fontSize: '1em',
-    flex: 1,
+    flex: '0 0 auto',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -65,6 +65,29 @@ export default {
     textTransform: 'uppercase',
     '@media (max-width: 768px)': {
       margin: 'auto 10px auto 0',
+      flex: 1,
     },
+  },
+  filtersWrapper: {
+    position: 'absolute',
+    top: 60,
+    height: 60,
+    width: '100vw',
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgb(62, 114, 147)',
+    margin: 'auto 10px',
+    display: 'flex',
+    flexFlow: 'row nowrap',
+  },
+  searchInput: {
+    backgroundColor: 'rgba(0,0,0,0.25)',
+    color: '#fff',
+    padding: 10,
+    boxSizing: 'border-box',
+    borderRadius: 3,
+    fontSize: '0.9em',
+    border: 0,
+    margin: 'auto 10px auto 0',
   }
 };

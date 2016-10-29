@@ -22,6 +22,7 @@ export default class ProjectStoriesView extends React.Component {
 
   state = {
     project_stories_fetched: false,
+    searchFilter: '',
   };
 
   componentDidMount() {
@@ -53,12 +54,29 @@ export default class ProjectStoriesView extends React.Component {
     });
   }
 
+  filterBySearch = story => {
+    const reg = new RegExp(this.state.searchFilter, 'i', 'g');
+    return story.name.match(reg);
+  }
+
   render() {
     console.log(this.props.params.projectId);
     return (
       <div style={styles.base}>
+        <div style={styles.filtersWrapper}>
+          <div style={styles.searchInputWrapper}>
+            <Icon icon="search" style={styles.searchIcon} />
+            <input
+              placeholder="search stories"
+              style={styles.searchInput}
+              onKeyUp={(e) => {
+                this.setState({ searchFilter: e.currentTarget.value });
+              }}
+            />
+          </div>
+        </div>
         <div style={styles.storiesWrapper}>
-          {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
+          {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).filter(this.filterBySearch).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
             <StoryCard
               key={storyIndex}
               story={story}
