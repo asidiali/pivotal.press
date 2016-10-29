@@ -26,10 +26,12 @@ const Nav = props => (
       ) : false}
       {props.viewTitle}
     </span>
-    <span style={styles.loggedInUser}>
-      {ls('pp-me').name || ''}
-      <Icon icon="account_circle" style={{marginLeft: 10}} />
-    </span>
+    {ls('pp-me') ? (
+      <span style={styles.loggedInUser}>
+        {ls('pp-me').name || ''}
+        <Icon icon="account_circle" style={{marginLeft: 10}} />
+      </span>
+    ) : false}
   </nav>
 );
 

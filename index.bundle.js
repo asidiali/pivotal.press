@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "63b783bb57fed17217c6"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6fbcd735fbd6120e5fab"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -28226,12 +28226,12 @@
 	        ) : false,
 	        props.viewTitle
 	      ),
-	      _react2['default'].createElement(
+	      (0, _localStorage2['default'])('pp-me') ? _react2['default'].createElement(
 	        'span',
 	        { style: _styles2['default'].loggedInUser },
 	        (0, _localStorage2['default'])('pp-me').name || '',
 	        _react2['default'].createElement(_Icon2['default'], { icon: 'account_circle', style: { marginLeft: 10 } })
-	      )
+	      ) : false
 	    );
 	  }
 
