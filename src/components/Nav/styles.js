@@ -57,7 +57,10 @@ export default {
     margin: 'auto 10px',
     fontWeight: 700,
     fontSize: '1em',
-    flex: '0 0 auto',
+    flex: 1,
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
     color: '#fff',
     textTransform: 'uppercase',
     '@media (max-width: 768px)': {
