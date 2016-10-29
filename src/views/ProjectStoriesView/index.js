@@ -1,6 +1,8 @@
 import {
   DropDownMenu,
+  Menu,
   MenuItem,
+  Popover,
 } from 'material-ui';
 import {
   Icon,
@@ -31,6 +33,9 @@ export default class ProjectStoriesView extends React.Component {
     storyTypeFilter: 'all',
     ownerFilter: 'all',
     stagesFilter: 'all',
+    labelFilters: [],
+    showLabelsPopover: false,
+    labelsEl: null,
   };
 
   componentDidMount() {
@@ -69,6 +74,15 @@ export default class ProjectStoriesView extends React.Component {
       ls.set(`pp-project-${projectId}-memberships`, res);
       this.setState({project_memberships_fetched: true});
     });
+
+    fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/labels`, {
+      mode: 'cors',
+      headers,
+      method: 'GET',
+    }).then(res => res.json()).then((res) => {
+      ls.set(`pp-project-${projectId}-labels`, res);
+      this.setState({project_labels_fetched: true});
+    });
   }
 
   filterBySearch = story => {
@@ -86,9 +100,38 @@ export default class ProjectStoriesView extends React.Component {
     return story.owned_by_id === this.state.ownerFilter;
   }
 
-  filterByStage= story => {
+  filterByStage = story => {
     if (this.state.stagesFilter === 'all') return true;
     return story.current_state === this.state.stagesFilter;
+  }
+
+  filterByLabels = story => {
+    let res = false;
+
+    if (!this.state.labelFilters.length) return true;
+
+    if (!story.labels.length) return false;
+
+    console.log(story.labels);
+    for (let i = 0; i < story.labels.length; i++) {
+      if (this.state.labelFilters.includes(story.labels[i].id)) res = true;
+    }
+
+    return res;
+  }
+
+  toggleLabelsPopover = (el) => {
+    if (el) {
+      this.setState({
+        showLabelsPopover: true,
+        labelsEl: el,
+      });
+    } else {
+      this.setState({
+        showLabelsPopover: false,
+        labelsEl: null,
+      });
+    }
   }
 
   handleStoryTypeChange = (e, t, val) => this.setState({ storyTypeFilter: val });
@@ -97,12 +140,25 @@ export default class ProjectStoriesView extends React.Component {
 
   handleStagesChange = (e, t, val) => this.setState({ stagesFilter: val });
 
-  renderFilteredStories = (search, type, owner, stage) => {
+  handleLabelChange = (val) => {
+    const labels = this.state.labelFilters;
+
+    if (labels.includes(val)) {
+      labels.splice(labels.indexOf(val), 1);
+    } else {
+      labels.push(val);
+    }
+    this.setState({ labelsFilters: labels });
+    this.toggleLabelsPopover();
+  }
+
+  renderFilteredStories = (search, type, owner, stage, label) => {
     return ls(`pp-project-${this.props.params.projectId}-stories`)
       .filter(search)
       .filter(owner)
       .filter(type)
       .filter(stage)
+      .filter(label)
       .sort(sortStoriesByCreatedTime)
   }
 
@@ -145,6 +201,38 @@ export default class ProjectStoriesView extends React.Component {
             <MenuItem leftIcon={<Icon icon="backup" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='release' primaryText="Releases" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
           </DropDownMenu>
 
+
+          <div style={{
+            flex: '0 0 auto',
+            color: '#fff',
+            fontWeight: 700,
+            display: 'flex',
+            alignItems: 'center',
+            margin: 'auto 10px',
+          }} onClick={(e) => this.toggleLabelsPopover(e.currentTarget)}>
+            <Icon icon={this.state.labelFilters.length ? 'label_outline' : 'label'} style={{ margin: 'auto 10px auto 0'}} />
+            {this.state.labelFilters.length ? (
+              <span>{this.state.labelFilters.length} label{(this.state.labelFilters.length === 1) ? false : 's'}</span>
+            ) : (
+              <span>All Labels</span>
+            )}
+            <Icon icon="arrow_drop_down" style={{ fontSize: '1.5em', margin: 'auto 0 auto 10px'}} />
+          </div>
+          <Popover
+            open={this.state.showLabelsPopover}
+            anchorEl={this.state.labelsEl}
+            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+            targetOrigin={{horizontal: 'left', vertical: 'top'}}
+            onRequestClose={() => this.toggleLabelsPopover()}
+          >
+            <Menu maxHeight={350}>
+              <MenuItem leftIcon={<Icon icon="label" />} value='[]' primaryText="All Labels" />
+              {this.state.project_labels_fetched ? ls(`pp-project-${this.props.params.projectId}-labels`).map((label) => (
+                <MenuItem onClick={() => this.handleLabelChange(label.id)} leftIcon={<Icon icon="label_outline" style={{color: '#aaa'}} />} value={label.id} primaryText={label.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee', backgroundColor: (this.state.labelFilters.includes(label.id) ? '#AED6F1' : '#fff') }} />
+              )) : false}
+            </Menu>
+          </Popover>
+
           <Icon icon={(this.state.ownerFilter === 'all') ? 'group' : 'person'} style={{ fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px'}} />
           <DropDownMenu
             underlineStyle={{
@@ -186,7 +274,7 @@ export default class ProjectStoriesView extends React.Component {
             style={{ margin: 'auto 0', height: 'auto' }}
             value={this.state.stagesFilter}
             onChange={this.handleStagesChange}
-            maxHeight={300}
+            maxHeight={350}
           >
             <MenuItem value='all' primaryText="All Stages" />
             {statuses.map((status, statusIndex) => (
@@ -198,7 +286,7 @@ export default class ProjectStoriesView extends React.Component {
 
         {this.state.project_stories_fetched ? (
           <div style={styles.storiesWrapper}>
-            {this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage) ? this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage).map((story, storyIndex) => (
+            {this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage, this.filterByLabels) ? this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage, this.filterByLabels).map((story, storyIndex) => (
               <StoryCard
                 key={storyIndex}
                 story={story}

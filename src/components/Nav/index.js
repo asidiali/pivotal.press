@@ -71,7 +71,7 @@ class Nav extends React.Component {
           onRequestClose={() => this.toggleCloseAccountPopover()}
         >
           <Menu>
-            <MenuItem leftIcon={<Icon icon="exit_to_app" style={{fontSize: '1.5em', color: '#aaa', boxSizing: 'border-box'}} />} primaryText="Logout" onClick={() => {
+            <MenuItem leftIcon={<Icon icon="exit_to_app" style={{fontSize: '1.5em', color: '#aaa', boxSizing: 'border-box'}} />} primaryText="Exit App" onClick={() => {
               ls.set('pp-me', false);
               ls.set('pp-api', false);
               this.toggleCloseAccountPopover();
