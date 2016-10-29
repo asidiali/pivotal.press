@@ -1,4 +1,8 @@
 import {
+  DropDownMenu,
+  MenuItem,
+} from 'material-ui';
+import {
   Icon,
   Loader,
   StoryCard,
@@ -23,6 +27,7 @@ export default class ProjectStoriesView extends React.Component {
   state = {
     project_stories_fetched: false,
     searchFilter: '',
+    storyTypeFilter: 'all',
   };
 
   componentDidMount() {
@@ -59,6 +64,13 @@ export default class ProjectStoriesView extends React.Component {
     return story.name.match(reg);
   }
 
+  filterByType = story => {
+    if (this.state.storyTypeFilter === 'all') return true;
+    return story.story_type === this.state.storyTypeFilter;
+  }
+
+  handleStoryTypeChange = (e, t, val) => this.setState({ storyTypeFilter: val });
+
   render() {
     console.log(this.props.params.projectId);
     return (
@@ -74,9 +86,32 @@ export default class ProjectStoriesView extends React.Component {
               }}
             />
           </div>
+          <Icon icon={typeIcons[this.state.storyTypeFilter]} style={{ fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px'}} />
+          <DropDownMenu
+            underlineStyle={{
+              margin: 0,
+              borderTop: '2px solid rgba(0,0,0,0.15)',
+              display: 'none',
+            }}
+            labelStyle={{
+              paddingLeft: 10,
+              fontSize: '1em',
+              color: '#fff',
+              fontWeight: 700,
+            }}
+            style={{ margin: 'auto 0', height: 'auto' }}
+            value={this.state.storyTypeFilter}
+            onChange={this.handleStoryTypeChange}
+          >
+            <MenuItem leftIcon={<Icon icon="group_work" />} value='all' primaryText="All Types" />
+            <MenuItem leftIcon={<Icon icon="bug_report" />} value='bug' primaryText="Bugs" />
+            <MenuItem leftIcon={<Icon icon="build" />} value='chore' primaryText="Chores" />
+            <MenuItem leftIcon={<Icon icon="extension" />} value='feature' primaryText="Features" />
+            <MenuItem leftIcon={<Icon icon="backup" />} value='release' primaryText="Releases" />
+          </DropDownMenu>
         </div>
         <div style={styles.storiesWrapper}>
-          {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).filter(this.filterBySearch).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
+          {this.state.project_stories_fetched ? ls(`pp-project-${this.props.params.projectId}-stories`).filter(this.filterBySearch).filter(this.filterByType).sort(sortStoriesByCreatedTime).map((story, storyIndex) => (
             <StoryCard
               key={storyIndex}
               story={story}
@@ -93,6 +128,7 @@ export default class ProjectStoriesView extends React.Component {
 }
 
 const typeIcons = {
+  all: 'group_work',
   feature: 'extension',
   bug: 'bug_report',
   chore: 'build',

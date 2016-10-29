@@ -35,7 +35,6 @@ const StoryCard = props => (
     </ul>
     <p style={styles.storyName}>
       {props.story.name}
-      <span style={styles.storyGradient} />
     </p>
     <div style={styles.labelsWrapper}>
       {props.story.labels.length ? props.story.labels.map((label, labelIndex) => (

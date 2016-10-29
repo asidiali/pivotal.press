@@ -12,8 +12,11 @@ import {
 
 import App from './app';
 import React from 'react';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import ls from 'local-storage';
 import {render}             from 'react-dom';
+
+injectTapEventPlugin();
 
 function requireAuth() {
   if (!ls('pp-api') || !ls('pp-me')) setTimeout(hashHistory.push('/'), 500);
