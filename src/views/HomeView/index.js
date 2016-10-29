@@ -2,8 +2,10 @@ import {Icon} from '../../components';
 import React from 'react';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
+import radium from 'radium';
 import styles from './styles';
 
+@radium
 export default class HomeView extends React.Component {
 
   componentDidMount() {
@@ -17,7 +19,7 @@ export default class HomeView extends React.Component {
   render() {
     return (
       <div style={styles.base}>
-        <p style={{color: '#fff', fontWeight: 700,}}>Login with your PivotalTracker API Key</p>
+        <p style={{color: '#fff', fontWeight: 700,}}>Login with a valid PivotalTracker API Key:</p>
         <form style={styles.form} onSubmit={(e) => {
           e.preventDefault();
           const headers = new Headers();
@@ -35,11 +37,11 @@ export default class HomeView extends React.Component {
         }}>
           <input
             style={styles.input}
-            placeholder="your API key"
+            placeholder="your key"
             type="text"
             name="api_key"
           />
-          <button style={styles.submitBtn} type="submit">Login &gt;</button>
+          <button style={styles.submitBtn} type="submit">Login <Icon icon="lock" style={{margin: 'auto 0 auto 5px'}}/></button>
         </form>
         <span style={styles.copy}>&copy; 2016 Adam Sidiali.</span>
       </div>
