@@ -37,6 +37,8 @@ A PivotalTracker front-end app.
     - [ ] stage
     - [ ] owner
     - [ ] labels
+- [ ] Misc
+  - [ ] improve story search query functionality (by word)
 
 ## Contributors
 - Adam Sidiali [[Gh](http://github.com/asidiali)] [[Tw](http://twitter.com/adamsidiali)]
