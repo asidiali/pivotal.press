@@ -10,7 +10,6 @@ export default {
     flexFlow: 'column nowrap',
     justifyContent: 'center',
     alignItems: 'center',
-    color: '#fff !important',
   },
   form: {
     display: 'flex',
@@ -20,6 +19,8 @@ export default {
   input: {
     padding: 10,
     fontSize: '1.1em',
+    width: 400,
+    maxWidth: '95%',
     boxSizing: 'border-box',
     border: 0,
     outline: 'none',
@@ -29,9 +30,9 @@ export default {
   submitBtn: {
     border: 0,
     outline: 'none',
-    backgroundColor: '#1bb23a',
+    backgroundColor: '#8bc34a',
     color: '#fff',
-    padding: '10px 20px',
+    padding: '15px 30px',
     boxSizing: 'border-box',
     borderRadius: 3,
     textTransform: 'uppercase',

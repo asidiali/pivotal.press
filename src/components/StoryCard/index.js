@@ -88,7 +88,7 @@ const statusColors = {
   },
   accepted: {
     text: '#fff',
-    bg: '#1bb23a',
+    bg: '#8bc34a',
   },
   rejected: {
     text: '#fff',

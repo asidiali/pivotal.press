@@ -9,7 +9,11 @@ const Nav = props => (
   <nav style={styles.base}>
     <span style={styles.brand}>
       <Icon icon="dashboard" style={{marginRight: 10}} />
-      <span style={styles.brandText}>Pivotal.Press</span>
+      <span style={Object.assign({}, styles.brandText, {
+        '@media (max-width: 768px)': {
+          display: (props.location.pathname === '/') ? 'block' : 'none',
+        }
+      })}>Pivotal.Press</span>
     </span>
     <span style={styles.viewTitle}>
       {props.showBack ? (

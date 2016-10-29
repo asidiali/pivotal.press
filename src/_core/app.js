@@ -29,7 +29,7 @@ class App extends React.Component {
     return (
       <StyleRoot>
         <div style={styles.base}>
-          <Nav viewTitle={this.state.viewTitle} showBack={this.state.showBack} />
+          <Nav viewTitle={this.state.viewTitle} showBack={this.state.showBack} location={this.props.location} />
           {React.cloneElement(this.props.children, {
             setViewTitle: this.setViewTitle,
             setShowBack: this.setShowBack,

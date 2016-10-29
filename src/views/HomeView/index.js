@@ -1,3 +1,4 @@
+import {Icon} from '../../components';
 import React from 'react';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
@@ -16,7 +17,7 @@ export default class HomeView extends React.Component {
   render() {
     return (
       <div style={styles.base}>
-        <p>Login with your PivotalTracker API Key</p>
+        <p style={{color: '#fff', fontWeight: 700,}}>Login with your PivotalTracker API Key</p>
         <form style={styles.form} onSubmit={(e) => {
           e.preventDefault();
           const headers = new Headers();
@@ -34,13 +35,12 @@ export default class HomeView extends React.Component {
         }}>
           <input
             style={styles.input}
-            placeholder="2b68344f1906a491fb65876f58aa78a7"
+            placeholder="your API key"
             type="text"
             name="api_key"
           />
-          <button style={styles.submitBtn} type="submit">Login</button>
+          <button style={styles.submitBtn} type="submit">Login &gt;</button>
         </form>
-        <p>logged in as: {ls('pp-api')}</p>
       </div>
     );
   }
