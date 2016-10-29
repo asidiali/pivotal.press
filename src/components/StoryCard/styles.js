@@ -86,6 +86,8 @@ export default {
     color: '#222',
     border: 0,
     resize: 'none',
+    lineHeight: '1.5',
+    borderBottom: '1px solid #eee',
     height: 140,
     position: 'relative',
     overflowX: 'hidden',
