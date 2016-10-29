@@ -2,13 +2,14 @@ import Icon from '../Icon';
 import React from 'react';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
+import radium from 'radium';
 import styles from './styles';
 
 const Nav = props => (
   <nav style={styles.base}>
     <span style={styles.brand}>
       <Icon icon="dashboard" style={{marginRight: 10}} />
-      Pivotal.Press
+      <span style={styles.brandText}>Pivotal.Press</span>
     </span>
     <span style={styles.viewTitle}>
       {props.showBack ? (
@@ -35,4 +36,4 @@ const Nav = props => (
   </nav>
 );
 
-export default Nav;
+export default radium(Nav);

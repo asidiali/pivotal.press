@@ -13,14 +13,20 @@ export default {
   },
   brand: {
     fontWeight: 700,
-    margin: 'auto 20px',
+    margin: 'auto 10px auto 20px',
     fontSize: '0.9em',
     letterSpacing: 1,
     textTransform: 'uppercase',
     display: 'flex',
     flexFlow: 'row nowrap',
     alignItems: 'center',
+    flex: '0 0 auto',
     color: '#aaa',
+  },
+  brandText: {
+    '@media (max-width: 768px)': {
+      display: 'none',
+    }
   },
   loggedInUser: {
     margin: 'auto 20px auto auto',
@@ -28,6 +34,7 @@ export default {
     color: '#aaa',
     fontWeight: 700,
     display: 'flex',
+    flex: '0 0 auto',
     flexFlow: 'row nowrap',
     alignItems: 'center',
   },
@@ -39,7 +46,11 @@ export default {
     margin: 'auto 10px',
     fontWeight: 700,
     fontSize: '1em',
+    flex: '0 0 auto',
     color: '#fff',
     textTransform: 'uppercase',
+    '@media (max-width: 768px)': {
+      margin: 'auto 10px auto 0',
+    },
   }
 };
