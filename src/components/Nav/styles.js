@@ -22,6 +22,9 @@ export default {
     alignItems: 'center',
     flex: '0 0 auto',
     color: '#aaa',
+    '@media (max-width: 768px)': {
+      fontSize: '1.15em',
+    }
   },
   brandText: {
     '@media (max-width: 768px)': {
@@ -37,6 +40,14 @@ export default {
     flex: '0 0 auto',
     flexFlow: 'row nowrap',
     alignItems: 'center',
+    '@media (max-width: 768px)': {
+      fontSize: '1.15em',
+    }
+  },
+  loggedInUserText: {
+    '@media (max-width: 768px)': {
+      display: 'none',
+    }
   },
   viewTitle: {
     // position: 'absolute',

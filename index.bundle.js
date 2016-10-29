@@ -63,7 +63,7 @@
 /******/ 	}
 
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d55baa05505134e53d42"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "bdaab6aefa8bc47fb1f0"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 
@@ -28385,7 +28385,11 @@
 	      (0, _localStorage2['default'])('pp-me') ? _react2['default'].createElement(
 	        'span',
 	        { style: _styles2['default'].loggedInUser },
-	        (0, _localStorage2['default'])('pp-me').name || '',
+	        _react2['default'].createElement(
+	          'span',
+	          { style: _styles2['default'].loggedInUserText },
+	          (0, _localStorage2['default'])('pp-me').name || ''
+	        ),
 	        _react2['default'].createElement(_Icon2['default'], { icon: 'account_circle', style: { marginLeft: 10 } })
 	      ) : false
 	    );
@@ -32532,7 +32536,10 @@
 	    flexFlow: 'row nowrap',
 	    alignItems: 'center',
 	    flex: '0 0 auto',
-	    color: '#aaa'
+	    color: '#aaa',
+	    '@media (max-width: 768px)': {
+	      fontSize: '1.15em'
+	    }
 	  },
 	  brandText: {
 	    '@media (max-width: 768px)': {
@@ -32547,7 +32554,15 @@
 	    display: 'flex',
 	    flex: '0 0 auto',
 	    flexFlow: 'row nowrap',
-	    alignItems: 'center'
+	    alignItems: 'center',
+	    '@media (max-width: 768px)': {
+	      fontSize: '1.15em'
+	    }
+	  },
+	  loggedInUserText: {
+	    '@media (max-width: 768px)': {
+	      display: 'none'
+	    }
 	  },
 	  viewTitle: {
 	    // position: 'absolute',

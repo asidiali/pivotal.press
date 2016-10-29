@@ -29,7 +29,7 @@ const Nav = props => (
     </span>
     {ls('pp-me') ? (
       <span style={styles.loggedInUser}>
-        {ls('pp-me').name || ''}
+        <span style={styles.loggedInUserText}>{ls('pp-me').name || ''}</span>
         <Icon icon="account_circle" style={{marginLeft: 10}} />
       </span>
     ) : false}
