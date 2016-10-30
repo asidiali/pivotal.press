@@ -56,7 +56,7 @@ export default class ProjectsView extends React.Component {
           {(this.state.projects_fetched && this.state.projects_activity_fetched) ? ls('pp-projects').map((project, projectIndex) => {
             return (
               <div key={projectIndex} style={Object.assign({}, styles.projectCard, {
-                borderLeft: `10px solid #${ls('pp-me').projects.filter(proj => proj.project_id === project.id)[0].project_color}`,
+                borderLeft: `10px solid #${ls('pp-me').projects.filter(proj => proj.project_id === project.id)[0].project_color || 'rgb(62, 114, 147)'}`,
               })} onClick={() => {
                 ls.set(`pp-project-${project.id}-details`, project);
                 hashHistory.push(`/projects/${project.id}`)
@@ -64,8 +64,8 @@ export default class ProjectsView extends React.Component {
                 <span style={styles.projectName}><Icon icon="assignment" style={{color: '#444', margin: 'auto 10px auto 0'}} /> {project.name}</span>
                 <ul style={styles.projectActivityList}>
                   <li style={{color: '#aaa', fontSize: '0.8em', margin: '0 0 5px', textTransform: 'uppercase', fontWeight: 700}}>Recent Activity</li>
-                  {ls(`pp-project-${project.id}-activity`).length ? ls(`pp-project-${project.id}-activity`).map((activity) => (
-                    <li style={styles.projectActivityListItem}>
+                  {ls(`pp-project-${project.id}-activity`).length ? ls(`pp-project-${project.id}-activity`).map((activity, activityIndex) => (
+                    <li style={styles.projectActivityListItem} key={`activity-${activityIndex}`}>
                       <span style={styles.activityOccured}>{moment(activity.occurred_at).fromNow()}</span>
                       <span><Icon style={{ color: '#ccc', margin: 'auto 5px auto 0' }}icon={(activity.primary_resources[0].kind === 'story') ? typeIcons[activity.primary_resources[0].story_type] : 'assignment'} /></span>
                       <span style={{whiteSpace: 'nowrap', flex: 1, textOverflow: 'ellipsis'}}>{activity.message}</span>
