@@ -31,7 +31,6 @@ class App extends React.Component {
   }
 
   setShowBack = showBack => {
-    console.log(showBack);
     this.setState({ showBack });
   }
 
@@ -63,6 +62,7 @@ class App extends React.Component {
             viewTitle={this.state.viewTitle}
             showBack={this.state.showBack}
             setViewTitle={this.setViewTitle}
+            setShowBack={this.setShowBack}
             location={this.props.location}
           />
           {React.cloneElement(this.props.children, {

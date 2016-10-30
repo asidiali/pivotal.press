@@ -47,42 +47,44 @@ export default class ProjectStoriesView extends React.Component {
     });
 
 
-    const headers = new Headers();
-    const projectId = this.props.params.projectId;
-    headers.append('X-TrackerToken', ls('pp-api'));
-    this.props.setViewTitle(ls(`pp-project-${projectId}-details`).name);
-    this.props.setShowBack({
-      link: '/projects',
-      text: 'Projects',
-      clearOnClick: true,
-    });
-    // TODO paginate requests
-    fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/stories?limit=1000`, {
-      mode: 'cors',
-      headers,
-      method: 'GET',
-    }).then(res => res.json()).then((res) => {
-      ls.set(`pp-project-${projectId}-stories`, res);
-      this.setState({project_stories_fetched: true});
-    });
+    if (ls('pp-api') && ls('pp-me')) {
+      const headers = new Headers();
+      const projectId = this.props.params.projectId;
+      headers.append('X-TrackerToken', ls('pp-api'));
+      this.props.setViewTitle(ls(`pp-project-${projectId}-details`).name);
+      this.props.setShowBack({
+        link: '/projects',
+        text: 'Projects',
+        clearOnClick: true,
+      });
+      // TODO paginate requests
+      fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/stories?limit=1000`, {
+        mode: 'cors',
+        headers,
+        method: 'GET',
+      }).then(res => res.json()).then((res) => {
+        ls.set(`pp-project-${projectId}-stories`, res);
+        this.setState({project_stories_fetched: true});
+      });
 
-    fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/memberships`, {
-      mode: 'cors',
-      headers,
-      method: 'GET',
-    }).then(res => res.json()).then((res) => {
-      ls.set(`pp-project-${projectId}-memberships`, res);
-      this.setState({project_memberships_fetched: true});
-    });
+      fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/memberships`, {
+        mode: 'cors',
+        headers,
+        method: 'GET',
+      }).then(res => res.json()).then((res) => {
+        ls.set(`pp-project-${projectId}-memberships`, res);
+        this.setState({project_memberships_fetched: true});
+      });
 
-    fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/labels`, {
-      mode: 'cors',
-      headers,
-      method: 'GET',
-    }).then(res => res.json()).then((res) => {
-      ls.set(`pp-project-${projectId}-labels`, res);
-      this.setState({project_labels_fetched: true});
-    });
+      fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/labels`, {
+        mode: 'cors',
+        headers,
+        method: 'GET',
+      }).then(res => res.json()).then((res) => {
+        ls.set(`pp-project-${projectId}-labels`, res);
+        this.setState({project_labels_fetched: true});
+      });
+    }
   }
 
   sortActiveLabels = (a, b) => {

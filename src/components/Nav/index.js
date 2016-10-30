@@ -28,6 +28,7 @@ class Nav extends React.Component {
   render({
     setViewTitle,
     showBack,
+    setShowBack,
     viewTitle,
     location,
   }) {
@@ -76,6 +77,7 @@ class Nav extends React.Component {
               ls.set('pp-api', false);
               this.toggleCloseAccountPopover();
               setViewTitle();
+              setShowBack();
               setTimeout(() => {
                 hashHistory.push('/');
               }, 1000);
