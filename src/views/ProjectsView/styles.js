@@ -39,6 +39,8 @@ export default {
     margin: '10px 0',
     paddingBottom: 10,
     borderBottom: '1px solid #eee',
+    display: 'flex',
+    alignItems: 'center',
   },
 
   projectActivityList: {
@@ -49,9 +51,19 @@ export default {
     flexFlow: 'column nowrap',
   },
   projectActivityListItem: {
-    color: '#aaa',
-    margin: '2px 0',
+    color: '#888',
+    margin: '4px 0',
     flexFlow: '0 0 auto',
-    fontSize: '0.9em',
+    fontSize: '0.8em',
+    fontWeight: 300,
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    alignItems: 'center',
+  },
+  activityOccured: {
+    color: '#ccc',
+    fontSize: '0.8em',
+    fontWeight: 400,
+    margin: 'auto 10px auto 0',
   }
 };

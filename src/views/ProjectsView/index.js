@@ -1,7 +1,9 @@
-import {Loader} from '../../components';
+import {Icon, Loader} from '../../components';
+
 import React from 'react';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
+import moment from 'moment';
 import radium from 'radium';
 import request from 'request';
 import styles from './styles';
@@ -56,10 +58,15 @@ export default class ProjectsView extends React.Component {
               ls.set(`pp-project-${project.id}-details`, project);
               hashHistory.push(`/projects/${project.id}`)
             }}>
-              <span style={styles.projectName}>{project.name}</span>
+              <span style={styles.projectName}><Icon icon="assignment" style={{color: '#444', margin: 'auto 10px auto 0'}} /> {project.name}</span>
               <ul style={styles.projectActivityList}>
+                <li style={{color: '#444', fontSize: '0.8em', margin: '0 0 5px', textTransform: 'uppercase', fontWeight: 700}}>Recent Activity</li>
                 {ls(`pp-project-${project.id}-activity`).length ? ls(`pp-project-${project.id}-activity`).map((activity) => (
-                  <li style={styles.projectActivityListItem}>{activity.message}</li>
+                  <li style={styles.projectActivityListItem}>
+                    <span style={styles.activityOccured}>{moment(activity.occurred_at).fromNow()}</span>
+                    <span><Icon style={{ color: '#ccc', margin: 'auto 5px auto 0' }}icon={(activity.primary_resources[0].kind === 'story') ? typeIcons[activity.primary_resources[0].story_type] : 'assignment'} /></span>
+                    <span style={{whiteSpace: 'nowrap', flex: 1, textOverflow: 'ellipsis'}}>{activity.message}</span>
+                  </li>
                 )) : false}
               </ul>
             </div>
@@ -71,3 +78,11 @@ export default class ProjectsView extends React.Component {
     );
   }
 }
+
+const typeIcons = {
+  all: 'group_work',
+  feature: 'extension',
+  bug: 'bug_report',
+  chore: 'build',
+  release: 'backup',
+};
