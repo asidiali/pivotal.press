@@ -60,7 +60,7 @@ export default class ProjectsView extends React.Component {
             }}>
               <span style={styles.projectName}><Icon icon="assignment" style={{color: '#444', margin: 'auto 10px auto 0'}} /> {project.name}</span>
               <ul style={styles.projectActivityList}>
-                <li style={{color: '#444', fontSize: '0.8em', margin: '0 0 5px', textTransform: 'uppercase', fontWeight: 700}}>Recent Activity</li>
+                <li style={{color: '#aaa', fontSize: '0.8em', margin: '0 0 5px', textTransform: 'uppercase', fontWeight: 700}}>Recent Activity</li>
                 {ls(`pp-project-${project.id}-activity`).length ? ls(`pp-project-${project.id}-activity`).map((activity) => (
                   <li style={styles.projectActivityListItem}>
                     <span style={styles.activityOccured}>{moment(activity.occurred_at).fromNow()}</span>

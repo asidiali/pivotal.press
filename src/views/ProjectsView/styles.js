@@ -51,7 +51,7 @@ export default {
     flexFlow: 'column nowrap',
   },
   projectActivityListItem: {
-    color: '#888',
+    color: '#444',
     margin: '4px 0',
     flexFlow: '0 0 auto',
     fontSize: '0.8em',
@@ -61,7 +61,7 @@ export default {
     alignItems: 'center',
   },
   activityOccured: {
-    color: '#ccc',
+    color: '#aaa',
     fontSize: '0.8em',
     fontWeight: 400,
     margin: 'auto 10px auto 0',
