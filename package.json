@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server",
     "build": "webpack",
-    "deploy": "git checkout production && echo '1) MERGING MASTER INTO PRODUCTION' && git merge master && echo '2) BUILDING PRODUCTION' && webpack && echo '3) PUSHING PRODUCTION TO REMOTE' && git push -u origin production && echo 'PRODUCTION DEPLOYED.' && git checkout master"
+    "deploy": "git checkout production && echo '1) MERGING MASTER INTO PRODUCTION' && git merge -q master && echo '2) BUILDING PRODUCTION' && webpack && echo '3) PUSHING PRODUCTION TO REMOTE' && git push -q -u origin production && echo 'PRODUCTION DEPLOYED.' && git checkout master"
   },
   "repository": {
     "type": "git",
