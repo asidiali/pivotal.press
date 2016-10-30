@@ -21,16 +21,16 @@ This app is currently a work in progress. Reporting any bugs/issues you find is 
   - [x] ~~projects~~
   - [x] ~~projects details~~
   - [x] ~~stories in project~~
-    - [ ] sort stories by
-      - [x] ~~updated (default)~~
-      - [ ] created
-      - [ ] stage
-      - [ ] type
     - [x] ~~filter stories by~~
       - [x] ~~type~~
       - [x] ~~stage~~
       - [x] ~~owner~~
       - [x] ~~labels~~
+    - [ ] sort stories by
+      - [x] ~~updated (default)~~
+      - [ ] created
+      - [ ] stage
+      - [ ] type
   - [x] ~~labels in project~~
   - [ ] members in project
   - [ ] story details
@@ -46,9 +46,9 @@ This app is currently a work in progress. Reporting any bugs/issues you find is 
     - [ ] owner
     - [ ] labels
 - [ ] Misc
+  - [x] ~~project cards activity feed~~
   - [ ] improve story search query functionality (by word)
   - [ ] add owner/member detail to story cards
-  - [ ] project cards activity feed
   - [ ] click on stage, type tags to filter
   - [ ] refactor requests for offline capability
   - [ ] kanban board view by stage
