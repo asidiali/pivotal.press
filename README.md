@@ -52,6 +52,7 @@ This app is currently a work in progress. Reporting any bugs/issues you find is 
   - [ ] click on stage, type tags to filter
   - [ ] refactor requests for offline capability
   - [ ] kanban board view by stage
+  - [ ] project carousel view
 
 ---
 
