@@ -40,6 +40,7 @@ A PivotalTracker front-end app.
 - [ ] Misc
   - [ ] improve story search query functionality (by word)
   - [ ] add owner/member detail to story cards
+  - [ ] project cards activity feed
 
 ---
 
