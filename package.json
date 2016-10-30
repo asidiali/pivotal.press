@@ -1,12 +1,12 @@
 {
   "name": "pivotal.press",
   "version": "0.1.0",
-  "description": "A PivotalTracker front-end app",
+  "description": "A PivotalTracker client for managing stories.",
   "main": "./src/core/app.js",
   "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server",
     "build": "webpack",
-    "deploy": "webpack && git add . && git commit -m'Build ready for deployment' && git push -u origin master"
+    "deploy": "git checkout production && echo '1) MERGING MASTER INTO PRODUCTION' && git merge master && echo '2) BUILDING PRODUCTION' && webpack && echo '3) PUSHING PRODUCTION TO REMOTE' && git push -u origin production && echo 'PRODUCTION DEPLOYED.' && git checkout master"
   },
   "repository": {
     "type": "git",
