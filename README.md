@@ -1,5 +1,5 @@
 # pivotal.press
-A PivotalTracker front-end app.
+A PivotalTracker client for managing stories.
 
 ## Local Install & Setup
 1. Clone the repo: `git clone https://github.com/asidiali/pivotal.press.git`
