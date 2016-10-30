@@ -47,6 +47,7 @@ This app is currently a work in progress. Reporting any bugs/issues you find is 
     - [ ] labels
 - [ ] Misc
   - [x] ~~project cards activity feed~~
+  - [ ] projects stories list pagination
   - [ ] improve story search query functionality (by word)
   - [ ] add owner/member detail to story cards
   - [ ] click on stage, type tags to filter
