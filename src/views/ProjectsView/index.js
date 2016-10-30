@@ -15,7 +15,7 @@ export default class ProjectsView extends React.Component {
 
   componentWillMount() {
     this.props.setViewTitle('Projects');
-    if (this.props.showBack.clearOnClick) this.props.setShowBack(false);
+    if (this.props.showBack && this.props.showBack.clearOnClick) this.props.setShowBack(false);
   }
 
   componentDidMount() {
