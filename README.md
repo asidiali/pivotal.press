@@ -13,6 +13,9 @@ A PivotalTracker client for managing stories.
 ---
 
 ### To do
+
+This app is currently a work in progress. Reporting any bugs/issues you find is always appreciated!
+
 - [ ] View
   - [x] ~~user~~
   - [x] ~~projects~~
