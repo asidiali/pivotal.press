@@ -41,6 +41,8 @@ A PivotalTracker front-end app.
   - [ ] improve story search query functionality (by word)
   - [ ] add owner/member detail to story cards
   - [ ] project cards activity feed
+  - [ ] click on stage, type tags to filter
+  - [ ] refactor requests for offline capability
 
 ---
 
