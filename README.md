@@ -22,8 +22,8 @@ This app is currently a work in progress. Reporting any bugs/issues you find is 
   - [x] ~~projects details~~
   - [x] ~~stories in project~~
     - [ ] sort stories by
+      - [x] ~~updated (default)~~
       - [ ] created
-      - [x] updated (default)
       - [ ] stage
       - [ ] type
     - [x] ~~filter stories by~~
