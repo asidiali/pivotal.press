@@ -202,7 +202,7 @@ export default class ProjectStoriesView extends React.Component {
               paddingLeft: 10,
               fontSize: '1em',
               color: '#fff',
-              fontWeight: 700,
+              fontWeight: 400,
             }}
             style={{ margin: 'auto 0', height: 'auto', flex: '0 0 auto' }}
             value={this.state.storyTypeFilter}
@@ -219,7 +219,7 @@ export default class ProjectStoriesView extends React.Component {
           <div style={{
             flex: '0 0 auto',
             color: '#fff',
-            fontWeight: 700,
+            fontWeight: 400,
             display: 'flex',
             alignItems: 'center',
             margin: 'auto 10px',
@@ -258,7 +258,7 @@ export default class ProjectStoriesView extends React.Component {
               paddingLeft: 10,
               fontSize: '1em',
               color: '#fff',
-              fontWeight: 700,
+              fontWeight: 400,
             }}
             style={{ margin: 'auto 0', height: 'auto', flex: '0 0 auto', }}
             value={this.state.ownerFilter}
@@ -282,7 +282,7 @@ export default class ProjectStoriesView extends React.Component {
               paddingLeft: 10,
               fontSize: '1em',
               color: '#fff',
-              fontWeight: 700,
+              fontWeight: 400,
               textTransform: 'capitalize',
             }}
             style={{ margin: 'auto 0', height: 'auto', flex: '0 0 auto' }}
