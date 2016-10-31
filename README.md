@@ -46,14 +46,15 @@ This app is currently a work in progress. Reporting any bugs/issues you find is 
     - [ ] owner
     - [ ] labels
 - [ ] Misc
-  - [x] ~~project cards activity feed~~
-  - [ ] projects stories list pagination
-  - [ ] improve story search query functionality (by word)
-  - [ ] add owner/member detail to story cards
-  - [ ] click on stage, type tags to filter
-  - [ ] refactor requests for offline capability
-  - [ ] kanban board view by stage
-  - [ ] project carousel view
+  - [x] ~~UI - project cards activity feed~~
+  - [ ] Performance - projects stories list pagination
+  - [ ] Performance - improve story search query functionality (by word)
+  - [ ] UI - add owner/member detail to story cards
+  - [ ] UX - click on stage, type tags to filter
+  - [ ] UX - refactor requests for offline capability
+  - [ ] UX - Real-time - setup polling to enable real-time changes
+  - [ ] UI - kanban board view by stage
+  - [ ] UI - project carousel view
 
 ---
 
