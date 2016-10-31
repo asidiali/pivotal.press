@@ -12,6 +12,7 @@ import {
 } from '../../components';
 
 import Clipboard from 'clipboard';
+import LabelsFilter from './LabelsFilter';
 import React from 'react';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
@@ -90,6 +91,10 @@ export default class ProjectStoriesView extends React.Component {
         this.setState({project_labels_fetched: true});
       });
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return true;
   }
 
   sortActiveLabels = (a, b) => {
@@ -230,36 +235,17 @@ export default class ProjectStoriesView extends React.Component {
           </DropDownMenu>
 
 
-          <div style={{
-            flex: '0 0 auto',
-            color: '#fff',
-            fontWeight: 400,
-            display: 'flex',
-            alignItems: 'center',
-            margin: 'auto 10px',
-          }} onClick={(e) => this.toggleLabelsPopover(e.currentTarget)}>
-            <Icon icon={this.state.labelFilters.length ? 'label_outline' : 'label'} style={{ margin: 'auto 10px auto 0'}} />
-            {this.state.labelFilters.length ? (
-              <span>{this.state.labelFilters.length} label{(this.state.labelFilters.length === 1) ? false : 's'}</span>
-            ) : (
-              <span>All Labels</span>
-            )}
-            <Icon icon="arrow_drop_down" style={{ fontSize: '1.5em', margin: 'auto 0 auto 10px'}} />
-          </div>
-          <Popover
-            open={this.state.showLabelsPopover}
-            anchorEl={this.state.labelsEl}
-            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-            targetOrigin={{horizontal: 'left', vertical: 'top'}}
-            onRequestClose={() => this.toggleLabelsPopover()}
-          >
-            <Menu maxHeight={350} style={{ width: 200, overflowX: 'hidden', textOverflow: 'ellpsis', whiteSpace: 'nowrap'}}>
-              <MenuItem leftIcon={<Icon icon="label" />} onClick={() => this.handleLabelChange()} primaryText="All Labels" />
-              {this.state.project_labels_fetched ? ls(`pp-project-${this.props.params.projectId}-labels`).sort(this.sortActiveLabels).map((label, labelIndex) => (
-                <MenuItem key={`label-${labelIndex}`}onClick={() => this.handleLabelChange(label.id)} leftIcon={<Icon icon="label_outline" style={{color: '#aaa' }} />} value={label.id} primaryText={label.name} style={{ borderTop: '1px solid #eee', flex: 1, fontSize: '0.9em', padding: 0, backgroundColor: (this.state.labelFilters.includes(label.id) ? '#AED6F1' : '#fff') }} />
-              )) : false}
-            </Menu>
-          </Popover>
+          <LabelsFilter
+            toggleLabelsPopover={this.toggleLabelsPopover}
+            labelFilters={this.state.labelFilters}
+            project_labels_fetched={this.state.project_labels_fetched}
+            handleLabelChange={this.handleLabelChange}
+            sortActiveLabels={this.sortActiveLabels}
+            showLabelsPopover={this.state.showLabelsPopover}
+            labelsEl={this.state.labelsEl}
+            params={this.props.params}
+          />
+
 
           <Icon icon={(this.state.ownerFilter === 'all') ? 'group' : 'person'} style={{flex: '0 0 auto', fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px'}} />
           <DropDownMenu
