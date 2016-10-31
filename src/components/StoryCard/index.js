@@ -39,8 +39,8 @@ const StoryCard = props => (
     </p>
     <div style={styles.labelsWrapper}>
       {props.story.labels.length ? props.story.labels.map((label, labelIndex) => (
-          <span data-tip={props.labelFilters.includes(label.id) ? `Remove "${label.name}" from filter` : `Add "${label.name}" to filter`} key={`${props.storyIndex}-${labelIndex}`} style={styles.labelItem} onClick={() => props.handleLabelChange(label.id)}>{label.name}</span>
-        )) : false}
+        <span data-tip={props.labelFilters.includes(label.id) ? `Remove "${label.name}" from filter` : `Add "${label.name}" to filter`} key={`${props.storyIndex}-${labelIndex}`} style={styles.labelItem} onClick={() => props.handleLabelChange(label.id)}>{label.name}</span>
+      )) : false}
     </div>
     <span style={styles.lastUpdated}>Last updated {moment(props.story.updated_at).fromNow()}</span>
     <ReactTooltip effect="solid" place="top" />
@@ -49,6 +49,8 @@ const StoryCard = props => (
 
 StoryCard.propTypes = {
   story: React.PropTypes.object,
+  storyIndex: React.PropTypes.number,
+
 };
 
 const typeIcons = {

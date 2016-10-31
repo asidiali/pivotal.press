@@ -14,6 +14,15 @@ import styles from './styles';
 
 class Nav extends React.Component {
 
+  static propTypes = {
+    setViewTitle: React.PropTypes.func,
+    showBack: React.PropTypes.any,
+    setShowBack: React.PropTypes.func,
+    viewTitle: React.PropTypes.string,
+    viewColor: React.PropTypes.string,
+    location: React.PropTypes.object,
+  };
+
   state = {
     showAccountPopover: false,
     accountPopoverEl: null,

@@ -11,6 +11,13 @@ import styles from './styles';
 @radium
 export default class ProjectsView extends React.Component {
 
+  static propTypes = {
+    setViewTitle: React.PropTypes.func,
+    setViewColor: React.PropTypes.func,
+    showBack: React.PropTypes.any,
+    setShowBack: React.PropTypes.func,
+  };
+
   state = {
     projects_fetched: false,
     projects_activity_fetched: false,
@@ -61,7 +68,7 @@ export default class ProjectsView extends React.Component {
                 borderLeft: `10px solid ${projectColor || 'rgb(62, 114, 147)'}`,
               })} onClick={() => {
                 ls.set(`pp-project-${project.id}-details`, project);
-                hashHistory.push(`/projects/${project.id}`)
+                hashHistory.push(`/projects/${project.id}`);
               }}>
                 <span style={styles.projectName}><Icon icon="assignment" style={{color: '#444', margin: 'auto 10px auto 0'}} /> {project.name}</span>
                 <ul style={styles.projectActivityList}>
@@ -75,7 +82,7 @@ export default class ProjectsView extends React.Component {
                   )) : false}
                 </ul>
               </div>
-            )
+            );
           }) : (
             <Loader />
           )}
