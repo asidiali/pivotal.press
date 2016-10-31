@@ -73,7 +73,7 @@ export default class ProjectsView extends React.Component {
                 <span style={styles.projectName}><Icon icon="assignment" style={{color: '#444', margin: 'auto 10px auto 0'}} /> {project.name}</span>
                 <ul style={styles.projectActivityList}>
                   <li style={{color: '#aaa', fontSize: '0.8em', margin: '0 0 5px', textTransform: 'uppercase', fontWeight: 700}}>Recent Activity</li>
-                  {ls(`pp-project-${project.id}-activity`).length ? ls(`pp-project-${project.id}-activity`).map((activity, activityIndex) => (
+                  {ls(`pp-project-${project.id}-activity`) && ls(`pp-project-${project.id}-activity`).length ? ls(`pp-project-${project.id}-activity`).map((activity, activityIndex) => (
                     <li style={styles.projectActivityListItem} key={`activity-${activityIndex}`}>
                       <span style={styles.activityOccured}>{moment(activity.occurred_at).fromNow()}</span>
                       <span><Icon style={{ color: '#ccc', margin: 'auto 5px auto 0' }}icon={(activity.primary_resources[0].kind === 'story') ? typeIcons[activity.primary_resources[0].story_type] : 'assignment'} /></span>

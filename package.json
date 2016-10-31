@@ -2,7 +2,7 @@
   "name": "pivotal.press",
   "version": "0.1.0",
   "description": "A PivotalTracker client for managing stories.",
-  "main": "./src/core/app.js",
+  "main": "./app.bundle.js",
   "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server",
     "build": "webpack",
@@ -27,9 +27,11 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "electron": "^1.4.4",
     "json-loader": "^0.5.4",
     "react-hot-loader": "^3.0.0-beta.5",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "webpack-target-electron-renderer": "^0.4.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.16.0",

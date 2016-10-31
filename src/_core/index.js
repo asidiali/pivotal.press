@@ -41,5 +41,5 @@ const loadedStates = ['complete', 'loaded', 'interactive'];
 if (loadedStates.includes(document.readyState) && document.body) {
   main();
 } else {
-  window.addEventListener('DOMContentLoaded', main, false);
+  document.addEventListener('DOMContentLoaded', main, false);
 }

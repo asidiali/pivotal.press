@@ -1,7 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
 
-module.exports = {
+const options = {
   name: 'client',
   entry: [
     'babel-polyfill',
@@ -11,7 +12,7 @@ module.exports = {
   ],
   output: {
     path: './',
-    filename: 'index.bundle.js',
+    filename: 'app.bundle.js',
   },
   module: {
     loaders: [
@@ -48,3 +49,7 @@ module.exports = {
     tls: 'empty',
   },
 };
+
+// options.target = webpackTargetElectronRenderer(options);
+
+module.exports = options;
