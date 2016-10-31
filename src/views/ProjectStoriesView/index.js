@@ -39,7 +39,6 @@ export default class ProjectStoriesView extends React.Component {
   };
 
   componentDidMount() {
-
     const CB = new Clipboard('.storyId');
 
     CB.on('success', (e) => {
@@ -48,8 +47,12 @@ export default class ProjectStoriesView extends React.Component {
 
 
     if (ls('pp-api') && ls('pp-me')) {
-      const headers = new Headers();
       const projectId = this.props.params.projectId;
+      
+      const projectColor = `#${ls('pp-me').projects.filter(proj => proj.project_id === parseInt(projectId))[0].project_color}`;
+      this.props.setViewColor(projectColor);
+
+      const headers = new Headers();
       headers.append('X-TrackerToken', ls('pp-api'));
       this.props.setViewTitle(ls(`pp-project-${projectId}-details`).name);
       this.props.setShowBack({

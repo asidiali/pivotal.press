@@ -18,6 +18,7 @@ export default class ProjectsView extends React.Component {
 
   componentWillMount() {
     this.props.setViewTitle('Projects');
+    this.props.setViewColor('#3E7293');
     if (this.props.showBack && this.props.showBack.clearOnClick) this.props.setShowBack(false);
   }
 
@@ -54,9 +55,10 @@ export default class ProjectsView extends React.Component {
       <div style={styles.base}>
         <div style={styles.projectsWrapper}>
           {(this.state.projects_fetched && this.state.projects_activity_fetched) ? ls('pp-projects').map((project, projectIndex) => {
+            const projectColor = `#${ls('pp-me').projects.filter(proj => proj.project_id === project.id)[0].project_color}`;
             return (
               <div key={projectIndex} style={Object.assign({}, styles.projectCard, {
-                borderLeft: `10px solid #${ls('pp-me').projects.filter(proj => proj.project_id === project.id)[0].project_color || 'rgb(62, 114, 147)'}`,
+                borderLeft: `10px solid ${projectColor || 'rgb(62, 114, 147)'}`,
               })} onClick={() => {
                 ls.set(`pp-project-${project.id}-details`, project);
                 hashHistory.push(`/projects/${project.id}`)

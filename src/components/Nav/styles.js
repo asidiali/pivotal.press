@@ -58,11 +58,12 @@ export default {
     fontWeight: 700,
     fontSize: '1em',
     flex: '0 0 auto',
+    padding: '10px 0',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     color: '#fff',
-    textTransform: 'uppercase',
+    // textTransform: 'uppercase',
     '@media (max-width: 768px)': {
       margin: 'auto 10px auto 0',
       flex: 1,

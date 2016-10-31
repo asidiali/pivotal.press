@@ -13,6 +13,8 @@ const Layout = props => (
   }}>
     {React.cloneElement(props.children, {
       setViewTitle: props.setViewTitle,
+      setViewColor: props.setViewColor,
+      viewColor: props.viewColor,
       setShowBack: props.setShowBack,
       showBack: props.showBack,
       setNotification: props.setNotification,

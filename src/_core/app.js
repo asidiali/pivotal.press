@@ -16,6 +16,7 @@ class App extends React.Component {
 
   state = {
     viewTitle: '',
+    viewColor: '',
     showBack: false,
     notification: {
       show: false,
@@ -26,8 +27,11 @@ class App extends React.Component {
   };
 
   setViewTitle = viewTitle => {
-    console.log(viewTitle);
     this.setState({ viewTitle });
+  }
+
+  setViewColor = viewColor => {
+    this.setState({ viewColor });
   }
 
   setShowBack = showBack => {
@@ -60,13 +64,17 @@ class App extends React.Component {
         <div style={styles.base}>
           <Nav
             viewTitle={this.state.viewTitle}
+            viewColor={this.state.viewColor}
             showBack={this.state.showBack}
             setViewTitle={this.setViewTitle}
+            setViewColor={this.setViewColor}
             setShowBack={this.setShowBack}
             location={this.props.location}
           />
           {React.cloneElement(this.props.children, {
             setViewTitle: this.setViewTitle,
+            setViewColor: this.setViewColor,
+            viewColor: this.state.viewColor,
             setShowBack: this.setShowBack,
             showBack: this.state.showBack,
             setNotification: this.setNotification,

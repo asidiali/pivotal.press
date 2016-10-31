@@ -1,5 +1,5 @@
 export default {
-  base: { paddingTop: 60 },
+  base: { paddingTop: 60, flex: 1 },
   storiesWrapper: {
     display: 'flex',
     flexFlow: 'row wrap',
