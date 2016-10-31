@@ -3,6 +3,7 @@ export default {
     backgroundColor: '#fff',
     width: '24%',
     height: 280,
+    textDecoration: 'none',
     borderRadius: 3,
     flex: '0 0 auto',
     margin: '0.5%',

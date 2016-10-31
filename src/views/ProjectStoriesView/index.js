@@ -302,6 +302,7 @@ export default class ProjectStoriesView extends React.Component {
           <div style={styles.storiesWrapper}>
             {this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage, this.filterByLabels) ? this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage, this.filterByLabels).map((story, storyIndex) => (
               <StoryCard
+                projectId={this.props.params.projectId}
                 key={storyIndex}
                 story={story}
                 storyIndex={storyIndex}

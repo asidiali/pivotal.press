@@ -14,7 +14,7 @@ function renderStatusColor(state) {
 }
 
 const StoryCard = props => (
-  <div key={props.storyIndex} style={styles.storyCard} onClick={() => props.selectStory(props.story)}>
+  <a href={`https://pivotaltracker.com/n/projects/${props.projectId}/stories/${props.story.id}`} target="_blank" key={props.storyIndex} style={styles.storyCard}>
     <ul style={styles.storyDetails}>
       <li
         className="storyId"
@@ -44,7 +44,7 @@ const StoryCard = props => (
     </div>
     <span style={styles.lastUpdated}>Last updated {moment(props.story.updated_at).fromNow()}</span>
     <ReactTooltip effect="solid" place="top" />
-  </div>
+  </a>
 );
 
 StoryCard.propTypes = {
