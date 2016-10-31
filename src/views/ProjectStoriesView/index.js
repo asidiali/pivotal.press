@@ -98,6 +98,10 @@ export default class ProjectStoriesView extends React.Component {
     return sortA - sortB;
   }
 
+  sortOwners = (a, b) => {
+    return (a.person.name <= b.person.name) ? -1 : 1;
+  }
+
 
   filterBySearch = story => {
     const reg = new RegExp(this.state.searchFilter, 'i', 'g');
@@ -277,7 +281,7 @@ export default class ProjectStoriesView extends React.Component {
           >
             <MenuItem leftIcon={<Icon icon="group" />} value='all' primaryText="All Owners" />
             <MenuItem leftIcon={<Icon icon="person" />} value={ls('pp-me').id} primaryText="Me" />
-            {this.state.project_memberships_fetched ? ls(`pp-project-${this.props.params.projectId}-memberships`).filter((val) => val.person.id !== ls('pp-me').id).map((member, memberIndex) => (
+            {this.state.project_memberships_fetched ? ls(`pp-project-${this.props.params.projectId}-memberships`).filter((val) => val.person.id !== ls('pp-me').id).sort(this.sortOwners).map((member, memberIndex) => (
               <MenuItem key={`member-${memberIndex}`} leftIcon={<Icon icon="person" style={styles.ownerIcon}/>} value={member.person.id} primaryText={member.person.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee' }} />
             )) : false}
           </DropDownMenu>
