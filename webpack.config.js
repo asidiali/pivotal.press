@@ -1,6 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
 
 const options = {
   name: 'client',
@@ -14,6 +13,7 @@ const options = {
     path: './',
     filename: 'app.bundle.js',
   },
+  target: 'web',
   module: {
     loaders: [
       {
