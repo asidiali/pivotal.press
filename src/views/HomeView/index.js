@@ -49,7 +49,7 @@ export default class HomeView extends React.Component {
           <button style={styles.submitBtn} type="submit">Login <Icon icon="lock" style={{margin: 'auto 0 auto 5px'}}/></button>
         </form>
         <a href="https://github.com/asidiali/pivotal.press/" target="_blank">
-          <img src="https://dl.dropboxusercontent.com/s/paoe8eo4hswcaya/GitHub-Mark-Light-120px-plus.png" style={{ margin: '20px auto auto', width: 40, height: 40}} />
+          <img src="https://dl.dropboxusercontent.com/s/paoe8eo4hswcaya/GitHub-Mark-Light-120px-plus.png" style={{ margin: '20px auto auto', width: 30, height: 30}} />
         </a>
         <span style={styles.copy}>&copy; 2016 Adam Sidiali.</span>
       </div>
