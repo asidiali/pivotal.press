@@ -8,6 +8,7 @@ import {
   Icon,
   Loader,
   StoryCard,
+  StoryDetails,
 } from '../../components';
 
 import Clipboard from 'clipboard';
@@ -36,6 +37,7 @@ export default class ProjectStoriesView extends React.Component {
     labelFilters: [],
     showLabelsPopover: false,
     labelsEl: null,
+    selectedStory: {},
   };
 
   componentDidMount() {
@@ -48,7 +50,7 @@ export default class ProjectStoriesView extends React.Component {
 
     if (ls('pp-api') && ls('pp-me')) {
       const projectId = this.props.params.projectId;
-      
+
       const projectColor = `#${ls('pp-me').projects.filter(proj => proj.project_id === parseInt(projectId))[0].project_color}`;
       this.props.setViewColor(projectColor);
 
@@ -179,6 +181,11 @@ export default class ProjectStoriesView extends React.Component {
       .sort(sortStoriesByCreatedTime)
   }
 
+  selectStory = story => {
+    console.log('selectiing story ' + story.id);
+    this.setState({ selectedStory: story });
+  }
+
   render() {
     console.log(this.props.params.projectId);
     return (
@@ -293,7 +300,7 @@ export default class ProjectStoriesView extends React.Component {
             onChange={this.handleStagesChange}
             maxHeight={350}
           >
-            <MenuItem value='all' primaryText="All Stages" />
+            <MenuItem value='all' primaryText="All States" />
             {statuses.map((status, statusIndex) => (
               <MenuItem key={`status-${statusIndex}`} value={status} primaryText={`${statusIndex} - ${status}`} style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }} />
             ))}
@@ -311,6 +318,8 @@ export default class ProjectStoriesView extends React.Component {
                 setNotification={this.props.setNotification}
                 handleLabelChange={this.handleLabelChange}
                 labelFilters={this.state.labelFilters}
+                selectStory={this.selectStory}
+                selectedStory={this.state.selectedStory}
               />
             )) : (
               <p style={styles.noStories}>No stories</p>
@@ -319,6 +328,10 @@ export default class ProjectStoriesView extends React.Component {
         ) : (
           <Loader />
         )}
+        <div style={Object.assign({}, styles.activeCardBackground, { display: this.state.selectedStory.id ? 'block' : 'none'})}> </div>
+        <StoryDetails
+
+        />
       </div>
     );
   }

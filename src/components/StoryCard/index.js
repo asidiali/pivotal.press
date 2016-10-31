@@ -14,7 +14,7 @@ function renderStatusColor(state) {
 }
 
 const StoryCard = props => (
-  <div key={props.storyIndex} style={styles.storyCard}>
+  <div key={props.storyIndex} style={styles.storyCard} onClick={() => props.selectStory(props.story)}>
     <ul style={styles.storyDetails}>
       <li
         className="storyId"
@@ -50,6 +50,7 @@ const StoryCard = props => (
 StoryCard.propTypes = {
   story: React.PropTypes.object,
   storyIndex: React.PropTypes.number,
+  selectedStory: React.PropTypes.object,
 
 };
 

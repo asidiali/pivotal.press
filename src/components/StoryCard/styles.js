@@ -15,7 +15,7 @@ export default {
     borderLeft: '1px solid #ddd',
     borderBottom: '2px solid #ddd',
     cursor: 'pointer',
-    transition: '150ms ease-out',
+    transition: '100ms ease-out',
     '@media (max-width: 1440px)': {
       width: '32.33%',
     },
@@ -28,8 +28,19 @@ export default {
     },
     ':hover': {
       boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
-      transition: '150ms ease-out',
-    }
+      transition: '100ms ease-out',
+    },
+  },
+  activeStoryCard: {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%,-50%)',
+    width: '60vw',
+    height: '75vh',
+    background: '#fff',
+    zIndex: 999999,
+    transition: '100ms ease-out',
   },
   labelsWrapper: {
     margin: 'auto -5px 0',
