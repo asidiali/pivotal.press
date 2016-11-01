@@ -25,6 +25,7 @@ export default class ProjectsView extends React.Component {
 
   componentWillMount() {
     this.props.setViewTitle('Projects');
+    this.props.setViewCount(0);
     this.props.setViewColor('#3E7293');
     if (this.props.showBack && this.props.showBack.clearOnClick) this.props.setShowBack(false);
   }
