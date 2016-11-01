@@ -75,6 +75,7 @@ export default class ProjectStoriesView extends React.Component {
       }).then(res => res.json()).then((res) => {
         ls.set(`pp-project-${projectId}-stories`, res);
         this.setState({project_stories_fetched: true});
+        this.props.setViewCount(res.length);
       });
 
       fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/memberships`, {
@@ -175,13 +176,14 @@ export default class ProjectStoriesView extends React.Component {
   }
 
   renderFilteredStories = (search, type, owner, stage, label) => {
-    return ls(`pp-project-${this.props.params.projectId}-stories`)
+    const stories = ls(`pp-project-${this.props.params.projectId}-stories`)
       .filter(search)
       .filter(owner)
       .filter(type)
       .filter(stage)
       .filter(label)
-      .sort(sortStoriesByCreatedTime)
+      .sort(sortStoriesByCreatedTime);
+    return stories;
   }
 
   selectStory = story => {

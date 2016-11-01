@@ -37,9 +37,11 @@ class Nav extends React.Component {
   @injectProps
   render({
     setViewTitle,
+    setViewCount,
     showBack,
     setShowBack,
     viewTitle,
+    viewCount,
     viewColor,
     location,
   }) {
@@ -69,6 +71,7 @@ class Nav extends React.Component {
           {(showBack && showBack.text.toLowerCase() === 'projects') ? (
             <span style={{backgroundColor: '#fff', flex: '0 0 auto', padding: 5, fontWeight: 700, boxSizing: 'border-box', fontSize: '0.9em', overflow: 'hidden', borderRadius: 5, color: '#222', borderLeft: `8px solid ${viewColor}`}}>{viewTitle}</span>
           ) : viewTitle}
+          <span style={{ fontSize: '0.9em', color: '#aaa', fontStyle: 'italic', margin: 'auto 10px', fontWeight: 400,}}>{viewCount} stories</span>
         </span>
         {ls('pp-me') ? (
           <div style={styles.loggedInUser} onClick={(e) => {this.toggleCloseAccountPopover(e.currentTarget)}}>

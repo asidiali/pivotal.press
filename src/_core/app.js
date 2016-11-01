@@ -17,6 +17,7 @@ class App extends React.Component {
   state = {
     viewTitle: '',
     viewColor: '',
+    viewCount: 0,
     showBack: false,
     notification: {
       show: false,
@@ -27,6 +28,7 @@ class App extends React.Component {
   };
 
   setViewTitle = viewTitle => this.setState({ viewTitle });
+  setViewCount = viewCount => this.setState({ viewCount });
 
   setViewColor = viewColor => this.setState({ viewColor });
 
@@ -58,15 +60,18 @@ class App extends React.Component {
             <Nav
               viewTitle={this.state.viewTitle}
               viewColor={this.state.viewColor}
+              viewCount={this.state.viewCount}
               showBack={this.state.showBack}
               setViewTitle={this.setViewTitle}
               setViewColor={this.setViewColor}
+              setViewCount={this.setViewCount}
               setShowBack={this.setShowBack}
               location={this.props.location}
             />
             {React.cloneElement(this.props.children, {
               setViewTitle: this.setViewTitle,
               setViewColor: this.setViewColor,
+              setViewCount: this.setViewCount,
               viewColor: this.state.viewColor,
               setShowBack: this.setShowBack,
               showBack: this.state.showBack,
