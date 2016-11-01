@@ -9,6 +9,10 @@ import {
 import React from 'react';
 import ls from 'local-storage';
 
+function sortOwners(a,b) {
+  return (a.person.name <= b.person.name) ? -1 : 1;
+};
+
 const OwnersFilter = props => (
   <div style={{
     flex: '0 0 auto',
@@ -37,7 +41,7 @@ const OwnersFilter = props => (
     >
       <MenuItem leftIcon={<Icon icon="group" />} value='all' primaryText="All Owners" />
       <MenuItem leftIcon={<Icon icon="person" />} value={ls('pp-me').id} primaryText="Me" />
-      {props.project_memberships_fetched ? ls(`pp-project-${props.projectId}-memberships`).filter((val) => val.person.id !== ls('pp-me').id).sort(props.sortOwners).map((member, memberIndex) => (
+      {props.project_memberships_fetched ? ls(`pp-project-${props.projectId}-memberships`).filter((val) => val.person.id !== ls('pp-me').id).sort(sortOwners).map((member, memberIndex) => (
         <MenuItem key={`member-${memberIndex}`} leftIcon={<Icon icon="person" style={props.styles.ownerIcon}/>} value={member.person.id} primaryText={member.person.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee' }} />
       )) : false}
     </DropDownMenu>

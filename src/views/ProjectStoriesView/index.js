@@ -101,16 +101,6 @@ export default class ProjectStoriesView extends React.Component {
     return true;
   }
 
-  sortActiveLabels = (a, b) => {
-    const sortA = this.state.labelFilters.includes(a.id) ? -1 : 1;
-    const sortB = this.state.labelFilters.includes(b.id) ? -1 : 1;
-    return sortA - sortB;
-  }
-
-  sortOwners = (a, b) => {
-    return (a.person.name <= b.person.name) ? -1 : 1;
-  }
-
 
   filterBySearch = story => {
     const reg = new RegExp(this.state.searchFilter, 'i', 'g');
@@ -222,19 +212,16 @@ export default class ProjectStoriesView extends React.Component {
             labelFilters={this.state.labelFilters}
             project_labels_fetched={this.state.project_labels_fetched}
             handleLabelChange={this.handleLabelChange}
-            sortActiveLabels={this.sortActiveLabels}
             showLabelsPopover={this.state.showLabelsPopover}
             labelsEl={this.state.labelsEl}
             params={this.props.params}
           />
-
 
           <OwnersFilter
             ownerFilter={this.state.ownerFilter}
             handleOwnerChange={this.handleOwnerChange}
             project_memberships_fetched={this.state.project_memberships_fetched}
             projectId={this.props.params.projectId}
-            sortOwners={this.sortOwners}
             styles={styles}
           />
 
