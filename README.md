@@ -55,6 +55,9 @@ This app is currently a work in progress. Reporting any bugs/issues you find is 
   - [ ] UX - Real-time - setup polling to enable real-time changes
   - [ ] UI - kanban board view by stage
   - [ ] UI - project carousel view
+- [ ] Accounts
+  - [ ] incorrect API key check
+  - [ ] pass account via `props` instead of `ls`
 
 ---
 

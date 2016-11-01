@@ -113,7 +113,7 @@ export default class ProjectStoriesView extends React.Component {
 
   filterBySearch = story => {
     const reg = new RegExp(this.state.searchFilter, 'i', 'g');
-    return story.name.match(reg) || story.id.match(reg);
+    return story.name.match(reg) || story.id.toString().match(reg);
   }
 
   filterByType = story => {
