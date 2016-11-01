@@ -15,6 +15,7 @@ import Clipboard from 'clipboard';
 import LabelsFilter from './LabelsFilter';
 import OwnersFilter from './OwnersFilter';
 import React from 'react';
+import StatesFilter from './StatesFilter';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
 import moment from 'moment';
@@ -257,30 +258,11 @@ export default class ProjectStoriesView extends React.Component {
             styles={styles}
           />
 
-          <DropDownMenu
-            underlineStyle={{
-              margin: 0,
-              borderTop: '2px solid rgba(0,0,0,0.15)',
-              display: 'none',
-            }}
-            labelStyle={{
-              paddingLeft: 10,
-              fontSize: '1em',
-              color: '#fff',
-              fontWeight: 400,
-              textTransform: 'capitalize',
-            }}
-            style={{ margin: 'auto 0', height: 'auto', flex: '0 0 auto' }}
-            value={this.state.stagesFilter}
-            onChange={this.handleStagesChange}
-            maxHeight={350}
-          >
-            <MenuItem value='all' primaryText="All States" />
-            {statuses.map((status, statusIndex) => (
-              <MenuItem key={`status-${statusIndex}`} value={status} primaryText={`${statusIndex} - ${status}`} style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }} />
-            ))}
-          </DropDownMenu>
-
+          <StatesFilter
+            statesFilter={this.state.stagesFilter}
+            handleStatesChange={this.handleStagesChange}
+          />
+          
         </div>
 
         {this.state.project_stories_fetched ? (
