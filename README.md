@@ -49,6 +49,7 @@ This app is currently a work in progress. Reporting any bugs/issues you find is 
     - [ ] labels
 - [ ] Misc
   - [x] ~~UI - project cards activity feed~~
+  - [ ] UI - real-time project history feed sideback
   - [ ] Performance - projects stories list pagination
   - [ ] Performance - improve story search query functionality (by word)
   - [ ] UI - add owner/member detail to story cards
