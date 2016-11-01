@@ -52,7 +52,10 @@ export default class ProjectStoriesView extends React.Component {
         this.props.setNotification(true, `${e.text} copied to clipboard`);
     });
 
+    this.fetchProjectData();
+  }
 
+  fetchProjectData() {
     if (ls('pp-api') && ls('pp-me')) {
       const projectId = this.props.params.projectId;
 
@@ -232,6 +235,19 @@ export default class ProjectStoriesView extends React.Component {
             handleStatesChange={this.handleStagesChange}
           />
 
+          <span style={{
+            margin: 'auto 10px auto auto',
+            cursor: 'pointer',
+          }} data-tip="Refresh Stories" onClick={() => {
+              this.setState({
+                project_stories_fetched: false,
+                project_memberships_fetched: false,
+                project_labels_fetched: false,
+              });
+              this.fetchProjectData();
+          }}>
+            <Icon icon="refresh" style={{ color: '#ccc', fontSize: '1.5em'}} />
+          </span>
         </div>
 
         {this.state.project_stories_fetched ? (

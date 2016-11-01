@@ -5,7 +5,7 @@ export default {
     left: 0,
     right: 0,
     height: 60,
-    zIndex: 999,
+    zIndex: 9999,
     backgroundColor: '#3E7293',
     // borderBottom: '1px solid #ddd',
     display: 'flex',
