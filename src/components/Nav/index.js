@@ -72,7 +72,7 @@ class Nav extends React.Component {
             <span style={{backgroundColor: '#fff', flex: '0 0 auto', padding: 5, fontWeight: 700, boxSizing: 'border-box', fontSize: '0.9em', overflow: 'hidden', borderRadius: 5, color: '#222', borderLeft: `8px solid ${viewColor}`}}>{viewTitle}</span>
           ) : viewTitle}
           {viewCount !== 0 ? (
-            <span style={{ fontSize: '0.9em', color: '#aaa', fontStyle: 'italic', margin: 'auto 10px', fontWeight: 400,}}>{viewCount} stories</span>
+            <span style={{ fontSize: '0.9em', color: '#aaa', fontStyle: 'italic', margin: 'auto 10px', fontWeight: 400,}}>{viewCount}</span>
           ) : false}
         </span>
         {ls('pp-me') ? (

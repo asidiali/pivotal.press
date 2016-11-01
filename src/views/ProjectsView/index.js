@@ -25,7 +25,6 @@ export default class ProjectsView extends React.Component {
 
   componentWillMount() {
     this.props.setViewTitle('Projects');
-    this.props.setViewCount(0);
     this.props.setViewColor('#3E7293');
     if (this.props.showBack && this.props.showBack.clearOnClick) this.props.setShowBack(false);
   }
@@ -40,6 +39,7 @@ export default class ProjectsView extends React.Component {
         method: 'GET',
       }).then(res => res.json()).then((res) => {
         ls.set('pp-projects', res);
+        this.props.setViewCount(res.length);
         this.setState({projects_fetched: true});
 
         // fetch activity for each project
