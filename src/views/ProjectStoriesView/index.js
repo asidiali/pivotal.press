@@ -15,6 +15,7 @@ import Clipboard from 'clipboard';
 import LabelsFilter from './LabelsFilter';
 import OwnersFilter from './OwnersFilter';
 import React from 'react';
+import SearchFilter from './SearchFilter';
 import StatesFilter from './StatesFilter';
 import TypesFilter from './TypesFilter';
 import {hashHistory} from 'react-router';
@@ -203,16 +204,13 @@ export default class ProjectStoriesView extends React.Component {
     return (
       <div style={styles.base}>
         <div style={styles.filtersWrapper}>
-          <div style={styles.searchInputWrapper}>
-            <Icon icon="search" style={styles.searchIcon} />
-            <input
-              placeholder="search stories"
-              style={styles.searchInput}
-              onKeyUp={(e) => {
-                this.setState({ searchFilter: e.currentTarget.value });
-              }}
-            />
-          </div>
+
+          <SearchFilter
+            styles={styles}
+            onKeyUp={(e) => {
+              this.setState({ searchFilter: e.currentTarget.value });
+            }}
+          />
 
           <TypesFilter
             storyTypeFilter={this.state.storyTypeFilter}
