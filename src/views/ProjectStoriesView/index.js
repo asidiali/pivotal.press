@@ -16,6 +16,7 @@ import LabelsFilter from './LabelsFilter';
 import OwnersFilter from './OwnersFilter';
 import React from 'react';
 import StatesFilter from './StatesFilter';
+import TypesFilter from './TypesFilter';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
 import moment from 'moment';
@@ -212,30 +213,11 @@ export default class ProjectStoriesView extends React.Component {
               }}
             />
           </div>
-          <Icon icon={typeIcons[this.state.storyTypeFilter]} style={{ fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px', flex: '0 0 auto'}} />
-          <DropDownMenu
-            underlineStyle={{
-              margin: 0,
-              borderTop: '2px solid rgba(0,0,0,0.15)',
-              display: 'none',
-            }}
-            labelStyle={{
-              paddingLeft: 10,
-              fontSize: '1em',
-              color: '#fff',
-              fontWeight: 400,
-            }}
-            style={{ margin: 'auto 0', height: 'auto', flex: '0 0 auto' }}
-            value={this.state.storyTypeFilter}
-            onChange={this.handleStoryTypeChange}
-          >
-            <MenuItem leftIcon={<Icon icon="group_work" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='all' primaryText="All Types" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '0px solid #eee' }}  />
-            <MenuItem leftIcon={<Icon icon="bug_report" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='bug' primaryText="Bugs" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
-            <MenuItem leftIcon={<Icon icon="build" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='chore' primaryText="Chores" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
-            <MenuItem leftIcon={<Icon icon="extension" />} value='feature' primaryText="Features" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
-            <MenuItem leftIcon={<Icon icon="backup" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='release' primaryText="Releases" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
-          </DropDownMenu>
 
+          <TypesFilter
+            storyTypeFilter={this.state.storyTypeFilter}
+            handleStoryTypeChange={this.handleStoryTypeChange}
+          />
 
           <LabelsFilter
             toggleLabelsPopover={this.toggleLabelsPopover}
@@ -262,7 +244,7 @@ export default class ProjectStoriesView extends React.Component {
             statesFilter={this.state.stagesFilter}
             handleStatesChange={this.handleStagesChange}
           />
-          
+
         </div>
 
         {this.state.project_stories_fetched ? (
