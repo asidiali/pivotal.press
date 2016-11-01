@@ -269,7 +269,7 @@ export default class ProjectStoriesView extends React.Component {
             )}
           </div>
         ) : (
-          <div style={{ display: 'flex', height: '75vh', flexFlow: 'column nowrap', justifyContent: 'center', alignItems: 'center'}}>
+          <div style={{ display: 'flex', height: '75vh',width: '100%', flexFlow: 'column nowrap', justifyContent: 'center', alignItems: 'center'}}>
             <Loader />
             <span style={{margin: '0px auto', fontSize: '0.8em', color: '#aaa', textTransform: 'uppercase', fontWeight: 700}}>Fetching stories</span>
           </div>

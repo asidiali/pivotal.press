@@ -84,7 +84,10 @@ export default class ProjectsView extends React.Component {
               </div>
             );
           }) : (
-            <Loader />
+            <div style={{ display: 'flex', height: '75vh', width: '100%', flexFlow: 'column nowrap', justifyContent: 'center', alignItems: 'center'}}>
+              <Loader />
+              <span style={{margin: '0px auto', fontSize: '0.8em', color: '#aaa', textTransform: 'uppercase', fontWeight: 700}}>Fetching projects</span>
+            </div>
           )}
         </div>
       </div>
