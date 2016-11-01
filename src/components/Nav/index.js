@@ -47,7 +47,7 @@ class Nav extends React.Component {
   }) {
     return (
       <nav style={styles.base}>
-        <span style={styles.brand} data-tip="v0.1.6" data-place="right">
+        <span style={styles.brand} data-tip="v0.1.7" data-place="right">
           <Icon icon="dashboard" style={{marginRight: 10, fontSize: (location.pathname === '/') ? '1.5em' : '1.1em'}} />
           <span style={Object.assign({}, styles.brandText, {
             display: (location.pathname === '/') ? 'none' : 'block',
@@ -95,6 +95,7 @@ class Nav extends React.Component {
               ls.set('pp-api', false);
               this.toggleCloseAccountPopover();
               setViewTitle();
+              setViewCount(0);
               setShowBack();
               setTimeout(() => {
                 hashHistory.push('/');
