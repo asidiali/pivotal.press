@@ -37,10 +37,13 @@ const options = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'react-es7-starter',
+      title: 'Pivotal.Press',
       template: './src/_core/index.html',
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    }),
   ],
   node: {
     console: true,
