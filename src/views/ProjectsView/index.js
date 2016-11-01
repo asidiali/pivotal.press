@@ -39,7 +39,6 @@ export default class ProjectsView extends React.Component {
         method: 'GET',
       }).then(res => res.json()).then((res) => {
         ls.set('pp-projects', res);
-        this.props.setViewCount(res.length);
         this.setState({projects_fetched: true});
 
         // fetch activity for each project

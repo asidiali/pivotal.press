@@ -41,6 +41,7 @@ export default class ProjectStoriesView extends React.Component {
     stagesFilter: 'all',
     labelFilters: [],
     showLabelsPopover: false,
+    showStoryDetails: false,
     labelsEl: null,
     selectedStory: {},
   };
@@ -78,7 +79,6 @@ export default class ProjectStoriesView extends React.Component {
       }).then(res => res.json()).then((res) => {
         ls.set(`pp-project-${projectId}-stories`, res);
         this.setState({project_stories_fetched: true});
-        this.props.setViewCount(res.length);
       });
 
       fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/memberships`, {
@@ -194,6 +194,19 @@ export default class ProjectStoriesView extends React.Component {
     this.setState({ selectedStory: story });
   }
 
+  toggleStoryDetails = (story) => {
+    if (story) {
+      return this.setState({
+        showStoryDetails: true,
+        selectedStory: story,
+      });
+    }
+    return this.setState({
+      showStoryDetails: false,
+      selectedStory: {},
+    });
+  }
+
   render() {
     console.log(this.props.params.projectId);
     return (
@@ -257,6 +270,7 @@ export default class ProjectStoriesView extends React.Component {
                 projectId={this.props.params.projectId}
                 key={storyIndex}
                 story={story}
+                onClick={this.toggleStoryDetails}
                 storyIndex={storyIndex}
                 setNotification={this.props.setNotification}
                 handleLabelChange={this.handleLabelChange}
@@ -276,7 +290,8 @@ export default class ProjectStoriesView extends React.Component {
         )}
         <div style={Object.assign({}, styles.activeCardBackground, { display: this.state.selectedStory.id ? 'block' : 'none'})}> </div>
         <StoryDetails
-
+          show={this.state.showStoryDetails}
+          toggleStoryDetails={this.toggleStoryDetails}
         />
       </div>
     );

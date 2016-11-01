@@ -14,7 +14,7 @@ function renderStatusColor(state) {
 }
 
 const StoryCard = props => (
-  <div key={props.storyIndex} style={styles.storyCard}>
+  <div key={props.storyIndex} style={styles.storyCard} onClick={() => props.onClick(props.story)}>
     <ul style={styles.storyDetails}>
       <li
         data-tip="Click to copy to clipboard"
