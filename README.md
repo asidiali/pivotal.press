@@ -1,4 +1,6 @@
-# pivotal.press
+![Pivotal.Press logo](https://dl.dropboxusercontent.com/s/fc4pn06d68stigg/pp-logo-sm.png)
+
+# PIVOTAL.PRESS
 A PivotalTracker client for managing stories.
 
 ## Local Install & Setup
