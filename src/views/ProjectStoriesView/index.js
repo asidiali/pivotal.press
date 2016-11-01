@@ -292,6 +292,10 @@ export default class ProjectStoriesView extends React.Component {
         <StoryDetails
           show={this.state.showStoryDetails}
           toggleStoryDetails={this.toggleStoryDetails}
+          story={this.state.selectedStory}
+          setNotification={this.props.setNotification}
+          handleLabelChange={this.handleLabelChange}
+          labelFilters={this.state.labelFilters}
         />
       </div>
     );
