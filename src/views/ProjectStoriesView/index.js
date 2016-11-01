@@ -269,7 +269,10 @@ export default class ProjectStoriesView extends React.Component {
             )}
           </div>
         ) : (
-          <Loader />
+          <div style={{ display: 'flex', height: '75vh', flexFlow: 'column nowrap', justifyContent: 'center', alignItems: 'center'}}>
+            <Loader />
+            <span style={{margin: '0px auto', fontSize: '0.8em', color: '#aaa', textTransform: 'uppercase', fontWeight: 700}}>Fetching stories</span>
+          </div>
         )}
         <div style={Object.assign({}, styles.activeCardBackground, { display: this.state.selectedStory.id ? 'block' : 'none'})}> </div>
         <StoryDetails
