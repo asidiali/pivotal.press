@@ -13,6 +13,7 @@ import {
 
 import Clipboard from 'clipboard';
 import LabelsFilter from './LabelsFilter';
+import OwnersFilter from './OwnersFilter';
 import React from 'react';
 import {hashHistory} from 'react-router';
 import ls from 'local-storage';
@@ -247,30 +248,14 @@ export default class ProjectStoriesView extends React.Component {
           />
 
 
-          <Icon icon={(this.state.ownerFilter === 'all') ? 'group' : 'person'} style={{flex: '0 0 auto', fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px'}} />
-          <DropDownMenu
-            underlineStyle={{
-              margin: 0,
-              borderTop: '2px solid rgba(0,0,0,0.15)',
-              display: 'none',
-            }}
-            labelStyle={{
-              paddingLeft: 10,
-              fontSize: '1em',
-              color: '#fff',
-              fontWeight: 400,
-            }}
-            style={{ margin: 'auto 0', height: 'auto', flex: '0 0 auto', }}
-            value={this.state.ownerFilter}
-            onChange={this.handleOwnerChange}
-            maxHeight={300}
-          >
-            <MenuItem leftIcon={<Icon icon="group" />} value='all' primaryText="All Owners" />
-            <MenuItem leftIcon={<Icon icon="person" />} value={ls('pp-me').id} primaryText="Me" />
-            {this.state.project_memberships_fetched ? ls(`pp-project-${this.props.params.projectId}-memberships`).filter((val) => val.person.id !== ls('pp-me').id).sort(this.sortOwners).map((member, memberIndex) => (
-              <MenuItem key={`member-${memberIndex}`} leftIcon={<Icon icon="person" style={styles.ownerIcon}/>} value={member.person.id} primaryText={member.person.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee' }} />
-            )) : false}
-          </DropDownMenu>
+          <OwnersFilter
+            ownerFilter={this.state.ownerFilter}
+            handleOwnerChange={this.handleOwnerChange}
+            project_memberships_fetched={this.state.project_memberships_fetched}
+            projectId={this.props.params.projectId}
+            sortOwners={this.sortOwners}
+            styles={styles}
+          />
 
           <DropDownMenu
             underlineStyle={{
