@@ -17,6 +17,7 @@ const StoryCard = props => (
   <div key={props.storyIndex} style={styles.storyCard}>
     <ul style={styles.storyDetails}>
       <li
+        data-tip="Click to copy to clipboard"
         className="storyId"
         style={Object.assign({}, styles.storyDetail, {
           fontFamily: 'Source Code pro',
