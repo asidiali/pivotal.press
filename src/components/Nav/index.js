@@ -6,6 +6,7 @@ import {
 
 import Icon from '../Icon';
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import {hashHistory} from 'react-router';
 import {injectProps} from 'relpers';
 import ls from 'local-storage';
@@ -44,7 +45,7 @@ class Nav extends React.Component {
   }) {
     return (
       <nav style={styles.base}>
-        <span style={styles.brand}>
+        <span style={styles.brand} data-tip="v0.1.5">
           <Icon icon="dashboard" style={{marginRight: 10, fontSize: (location.pathname === '/') ? '1.5em' : '1.1em'}} />
           <span style={Object.assign({}, styles.brandText, {
             display: (location.pathname === '/') ? 'none' : 'block',
@@ -96,7 +97,7 @@ class Nav extends React.Component {
             }} />
           </Menu>
         </Popover>
-
+        <ReactTooltip effect="solid" />
       </nav>
     );
   }

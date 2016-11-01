@@ -24,7 +24,10 @@ export default {
     color: '#ccc',
     '@media (max-width: 768px)': {
       fontSize: '1.15em',
-    }
+    },
+    ':hover': {
+      color: '#fff',
+    },
   },
   brandText: {
     '@media (max-width: 768px)': {
