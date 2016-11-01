@@ -14,7 +14,7 @@ function renderStatusColor(state) {
 }
 
 const StoryCard = props => (
-  <a href={`https://pivotaltracker.com/n/projects/${props.projectId}/stories/${props.story.id}`} target="_blank" key={props.storyIndex} style={styles.storyCard} onClick={() => props.onClick(props.story)}>
+  <a href={`https://pivotaltracker.com/n/projects/${props.projectId}/stories/${props.story.id}`} target="_blank" key={props.storyIndex} style={styles.storyCard} onClick={() => /* props.onClick(props.story) */}>
     <ul style={styles.storyDetails}>
       <li
         data-tip="Click to copy to clipboard"
