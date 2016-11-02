@@ -36,6 +36,7 @@ export default class HomeView extends React.Component {
             headers,
             method: 'GET',
           }).then(res => res.json()).then((res) => {
+            if (res.kind === 'error') return alert('Invalid API key. Please check your key and try again.');
             ls.set(`pp-me`, res);
             hashHistory.push('/projects');
           });
