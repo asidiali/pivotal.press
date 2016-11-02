@@ -12,13 +12,17 @@ const Layout = props => (
     overflowY: 'auto',
   }}>
     {React.cloneElement(props.children, {
-      setViewTitle: props.setViewTitle,
+      fetchProjects: props.fetchProjects,
+      activity: props.activity,
+      projects: props.projects,
+      setNotification: props.setNotification,
+      setShowBack: props.setShowBack,
       setViewColor: props.setViewColor,
       setViewCount: props.setViewCount,
-      viewColor: props.viewColor,
-      setShowBack: props.setShowBack,
+      setViewTitle: props.setViewTitle,
       showBack: props.showBack,
-      setNotification: props.setNotification,
+      viewColor: props.viewColor,
+      fetchAllActivity: props.fetchAllActivity,
     })}
   </div>
 );

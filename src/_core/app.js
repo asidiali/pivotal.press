@@ -6,6 +6,7 @@ import { Snackbar } from 'material-ui';
 import {StyleRoot} from 'radium';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import ls from 'local-storage';
 import styles from './styles';
 
 class App extends React.Component {
@@ -25,7 +26,17 @@ class App extends React.Component {
       action: '',
       onClick: null,
     },
+    activity: {},
+    projects: [],
   };
+
+  componentDidMount() {
+    this.fetchProjects();
+    this.fetchAllActivity();
+    setInterval(() => {
+      this.fetchProjects();
+    }, 10000);
+  }
 
   setViewTitle = viewTitle => this.setState({ viewTitle });
   setViewCount = viewCount => this.setState({ viewCount });
@@ -52,6 +63,75 @@ class App extends React.Component {
     return this.setState({ notification: options });
   }
 
+  fetchProjects = () => {
+    const me = ls('pp-me');
+    const key = ls('pp-api');
+
+    if (!key || !me) return console.log('error - not authenticated to fetch project data (func: fetchProjects)');
+
+    const headers = new Headers();
+    headers.append('X-TrackerToken', key);
+    fetch('https://www.pivotaltracker.com/services/v5/projects', {
+      mode: 'cors',
+      headers,
+      method: 'GET',
+    }).then(res => res.json()).then((res) => {
+      // ls.set('pp-projects', res);
+      this.setState({ projects: res });
+      return res;
+    });
+  }
+
+  // fetchProjectStories = (projectId) => {}
+  // fetchProjectMembers = (projectId) => {}
+  fetchProjectActivity = (projectId) => {
+    const me = ls('pp-me');
+    const key = ls('pp-api');
+
+    if (!key || !me) return console.log('error - not authenticated to fetch project data (func: fetchProjectActivity)');
+
+    const headers = new Headers();
+    headers.append('X-TrackerToken', key);
+    fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/activity?limit=5`, {
+      mode: 'cors',
+      headers,
+      method: 'GET',
+    }).then(response => response.json()).then((activityRes) => {
+      ls.set(`pp-project-${project.id}-activity`, activityRes);
+    });
+  }
+
+  fetchAllActivity = () => {
+    const me = ls('pp-me');
+    const key = ls('pp-api');
+
+    const projects = ls('pp-projects');
+
+    if (!key || !me) return console.log('error - not authenticated to fetch project data (func: fetchProjectActivity)');
+    const self = this;
+    if (projects.length) {
+      const activity = {};
+      projects.forEach((project, projectI) => {
+        const headers = new Headers();
+        headers.append('X-TrackerToken', key);
+        fetch(`https://www.pivotaltracker.com/services/v5/projects/${project.id}/activity?limit=5`, {
+          mode: 'cors',
+          headers,
+          method: 'GET',
+        }).then(response => response.json()).then((activityRes) => {
+          activity[project.id] = activityRes;
+          if (project.id === 1501000) console.log(activityRes[0].message);
+          if (projects.length === projectI + 1) {
+            // ls.set('pp-activity', activity);
+            self.setState({ activity: activity });
+          }
+          // console.log(activity);
+        });
+      });
+
+    }
+  }
+
   render() {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
@@ -76,6 +156,10 @@ class App extends React.Component {
               setShowBack: this.setShowBack,
               showBack: this.state.showBack,
               setNotification: this.setNotification,
+              projects: this.state.projects,
+              activity: this.state.activity,
+              fetchProjects: this.fetchProjects,
+              fetchAllActivity: this.fetchAllActivity,
             })}
             <Snackbar
               open={this.state.notification.show}
