@@ -48,19 +48,19 @@ This app is currently a work in progress. Reporting any bugs/issues you find is 
     - [ ] owner
     - [ ] labels
 - [ ] Misc
+  - [x] ~~UX - Real-time - setup polling to enable real-time changes~~
   - [x] ~~UI - project cards activity feed~~
-  - [ ] UI - real-time project history feed sideback
+  - [x] ~~UI - real-time project history feed sidebar~~
   - [ ] Performance - projects stories list pagination
   - [ ] Performance - improve story search query functionality (by word)
   - [ ] UI - add owner/member detail to story cards
   - [ ] UX - click on stage, type tags to filter
   - [ ] UX - refactor requests for offline capability
-  - [ ] UX - Real-time - setup polling to enable real-time changes
   - [ ] UI - kanban board view by stage
   - [ ] UI - project carousel view
 - [ ] Accounts
+  - [x] ~~incorrect API key check~~
   - [ ] revamp login page, check for `pp-me` before routing
-  - [ ] incorrect API key check
   - [ ] pass account via `props` instead of `ls`
   - [ ] add tooltip/note to home page on where to find PT API key
 
