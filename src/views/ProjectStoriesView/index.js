@@ -53,52 +53,14 @@ export default class ProjectStoriesView extends React.Component {
         this.props.setNotification(true, `${e.text} copied to clipboard`);
     });
 
-    this.fetchProjectData();
+    this.props.fetchProjectStories(this.props.params.projectId);
+    this.intervalHandle = setInterval(() => {
+      this.props.fetchProjectStories(this.props.params.projectId);
+    }, 10000);
   }
 
-  fetchProjectData() {
-    if (ls('pp-api') && ls('pp-me')) {
-      const projectId = this.props.params.projectId;
-
-      const projectColor = `#${ls('pp-me').projects.filter(proj => proj.project_id === parseInt(projectId))[0].project_color}`;
-      this.props.setViewColor(projectColor);
-
-      const headers = new Headers();
-      headers.append('X-TrackerToken', ls('pp-api'));
-      this.props.setViewTitle(ls(`pp-project-${projectId}-details`).name);
-      this.props.setShowBack({
-        link: '/projects',
-        text: 'Projects',
-        clearOnClick: true,
-      });
-      // TODO paginate requests
-      fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/stories?limit=1000`, {
-        mode: 'cors',
-        headers,
-        method: 'GET',
-      }).then(res => res.json()).then((res) => {
-        ls.set(`pp-project-${projectId}-stories`, res);
-        this.setState({project_stories_fetched: true});
-      });
-
-      fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/memberships`, {
-        mode: 'cors',
-        headers,
-        method: 'GET',
-      }).then(res => res.json()).then((res) => {
-        ls.set(`pp-project-${projectId}-memberships`, res);
-        this.setState({project_memberships_fetched: true});
-      });
-
-      fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/labels`, {
-        mode: 'cors',
-        headers,
-        method: 'GET',
-      }).then(res => res.json()).then((res) => {
-        ls.set(`pp-project-${projectId}-labels`, res);
-        this.setState({project_labels_fetched: true});
-      });
-    }
+  componentWillUnmount() {
+    clearInterval(this.intervalHandle);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -179,7 +141,7 @@ export default class ProjectStoriesView extends React.Component {
   }
 
   renderFilteredStories = (search, type, owner, stage, label) => {
-    const stories = ls(`pp-project-${this.props.params.projectId}-stories`)
+    const stories = this.props.stories
       .filter(search)
       .filter(owner)
       .filter(type)
@@ -226,6 +188,7 @@ export default class ProjectStoriesView extends React.Component {
           />
 
           <LabelsFilter
+            labels={this.props.project_labels}
             toggleLabelsPopover={this.toggleLabelsPopover}
             labelFilters={this.state.labelFilters}
             project_labels_fetched={this.state.project_labels_fetched}
@@ -236,6 +199,7 @@ export default class ProjectStoriesView extends React.Component {
           />
 
           <OwnersFilter
+            members={this.props.project_memberships}
             ownerFilter={this.state.ownerFilter}
             handleOwnerChange={this.handleOwnerChange}
             project_memberships_fetched={this.state.project_memberships_fetched}
@@ -263,7 +227,7 @@ export default class ProjectStoriesView extends React.Component {
           </span>
         </div>
 
-        {this.state.project_stories_fetched ? (
+        {this.props.stories && this.props.stories.length ? (
           <div style={styles.storiesWrapper}>
             {this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage, this.filterByLabels) ? this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage, this.filterByLabels).map((story, storyIndex) => (
               <StoryCard
@@ -297,6 +261,17 @@ export default class ProjectStoriesView extends React.Component {
           handleLabelChange={this.handleLabelChange}
           labelFilters={this.state.labelFilters}
         />
+        <div style={{
+          backgroundColor: 'rgb(62, 114, 147)',
+          position: 'fixed',
+          top: 60,
+          right: 0,
+          bottom: 0,
+          width: '30vw',
+          zIndex: 99,
+        }}>
+          activity feed
+        </div>
       </div>
     );
   }

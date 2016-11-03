@@ -41,7 +41,7 @@ const OwnersFilter = props => (
     >
       <MenuItem leftIcon={<Icon icon="group" />} value='all' primaryText="All Owners" />
       <MenuItem leftIcon={<Icon icon="person" />} value={ls('pp-me').id} primaryText="Me" />
-      {props.project_memberships_fetched ? ls(`pp-project-${props.projectId}-memberships`).filter((val) => val.person.id !== ls('pp-me').id).sort(sortOwners).map((member, memberIndex) => (
+      {props.members && props.members.length ? props.members.filter((val) => val.person.id !== ls('pp-me').id).sort(sortOwners).map((member, memberIndex) => (
         <MenuItem key={`member-${memberIndex}`} leftIcon={<Icon icon="person" style={props.styles.ownerIcon}/>} value={member.person.id} primaryText={member.person.name} style={{ textTransform: 'capitalize', borderTop: '1px solid #eee' }} />
       )) : false}
     </DropDownMenu>

@@ -32,6 +32,7 @@ export default class ProjectsView extends React.Component {
 
   componentDidMount() {
     // this.props.fetchProjects();
+    this.props.fetchAllActivity();
     this.intervalHandle = setInterval(() => {
       this.props.fetchAllActivity();
     }, 10000);

@@ -7,7 +7,7 @@ export default {
     height: 60,
     zIndex: 999,
     backgroundColor: '#3E7293',
-    // borderBottom: '1px solid #ddd',
+    borderBottom: '1px solid rgba(0,0,0,0.15)',
     display: 'flex',
     flexFlow: 'row nowrap',
   },

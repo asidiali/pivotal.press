@@ -47,7 +47,7 @@ const LabelsFilter = (props) => {
       >
         <Menu maxHeight={350} style={{ width: 200, overflowX: 'hidden', textOverflow: 'ellpsis', whiteSpace: 'nowrap'}}>
           <MenuItem leftIcon={<Icon icon="label" />} onClick={() => props.handleLabelChange()} primaryText="All Labels" />
-          {props.project_labels_fetched ? ls(`pp-project-${props.params.projectId}-labels`).sort(sortActiveLabels).map((label, labelIndex) => (
+          {props.labels && props.labels.length ? props.labels.sort(sortActiveLabels).map((label, labelIndex) => (
             <MenuItem key={`label-${labelIndex}`}onClick={() => props.handleLabelChange(label.id)} leftIcon={<Icon icon="label_outline" style={{color: '#aaa' }} />} value={label.id} primaryText={label.name} style={{ borderTop: '1px solid #eee', flex: 1, fontSize: '0.9em', padding: 0, backgroundColor: (props.labelFilters.includes(label.id) ? '#AED6F1' : '#fff') }} />
           )) : false}
         </Menu>
