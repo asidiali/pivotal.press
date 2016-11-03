@@ -33,15 +33,15 @@ export default class ProjectsView extends React.Component {
   componentDidMount() {
     const self = this;
     self.props.fetchAllActivity();
-    (function getActivity() {
-      setTimeout(() => {
-        self.props.fetchAllActivity(() => getActivity());
+    (function getActivity(context) {
+      context.activityTimeout = setTimeout(() => {
+        context.props.fetchProjectActivity(context.props.params.projectId, () => getActivity(context));
       }, 10000);
-    }());
+    }(self));
   }
 
   componentWillUnmount() {
-    clearInterval(this.intervalHandle);
+    window.clearInterval(this.activityTimeout);
   }
 
   render() {

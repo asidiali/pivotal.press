@@ -57,17 +57,22 @@ export default class ProjectStoriesView extends React.Component {
     self.props.fetchProjectStories(self.props.params.projectId);
     self.props.fetchProjectActivity(self.props.params.projectId);
 
-    (function getStories() {
-      setTimeout(() => {
-        self.props.fetchProjectStories(self.props.params.projectId, () => getStories());
+    (function getStories(context) {
+      context.storyTimeout = setTimeout(() => {
+        context.props.fetchProjectStories(context.props.params.projectId, () => getStories(context));
       }, 10000);
-    }());
+    }(self));
 
-    (function getActivity() {
-      setTimeout(() => {
-        self.props.fetchProjectActivity(self.props.params.projectId, () => getActivity());
+    (function getActivity(context) {
+      context.activityTimeout = setTimeout(() => {
+        context.props.fetchProjectActivity(context.props.params.projectId, () => getActivity(context));
       }, 10000);
-    }());
+    }(self));
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.storyTimeout);
+    window.clearInterval(this.activityTimeout);
   }
 
   filterBySearch = story => {
