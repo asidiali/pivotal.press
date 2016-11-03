@@ -1,7 +1,7 @@
 export default {
   storyCard: {
     backgroundColor: '#fff',
-    width: '24%',
+    width: '32.33%',
     height: 280,
     textDecoration: 'none',
     borderRadius: 3,
@@ -18,14 +18,17 @@ export default {
     cursor: 'pointer',
     transition: '100ms ease-out',
     '@media (max-width: 1440px)': {
-      width: '32.33%',
+      width: '49%',
     },
     '@media (max-width: 996px)': {
-      width: '49%',
+      width: '99%',
+      height: 'auto',
+      maxheight: 280,
     },
     '@media (max-width: 768px)': {
       width: '99%',
       height: 'auto',
+      maxheight: 280,
     },
     ':hover': {
       boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
@@ -93,9 +96,9 @@ export default {
     alignItems: 'center',
   },
   storyName: {
-    fontSize: '1.1em',
-    fontWeight: 300,
-    color: '#222',
+    fontSize: '1em',
+    fontWeight: 400,
+    color: '#444',
     resize: 'none',
     lineHeight: '1.5',
     borderTop: '0px solid #eee',

@@ -1,5 +1,5 @@
 export default {
-  base: { paddingTop: 60, flex: '0 0 auto', width: '70vw', },
+  base: { paddingTop: 60, flex: '0 0 auto', width: '75vw' },
   storiesWrapper: {
     display: 'flex',
     flexFlow: 'row wrap',
@@ -10,9 +10,9 @@ export default {
     borderRight: '1px solid rgba(0,0,0,0.15)',
     top: 60,
     height: 60,
-    width: '70vw',
+    width: '75vw',
     left: 0,
-    right: '30vw',
+    right: '25vw',
     backgroundColor: 'rgb(62, 114, 147)',
     margin: 'auto 0',
     padding: '0 10px',

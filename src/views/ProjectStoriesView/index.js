@@ -54,8 +54,10 @@ export default class ProjectStoriesView extends React.Component {
     });
 
     this.props.fetchProjectStories(this.props.params.projectId);
+    this.props.fetchProjectActivity(this.props.params.projectId);
     this.intervalHandle = setInterval(() => {
       this.props.fetchProjectStories(this.props.params.projectId);
+      this.props.fetchProjectActivity(this.props.params.projectId);
     }, 10000);
   }
 
@@ -212,7 +214,7 @@ export default class ProjectStoriesView extends React.Component {
             handleStatesChange={this.handleStagesChange}
           />
 
-          <span style={{
+          {/*}<span style={{
             margin: 'auto 10px auto auto',
             cursor: 'pointer',
           }} data-tip="Refresh Stories" onClick={() => {
@@ -224,7 +226,7 @@ export default class ProjectStoriesView extends React.Component {
               this.fetchProjectData();
           }}>
             <Icon icon="refresh" style={{ color: '#ccc', fontSize: '1.5em'}} />
-          </span>
+          </span>{*/}
         </div>
 
         {this.props.stories && this.props.stories.length ? (
@@ -262,15 +264,110 @@ export default class ProjectStoriesView extends React.Component {
           labelFilters={this.state.labelFilters}
         />
         <div style={{
-          backgroundColor: 'rgb(62, 114, 147)',
+          backgroundColor: 'rgb(43, 91, 121)',
           position: 'fixed',
           top: 60,
           right: 0,
           bottom: 0,
-          width: '30vw',
+          width: '25vw',
           zIndex: 99,
         }}>
-          activity feed
+          <h3 style={{
+            textTransform: 'uppercase',
+            color: '#ddd',
+            fontSize: '0.85em',
+            margin: 20,
+          }}>Project Activity</h3>
+          <ul style={{
+            listStyle: 'none',
+            display: 'flex',
+            flexFlow: 'column nowrap',
+          }}>
+            {this.props.project_activity && this.props.project_activity.length ? this.props.project_activity.map((activity, activityIndex) => (
+              <li
+                key={`activity-${activityIndex}`}
+                style={{
+                  flex: '0 0 auto',
+                  color: '#666',
+                  backgroundColor: '#fff',
+                  borderRadius: 3,
+                  padding: '10px 35px 10px 10px',
+                  margin: '2px 10px',
+                  boxSizing: 'border-box',
+                  fontSize: '0.85em',
+                  fontWeight: 700,
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'ellipsis',
+                  height: 60,
+                  display: 'flex',
+                  flexFlow: 'column nowrap',
+                  position: 'relative',
+                }}
+              >
+                <Icon icon="keyboard_arrow_right" style={{
+                  position: 'absolute',
+                  right: 10,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  fontSize: '1.25em',
+                  color: '#aaa',
+                }} />
+
+                <div style={{
+                  display: 'flex',
+                  flexFlow: 'row nowrap',
+                }}>
+                  <span style={{
+                    padding: 0,
+                    margin: 'auto 2px',
+                    boxSizing: 'border-box',
+                    color: '#ccc',
+                    fontWeight: 700,
+                    fontSize: '0.9em',
+                  }}>{moment(activity.occurred_at).fromNow()}</span>
+                  <Icon icon={typeIcons[activity.primary_resources[0].story_type]} style={{
+                    margin: '0 0 4px auto',
+                    fontSize: '1.25em',
+                    color: '#aaa',
+                    position: 'relative',
+                    top: -2
+                  }} />
+                </div>
+                <div style={{
+                  display: 'flex',
+                  flexFlow: 'row nowrap',
+                }}>
+                  <span style={{
+                    padding: 0,
+                    margin: 'auto 2px',
+                    boxSizing: 'border-box',
+                  }}>{activity.performed_by.name}</span>
+                  <span style={{
+                    flex: 1,
+                    margin: 'auto 2px',
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                  }}>{activity.highlight}</span>
+                  <span style={{
+                    backgroundColor: '#eee',
+                    margin: '0 auto auto 4px',
+                    padding: '3px 5px',
+                    boxSizing: 'border-box',
+                    flex: '0 0 auto',
+                    fontFamily: 'Source Code pro',
+                    display: 'flex',
+                    alignItems: 'center',
+                    fontSize: '0.9em',
+                  }}>
+                    <Icon icon="launch" style={{ marginRight: 5, fontSize: '1em' }} />
+                    {activity.primary_resources[0].id}
+                  </span>
+                </div>
+
+              </li>
+            )) : false}
+          </ul>
         </div>
       </div>
     );
@@ -279,7 +376,7 @@ export default class ProjectStoriesView extends React.Component {
 
 const typeIcons = {
   all: 'group_work',
-  feature: 'extension',
+  feature: 'layers',
   bug: 'bug_report',
   chore: 'build',
   release: 'backup',

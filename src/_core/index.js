@@ -22,7 +22,9 @@ function requireAuth() {
   if (!ls('pp-api') || !ls('pp-me')) setTimeout(hashHistory.push('/'), 500);
 }
 
-function main() {
+const main = () => {
+  ga('create', 'UA-86630001-1', 'auto');
+  ga('send', 'pageview');
   render(
     <Router history={hashHistory}>
       <Route component={App}>
@@ -48,6 +50,3 @@ if (loadedStates.includes(document.readyState) && document.body) {
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-86630001-1', 'auto');
-ga('send', 'pageview');

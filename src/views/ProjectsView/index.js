@@ -75,7 +75,7 @@ export default class ProjectsView extends React.Component {
 
 const typeIcons = {
   all: 'group_work',
-  feature: 'extension',
+  feature: 'layers',
   bug: 'bug_report',
   chore: 'build',
   release: 'backup',

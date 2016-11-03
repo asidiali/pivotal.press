@@ -31,6 +31,7 @@ class App extends React.Component {
     stories: [],
     project_labels: [],
     project_memberships: [],
+    project_activity: [],
   };
 
   componentDidMount() {
@@ -135,12 +136,12 @@ class App extends React.Component {
 
     const headers = new Headers();
     headers.append('X-TrackerToken', key);
-    fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/activity?limit=5`, {
+    fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/activity?limit=10`, {
       mode: 'cors',
       headers,
       method: 'GET',
     }).then(response => response.json()).then((activityRes) => {
-      ls.set(`pp-project-${project.id}-activity`, activityRes);
+      this.setState({ project_activity: activityRes });
     });
   }
 
@@ -163,7 +164,6 @@ class App extends React.Component {
           method: 'GET',
         }).then(response => response.json()).then((activityRes) => {
           activity[project.id] = activityRes;
-          if (project.id === 1501000) console.log(activityRes[0].message);
           if (projects.length === projectI + 1) {
             // ls.set('pp-activity', activity);
             self.setState({ activity: activity });
@@ -204,9 +204,11 @@ class App extends React.Component {
               fetchProjects: this.fetchProjects,
               fetchAllActivity: this.fetchAllActivity,
               fetchProjectStories: this.fetchProjectStories,
+              fetchProjectActivity: this.fetchProjectActivity,
               stories: this.state.stories,
               project_labels: this.state.project_labels,
               project_memberships: this.state.project_memberships,
+              project_activity: this.state.project_activity,
             })}
             <Snackbar
               open={this.state.notification.show}

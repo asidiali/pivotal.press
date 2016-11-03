@@ -24,9 +24,11 @@ const Layout = props => (
       viewColor: props.viewColor,
       fetchAllActivity: props.fetchAllActivity,
       fetchProjectStories: props.fetchProjectStories,
+      fetchProjectActivity: props.fetchProjectActivity,
       stories: props.stories,
       project_labels: props.project_labels,
       project_memberships: props.project_memberships,
+      project_activity: props.project_activity,
     })}
   </div>
 );
