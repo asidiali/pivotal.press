@@ -65,6 +65,8 @@ export default {
     color: '#aaa',
     fontSize: '0.8em',
     fontWeight: 400,
+    width: 80,
+    textAlign: 'right',
     margin: 'auto 10px auto 0',
   }
 };

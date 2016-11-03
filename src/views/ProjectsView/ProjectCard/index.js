@@ -14,11 +14,10 @@ const ProjectCard = props => (
   }}>
     <span key="projectNameSpan" style={props.styles.projectName}><Icon icon="assignment" style={{color: '#444', margin: 'auto 10px auto 0'}} /> {props.project.name}</span>
     <ul key="projectActivityList" style={props.styles.projectActivityList}>
-      <li key={`activity-top`} style={{color: '#aaa', fontSize: '0.8em', margin: '0 0 5px', textTransform: 'uppercase', fontWeight: 700}}>Recent Activity</li>
       {props.activity && props.activity.length ? props.activity.map((activity, activityIndex) => (
         <li key={`activity-${activityIndex}`} style={props.styles.projectActivityListItem}>
           <span style={props.styles.activityOccured}>{moment(activity.occurred_at).fromNow()}</span>
-          <span><Icon style={{ color: '#ccc', margin: 'auto 5px auto 0' }}icon={(activity.primary_resources[0].kind === 'story') ? props.typeIcons[activity.primary_resources[0].story_type] : 'assignment'} /></span>
+          <span><Icon style={{ color: '#aaa', margin: 'auto 5px auto 0' }}icon={(activity.primary_resources[0].kind === 'story') ? props.typeIcons[activity.primary_resources[0].story_type] : 'assignment'} /></span>
           <span style={{whiteSpace: 'nowrap', flex: 1, textOverflow: 'ellipsis'}}>{activity.message}</span>
         </li>
       )) : false}
