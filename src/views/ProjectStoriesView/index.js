@@ -349,7 +349,7 @@ export default class ProjectStoriesView extends React.Component {
                     fontWeight: 700,
                     fontSize: '0.9em',
                   }}>{moment(activity.occurred_at).fromNow()}</span>
-                  <Icon icon={typeIcons[activity.primary_resources[0].story_type]} style={{
+                  <Icon icon={(activity.primary_resources[0].kind === 'project') ? 'assignment' : typeIcons[activity.primary_resources[0].story_type]} style={{
                     margin: '0 0 4px auto',
                     fontSize: '1.25em',
                     color: '#aaa',
