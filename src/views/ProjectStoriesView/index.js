@@ -264,24 +264,48 @@ export default class ProjectStoriesView extends React.Component {
           labelFilters={this.state.labelFilters}
         />
         <div style={{
-          backgroundColor: 'rgb(43, 91, 121)',
+          // backgroundColor: 'rgb(43, 91, 121)',
+          backgroundColor: '#444',
           position: 'fixed',
           top: 60,
           right: 0,
           bottom: 0,
-          width: '25vw',
+          width: '22vw',
           zIndex: 99,
+          paddingTop: 60,
+          overflowX: 'hidden',
+          overflowY: 'hidden',
+          display: 'flex',
         }}>
           <h3 style={{
+            // backgroundColor: 'rgb(43, 91, 121)',
+            backgroundColor: 'rgb(62, 114, 147)',
             textTransform: 'uppercase',
             color: '#ddd',
             fontSize: '0.85em',
-            margin: 20,
-          }}>Project Activity</h3>
+            padding: 20,
+            margin: 0,
+            boxSizing: 'border-box',
+            height: 60,
+            display: 'flex',
+            alignItems: 'center',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+          }}>
+            <Icon icon="history" style={{ margin: 'auto 10px auto 0' }}/>
+            Project Activity
+          </h3>
           <ul style={{
             listStyle: 'none',
+            flex: 1,
             display: 'flex',
             flexFlow: 'column nowrap',
+            overflow: 'auto',
+            margin: 0,
+            padding: '2px 0 5px',
+            boxSizing: 'border-box',
           }}>
             {this.props.project_activity && this.props.project_activity.length ? this.props.project_activity.map((activity, activityIndex) => (
               <li
@@ -292,7 +316,7 @@ export default class ProjectStoriesView extends React.Component {
                   backgroundColor: '#fff',
                   borderRadius: 3,
                   padding: '10px 35px 10px 10px',
-                  margin: '2px 10px',
+                  margin: '2px 5px',
                   boxSizing: 'border-box',
                   fontSize: '0.85em',
                   fontWeight: 700,
