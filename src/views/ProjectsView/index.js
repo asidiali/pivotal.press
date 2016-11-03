@@ -32,10 +32,12 @@ export default class ProjectsView extends React.Component {
 
   componentDidMount() {
     const self = this;
+    console.log(self);
     self.props.fetchAllActivity();
     (function getActivity(context) {
+      console.log(context);
       context.activityTimeout = setTimeout(() => {
-        context.props.fetchProjectActivity(context.props.params.projectId, () => getActivity(context));
+        context.props.fetchAllActivity(() => getActivity(context));
       }, 10000);
     }(self));
   }
