@@ -265,7 +265,7 @@ export default class ProjectStoriesView extends React.Component {
         />
         <div style={{
           // backgroundColor: 'rgb(43, 91, 121)',
-          backgroundColor: '#444',
+          backgroundColor: '#ccc',
           position: 'fixed',
           top: 60,
           right: 0,

@@ -136,7 +136,7 @@ class App extends React.Component {
 
     const headers = new Headers();
     headers.append('X-TrackerToken', key);
-    fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/activity?limit=10`, {
+    fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/activity?limit=15`, {
       mode: 'cors',
       headers,
       method: 'GET',
