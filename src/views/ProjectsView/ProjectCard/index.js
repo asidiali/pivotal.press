@@ -12,8 +12,8 @@ const ProjectCard = props => (
     ls.set(`pp-project-${props.project.id}-details`, props.project);
     hashHistory.push(`/projects/${props.project.id}`);
   }}>
-    <span style={props.styles.projectName}><Icon icon="assignment" style={{color: '#444', margin: 'auto 10px auto 0'}} /> {props.project.name}</span>
-    <ul style={props.styles.projectActivityList}>
+    <span key="projectNameSpan" style={props.styles.projectName}><Icon icon="assignment" style={{color: '#444', margin: 'auto 10px auto 0'}} /> {props.project.name}</span>
+    <ul key="projectActivityList" style={props.styles.projectActivityList}>
       <li key={`activity-top`} style={{color: '#aaa', fontSize: '0.8em', margin: '0 0 5px', textTransform: 'uppercase', fontWeight: 700}}>Recent Activity</li>
       {props.activity && props.activity.length ? props.activity.map((activity, activityIndex) => (
         <li key={`activity-${activityIndex}`} style={props.styles.projectActivityListItem}>

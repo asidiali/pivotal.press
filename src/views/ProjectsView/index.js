@@ -31,11 +31,13 @@ export default class ProjectsView extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.fetchProjects();
-    this.props.fetchAllActivity();
-    this.intervalHandle = setInterval(() => {
-      this.props.fetchAllActivity();
-    }, 10000);
+    const self = this;
+    self.props.fetchAllActivity();
+    (function getActivity() {
+      setTimeout(() => {
+        self.props.fetchAllActivity(() => getActivity());
+      }, 10000);
+    }());
   }
 
   componentWillUnmount() {
@@ -43,18 +45,15 @@ export default class ProjectsView extends React.Component {
   }
 
   render() {
-    console.log(this.props.projects);
-    console.log('rendered');
     return (
       <div style={styles.base}>
         <div style={styles.projectsWrapper}>
           {this.props.projects.length ? this.props.projects.map((project, projectIndex) => {
             const projectColor = `#${ls('pp-me').projects.filter(proj => proj.project_id === project.id)[0].project_color}`;
-            console.log(this.props.activity[project.id]);
             return (
               <ProjectCard
                 project={project}
-                projectIndex={projectIndex}
+                projectIndex={`project-${projectIndex}`}
                 styles={styles}
                 typeIcons={typeIcons}
                 projectColor={projectColor}

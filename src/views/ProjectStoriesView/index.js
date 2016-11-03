@@ -47,28 +47,28 @@ export default class ProjectStoriesView extends React.Component {
   };
 
   componentDidMount() {
+    const self = this;
     const CB = new Clipboard('.storyId');
 
     CB.on('success', (e) => {
-        this.props.setNotification(true, `${e.text} copied to clipboard`);
+        self.props.setNotification(true, `${e.text} copied to clipboard`);
     });
 
-    this.props.fetchProjectStories(this.props.params.projectId);
-    this.props.fetchProjectActivity(this.props.params.projectId);
-    this.intervalHandle = setInterval(() => {
-      this.props.fetchProjectStories(this.props.params.projectId);
-      this.props.fetchProjectActivity(this.props.params.projectId);
-    }, 10000);
-  }
+    self.props.fetchProjectStories(self.props.params.projectId);
+    self.props.fetchProjectActivity(self.props.params.projectId);
 
-  componentWillUnmount() {
-    clearInterval(this.intervalHandle);
-  }
+    (function getStories() {
+      setTimeout(() => {
+        self.props.fetchProjectStories(self.props.params.projectId, () => getStories());
+      }, 10000);
+    }());
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
+    (function getActivity() {
+      setTimeout(() => {
+        self.props.fetchProjectActivity(self.props.params.projectId, () => getActivity());
+      }, 10000);
+    }());
   }
-
 
   filterBySearch = story => {
     const reg = new RegExp(this.state.searchFilter, 'i', 'g');

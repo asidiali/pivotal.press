@@ -37,13 +37,14 @@ class App extends React.Component {
   componentDidMount() {
     const self = this;
     self.fetchProjects();
-    self.fetchAllActivity();
 
-    (function fetchRecords() {
-      setTimeout(() => {
-        self.fetchProjects(() => fetchRecords());
-      }, 10000);
-    }());
+    // self.fetchAllActivity();
+
+    // (function getActivity() {
+    //   setTimeout(() => {
+    //     self.fetchAllActivity(() => getActivity());
+    //   }, 10000);
+    // }());
   }
 
   setViewTitle = viewTitle => this.setState({ viewTitle });
