@@ -56,7 +56,7 @@ StoryCard.propTypes = {
 };
 
 const typeIcons = {
-  feature: 'extension',
+  feature: 'layers',
   bug: 'bug_report',
   chore: 'build',
   release: 'backup',

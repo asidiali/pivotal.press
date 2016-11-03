@@ -1,5 +1,5 @@
 export default {
-  base: { paddingTop: 60, flex: 1 },
+  base: { paddingTop: 60, flex: '0 0 auto', width: '78vw' },
   storiesWrapper: {
     display: 'flex',
     flexFlow: 'row wrap',
@@ -7,11 +7,12 @@ export default {
   },
   filtersWrapper: {
     position: 'fixed',
+    borderRight: '1px solid rgba(0,0,0,0.15)',
     top: 60,
     height: 60,
-    width: '100vw',
+    width: '78vw',
     left: 0,
-    right: 0,
+    right: '22vw',
     backgroundColor: 'rgb(62, 114, 147)',
     margin: 'auto 0',
     padding: '0 10px',
@@ -19,7 +20,6 @@ export default {
     zIndex: 99,
     display: 'flex',
     flexFlow: 'row nowrap',
-    borderTop: '1px solid rgba(0,0,0,0.1)',
     overflowY: 'hidden',
     overflowX: 'auto',
   },

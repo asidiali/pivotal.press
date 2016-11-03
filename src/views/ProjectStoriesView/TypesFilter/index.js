@@ -35,7 +35,7 @@ const TypesFilter = props => (
       <MenuItem leftIcon={<Icon icon="group_work" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='all' primaryText="All Types" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '0px solid #eee' }}  />
       <MenuItem leftIcon={<Icon icon="bug_report" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='bug' primaryText="Bugs" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
       <MenuItem leftIcon={<Icon icon="build" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='chore' primaryText="Chores" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
-      <MenuItem leftIcon={<Icon icon="extension" />} value='feature' primaryText="Features" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
+      <MenuItem leftIcon={<Icon icon="layers" />} value='feature' primaryText="Features" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
       <MenuItem leftIcon={<Icon icon="backup" style={{ fontSize: '1.2em', color: '#aaa' }} />} value='release' primaryText="Releases" style={{ textTransform: 'capitalize', alignItems: 'center', borderTop: '1px solid #eee' }}  />
     </DropDownMenu>
   </div>
@@ -43,7 +43,7 @@ const TypesFilter = props => (
 
 const typeIcons = {
   all: 'group_work',
-  feature: 'extension',
+  feature: 'layers',
   bug: 'bug_report',
   chore: 'build',
   release: 'backup',
