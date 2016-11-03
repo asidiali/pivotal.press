@@ -49,6 +49,7 @@ This app is currently a work in progress. Reporting any bugs/issues you find is 
     - [ ] labels
 - [ ] Misc
   - [x] ~~UI - project cards activity feed~~
+  - [ ] UI - real-time project history feed sideback
   - [ ] Performance - projects stories list pagination
   - [ ] Performance - improve story search query functionality (by word)
   - [ ] UI - add owner/member detail to story cards
@@ -58,9 +59,10 @@ This app is currently a work in progress. Reporting any bugs/issues you find is 
   - [ ] UI - kanban board view by stage
   - [ ] UI - project carousel view
 - [ ] Accounts
-  - [ ] 'beef up' login page, check for `pp-me` before routing
+  - [ ] revamp login page, check for `pp-me` before routing
   - [ ] incorrect API key check
   - [ ] pass account via `props` instead of `ls`
+  - [ ] add tooltip/note to home page on where to find PT API key
 
 ---
 
