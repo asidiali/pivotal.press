@@ -35,10 +35,15 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.fetchProjects();
-    setInterval(() => {
-      this.fetchProjects();
-    }, 10000);
+    const self = this;
+    self.fetchProjects();
+    self.fetchAllActivity();
+
+    (function fetchRecords() {
+      setTimeout(() => {
+        self.fetchProjects(() => fetchRecords());
+      }, 10000);
+    }());
   }
 
   setViewTitle = viewTitle => this.setState({ viewTitle });
@@ -66,7 +71,7 @@ class App extends React.Component {
     return this.setState({ notification: options });
   }
 
-  fetchProjects = () => {
+  fetchProjects = (callback) => {
     const me = ls('pp-me');
     const key = ls('pp-api');
 
@@ -81,11 +86,11 @@ class App extends React.Component {
     }).then(res => res.json()).then((res) => {
       // ls.set('pp-projects', res);
       this.setState({ projects: res });
-      return res;
+      if (callback) callback(res);
     });
   }
 
-  fetchProjectStories = (projectId) => {
+  fetchProjectStories = (projectId, callback) => {
     const me = ls('pp-me');
     const key = ls('pp-api');
 
@@ -109,6 +114,7 @@ class App extends React.Component {
       method: 'GET',
     }).then(res => res.json()).then((res) => {
       if (this.state.stories !== res) this.setState({ stories: res });
+      if (callback) callback(res);
     });
 
     fetch(`https://www.pivotaltracker.com/services/v5/projects/${projectId}/memberships`, {
@@ -128,7 +134,7 @@ class App extends React.Component {
     });
   }
   // fetchProjectMembers = (projectId) => {}
-  fetchProjectActivity = (projectId) => {
+  fetchProjectActivity = (projectId, callback) => {
     const me = ls('pp-me');
     const key = ls('pp-api');
 
@@ -142,10 +148,11 @@ class App extends React.Component {
       method: 'GET',
     }).then(response => response.json()).then((activityRes) => {
       this.setState({ project_activity: activityRes });
+      if (callback) callback(activityRes);
     });
   }
 
-  fetchAllActivity = () => {
+  fetchAllActivity = (callback) => {
     const me = ls('pp-me');
     const key = ls('pp-api');
 
@@ -167,6 +174,7 @@ class App extends React.Component {
           if (projects.length === projectI + 1) {
             // ls.set('pp-activity', activity);
             self.setState({ activity: activity });
+            if (callback) callback(activity);
           }
           // console.log(activity);
         });
