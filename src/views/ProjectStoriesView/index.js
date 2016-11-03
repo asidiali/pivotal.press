@@ -71,8 +71,11 @@ export default class ProjectStoriesView extends React.Component {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.storyTimeout);
-    window.clearInterval(this.activityTimeout);
+    clearInterval(this.storyTimeout);
+    clearInterval(this.activityTimeout);
+    this.props.clearProjectData();
+
+    if (this.props.showBack && this.props.showBack.clearOnClick) this.props.setShowBack(false);
   }
 
   filterBySearch = story => {

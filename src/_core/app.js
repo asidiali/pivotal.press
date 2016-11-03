@@ -47,6 +47,15 @@ class App extends React.Component {
     // }());
   }
 
+  clearProjectData = () => {
+    this.setState({
+      stories: [],
+      project_labels: [],
+      project_memberships: [],
+      project_activity: [],
+    });
+  }
+
   setViewTitle = viewTitle => this.setState({ viewTitle });
   setViewCount = viewCount => this.setState({ viewCount });
 
@@ -218,6 +227,7 @@ class App extends React.Component {
               project_labels: this.state.project_labels,
               project_memberships: this.state.project_memberships,
               project_activity: this.state.project_activity,
+              clearProjectData: this.clearProjectData,
             })}
             <Snackbar
               open={this.state.notification.show}

@@ -29,6 +29,7 @@ const Layout = props => (
       project_labels: props.project_labels,
       project_memberships: props.project_memberships,
       project_activity: props.project_activity,
+      clearProjectData: props.clearProjectData,
     })}
   </div>
 );
