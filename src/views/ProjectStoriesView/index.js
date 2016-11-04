@@ -11,6 +11,7 @@ import {
   StoryDetails,
 } from '../../components';
 
+import ActivityFeed from './ActivityFeed';
 import Clipboard from 'clipboard';
 import LabelsFilter from './LabelsFilter';
 import OwnersFilter from './OwnersFilter';
@@ -271,136 +272,11 @@ export default class ProjectStoriesView extends React.Component {
           handleLabelChange={this.handleLabelChange}
           labelFilters={this.state.labelFilters}
         />
-        <div style={{
-          // backgroundColor: 'rgb(43, 91, 121)',
-          backgroundColor: '#ccc',
-          position: 'fixed',
-          top: 60,
-          right: 0,
-          bottom: 0,
-          width: '22vw',
-          zIndex: 99,
-          paddingTop: 60,
-          overflowX: 'hidden',
-          overflowY: 'hidden',
-          display: 'flex',
-        }}>
-          <h3 style={{
-            // backgroundColor: 'rgb(43, 91, 121)',
-            backgroundColor: 'rgb(62, 114, 147)',
-            textTransform: 'uppercase',
-            color: '#ddd',
-            fontSize: '0.85em',
-            padding: 20,
-            margin: 0,
-            boxSizing: 'border-box',
-            height: 60,
-            display: 'flex',
-            alignItems: 'center',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-          }}>
-            <Icon icon="history" style={{ margin: 'auto 10px auto 0' }}/>
-            Project Activity
-          </h3>
-          <ul style={{
-            listStyle: 'none',
-            flex: 1,
-            display: 'flex',
-            flexFlow: 'column nowrap',
-            overflow: 'auto',
-            margin: 0,
-            padding: '2px 0 5px',
-            boxSizing: 'border-box',
-          }}>
-            {this.props.project_activity && this.props.project_activity.length ? this.props.project_activity.map((activity, activityIndex) => (
-              <li
-                key={`activity-${activityIndex}`}
-                style={{
-                  flex: '0 0 auto',
-                  color: '#666',
-                  backgroundColor: '#fff',
-                  borderRadius: 3,
-                  padding: '10px 35px 10px 10px',
-                  margin: '2px 5px',
-                  boxSizing: 'border-box',
-                  fontSize: '0.85em',
-                  fontWeight: 700,
-                  whiteSpace: 'nowrap',
-                  textOverflow: 'ellipsis',
-                  height: 60,
-                  display: 'flex',
-                  flexFlow: 'column nowrap',
-                  position: 'relative',
-                }}
-              >
-                <Icon icon="keyboard_arrow_right" style={{
-                  position: 'absolute',
-                  right: 10,
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  fontSize: '1.25em',
-                  color: '#aaa',
-                }} />
 
-                <div style={{
-                  display: 'flex',
-                  flexFlow: 'row nowrap',
-                }}>
-                  <span style={{
-                    padding: 0,
-                    margin: 'auto 2px',
-                    boxSizing: 'border-box',
-                    color: '#ccc',
-                    fontWeight: 700,
-                    fontSize: '0.9em',
-                  }}>{moment(activity.occurred_at).fromNow()}</span>
-                  <Icon icon={(activity.primary_resources[0].kind === 'project') ? 'assignment' : typeIcons[activity.primary_resources[0].story_type]} style={{
-                    margin: '0 0 4px auto',
-                    fontSize: '1.25em',
-                    color: '#aaa',
-                    position: 'relative',
-                    top: -2
-                  }} />
-                </div>
-                <div style={{
-                  display: 'flex',
-                  flexFlow: 'row nowrap',
-                }}>
-                  <span style={{
-                    padding: 0,
-                    margin: 'auto 2px',
-                    boxSizing: 'border-box',
-                  }}>{activity.performed_by.name}</span>
-                  <span style={{
-                    flex: 1,
-                    margin: 'auto 2px',
-                    textOverflow: 'ellipsis',
-                    overflow: 'hidden',
-                    whiteSpace: 'nowrap',
-                  }}>{activity.highlight}</span>
-                  <span style={{
-                    backgroundColor: '#eee',
-                    margin: '0 auto auto 4px',
-                    padding: '3px 5px',
-                    boxSizing: 'border-box',
-                    flex: '0 0 auto',
-                    fontFamily: 'Source Code pro',
-                    display: 'flex',
-                    alignItems: 'center',
-                    fontSize: '0.9em',
-                  }}>
-                    <Icon icon="launch" style={{ marginRight: 5, fontSize: '1em' }} />
-                    {activity.primary_resources[0].id}
-                  </span>
-                </div>
+        <ActivityFeed
+          project_activity={this.props.project_activity}
+        />
 
-              </li>
-            )) : false}
-          </ul>
-        </div>
       </div>
     );
   }
