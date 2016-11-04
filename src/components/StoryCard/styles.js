@@ -11,16 +11,8 @@ export default {
     flexFlow: 'column nowrap',
     padding: 10,
     boxSizing: 'border-box',
-    borderTop: '0px solid #ddd',
-    borderRight: '1px solid #ddd',
-    borderLeft: '1px solid #ddd',
-    borderBottom: '2px solid #ddd',
+    border: 0,
     cursor: 'pointer',
-    transition: '100ms ease-out',
-    ':hover': {
-      boxShadow: '0 4px 14px rgba(0,0,0,0.2)',
-      transition: '100ms ease-out',
-    },
   },
   activeStoryCard: {
     position: 'fixed',
@@ -50,7 +42,7 @@ export default {
     }
   },
   lastUpdated: {
-    color: '#ccc',
+    color: '#aaa',
     fontSize: '0.8em',
     margin: '5px 0 0',
     fontWeight: 700,
@@ -67,8 +59,8 @@ export default {
   },
   storyDetail: {
     flex: '0 0 auto',
-    color: '#555',
-    background: '#eee',
+    color: '#444',
+    background: '#fff',
     padding: '3px 6px',
     boxSizing: 'border-box',
     borderRadius: 3,

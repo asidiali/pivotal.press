@@ -1,5 +1,5 @@
 export default {
-  base: { paddingTop: 60, overflow: 'hidden', flex: '0 0 auto', display: 'flex', width: '78vw', background: 'rgb(43, 91, 121)', '@media (max-width: 1200px)': {
+  base: { paddingTop: 60, overflow: 'hidden', flex: '0 0 auto', display: 'flex', width: '78vw', background: 'transparent', '@media (max-width: 1200px)': {
     width: '72vw',
   }},
   storiesColumnsWrapper: {
@@ -19,7 +19,7 @@ export default {
     width: '78vw',
     left: 0,
     right: '22vw',
-    backgroundColor: 'rgb(43, 91, 121)',
+    backgroundColor: '#444',
     margin: 'auto 0',
     padding: '0 10px',
     boxSizing: 'border-box',

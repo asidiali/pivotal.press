@@ -3,13 +3,16 @@ export default {
     position: 'fixed',
     top: 0,
     left: 0,
-    right: 0,
+    right: '22vw',
     height: 60,
     zIndex: 999,
-    backgroundColor: '#3E7293',
+    backgroundColor: '#444',
     borderBottom: '1px solid rgba(0,0,0,0.15)',
     display: 'flex',
     flexFlow: 'row nowrap',
+    '@media (max-width: 1200px)': {
+      right: '28vw',
+    },
   },
   brand: {
     fontWeight: 300,

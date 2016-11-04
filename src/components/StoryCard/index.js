@@ -1,6 +1,7 @@
 import Icon from '../Icon';
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
+import color from 'color';
 import moment from 'moment';
 import radium from 'radium';
 import styles from './styles';
@@ -22,13 +23,19 @@ const StoryCard = props => (
         className="storyId"
         style={Object.assign({}, styles.storyDetail, {
           fontFamily: 'Source Code pro',
+          background: statusColors[props.state].bg,
+          color: statusColors[props.state].text,
         })}
         data-clipboard-text={props.story.id}
       >
         <Icon icon="content_copy" style={{ marginRight: 5 }} />
         {props.story.id}
       </li>
-      <li style={styles.storyDetail}>
+      <li style={Object.assign({}, styles.storyDetail, {
+        border: `1px solid ${statusColors[props.state].bg}`,
+        color: statusColors[props.state].bg,
+        background: 'transparent',
+      })}>
         <Icon icon={typeIcons[props.story.story_type]} style={{ marginRight: 5 }} />
         {props.story.story_type}
       </li>
@@ -75,8 +82,8 @@ const statuses = [
 
 const statusColors = {
   unscheduled: {
-    text: '#888',
-    bg: '#eee',
+    text: '#fff',
+    bg: '#aaa',
   },
   unstarted: {
     text: '#eee',
@@ -84,11 +91,11 @@ const statusColors = {
   },
   started: {
     text: '#fff',
-    bg: 'orange',
+    bg: 'salmon',
   },
   finished: {
     text: '#fff',
-    bg: 'salmon',
+    bg: '#3E7293',
   },
   delivered: {
     text: '#fff',

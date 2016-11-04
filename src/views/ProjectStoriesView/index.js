@@ -283,6 +283,7 @@ export default class ProjectStoriesView extends React.Component {
                       projectId={this.props.params.projectId}
                       key={storyIndex}
                       story={story}
+                      state={state}
                       onClick={this.toggleStoryDetails}
                       storyIndex={storyIndex}
                       setNotification={this.props.setNotification}
@@ -343,8 +344,8 @@ const statuses = [
 
 const statusColors = {
   unscheduled: {
-    text: '#888',
-    bg: '#eee',
+    text: '#fff',
+    bg: '#aaa',
   },
   unstarted: {
     text: '#eee',
@@ -352,11 +353,11 @@ const statusColors = {
   },
   started: {
     text: '#fff',
-    bg: 'orange',
+    bg: 'salmon',
   },
   finished: {
     text: '#fff',
-    bg: 'salmon',
+    bg: '#3E7293',
   },
   delivered: {
     text: '#fff',

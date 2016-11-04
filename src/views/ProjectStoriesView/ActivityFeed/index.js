@@ -7,13 +7,14 @@ import radium from 'radium';
 
 const styles = {
   bg: {
-    backgroundColor: 'rgb(62, 114, 147)',
+    backgroundColor: '#333',
     position: 'fixed',
-    top: 60,
+    top: 0,
     right: 0,
     bottom: 0,
     width: '22vw',
-    zIndex: 99,
+    zIndex: 9999,
+    boxShadow: '-5px 15px 15px rgba(0,0,0,0.15)',
     paddingTop: 55,
     overflowX: 'hidden',
     overflowY: 'hidden',
@@ -24,7 +25,7 @@ const styles = {
   },
   title: {
     // backgroundColor: 'rgb(43, 91, 121)',
-    backgroundColor: 'rgb(62, 114, 147)',
+    backgroundColor: '#333',
     textTransform: 'uppercase',
     color: '#ddd',
     fontSize: '0.85em',
@@ -55,7 +56,7 @@ const styles = {
     backgroundColor: '#fff',
     borderRadius: 3,
     padding: '10px 35px 10px 10px',
-    margin: '5px 10px',
+    margin: '3px 10px',
     boxSizing: 'border-box',
     fontSize: '0.85em',
     fontWeight: 700,
@@ -94,7 +95,7 @@ const styles = {
     margin: 'auto 2px',
     boxSizing: 'border-box',
     flex: '0 0 auto',
-    '@media (max-width: 1050px)': {
+    '@media (max-width: 1300px)': {
       display: 'none',
     },
   },
@@ -104,7 +105,7 @@ const styles = {
     boxSizing: 'border-box',
     display: 'none',
     flex: '0 0 auto',
-    '@media (max-width: 1050px)': {
+    '@media (max-width: 1300px)': {
       display: 'block',
     },
   },
@@ -132,7 +133,7 @@ const ActivityFeed = props => (
   <div style={styles.bg}>
     <h3 style={styles.title}>
       <Icon icon="history" style={{ margin: 'auto 10px auto 0' }}/>
-      Project Activity
+      Activity Feed
     </h3>
     <ul style={styles.list}>
       {props.project_activity && props.project_activity.length ? props.project_activity.map((activity, activityIndex) => (
@@ -156,7 +157,10 @@ const ActivityFeed = props => (
             <span style={styles.activityName}>{activity.performed_by.name}</span>
             <span style={styles.activityInitials}>{activity.performed_by.initials}</span>
             <span style={styles.activityHighlight}>{activity.highlight}</span>
-            <span style={styles.idIcon}>
+            <span style={Object.assign({}, styles.idIcon, {
+              backgroundColor: activity.primary_resources[0].current_state ? statusColors[activity.primary_resources[0].current_state].bg : '#eee',
+              color: activity.primary_resources[0].current_state ? statusColors[activity.primary_resources[0].current_state].text : '#444',
+            })}>
               <Icon icon="launch" style={{ marginRight: 5, fontSize: '1em' }} />
               {activity.primary_resources[0].id}
             </span>
@@ -179,6 +183,37 @@ const typeIcons = {
 const otherIcons ={
   project: 'assignment',
   label: 'label outline',
+};
+
+const statusColors = {
+  unscheduled: {
+    text: '#fff',
+    bg: '#aaa',
+  },
+  unstarted: {
+    text: '#eee',
+    bg: '#888',
+  },
+  started: {
+    text: '#fff',
+    bg: 'salmon',
+  },
+  finished: {
+    text: '#fff',
+    bg: '#3E7293',
+  },
+  delivered: {
+    text: '#fff',
+    bg: '#09a3ed',
+  },
+  accepted: {
+    text: '#fff',
+    bg: '#8bc34a',
+  },
+  rejected: {
+    text: '#fff',
+    bg: 'red',
+  },
 };
 
 export default radium(ActivityFeed);
