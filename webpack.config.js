@@ -41,9 +41,9 @@ const options = {
       template: './src/_core/index.html',
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: { warnings: false }
+    // }),
   ],
   node: {
     console: true,

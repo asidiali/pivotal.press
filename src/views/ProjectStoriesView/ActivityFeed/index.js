@@ -7,18 +7,20 @@ import radium from 'radium';
 
 const styles = {
   bg: {
-    // backgroundColor: 'rgb(43, 91, 121)',
-    backgroundColor: '#ccc',
+    backgroundColor: 'rgb(62, 114, 147)',
     position: 'fixed',
     top: 60,
     right: 0,
     bottom: 0,
     width: '22vw',
     zIndex: 99,
-    paddingTop: 60,
+    paddingTop: 55,
     overflowX: 'hidden',
     overflowY: 'hidden',
     display: 'flex',
+    '@media (max-width: 1200px)': {
+      width: '28vw',
+    },
   },
   title: {
     // backgroundColor: 'rgb(43, 91, 121)',
@@ -44,7 +46,7 @@ const styles = {
     flexFlow: 'column nowrap',
     overflow: 'auto',
     margin: 0,
-    padding: '2px 0 5px',
+    padding: '0 0 5px',
     boxSizing: 'border-box',
   },
   listItem: {
@@ -53,7 +55,7 @@ const styles = {
     backgroundColor: '#fff',
     borderRadius: 3,
     padding: '10px 35px 10px 10px',
-    margin: '2px 5px',
+    margin: '5px 10px',
     boxSizing: 'border-box',
     fontSize: '0.85em',
     fontWeight: 700,
@@ -91,6 +93,20 @@ const styles = {
     padding: 0,
     margin: 'auto 2px',
     boxSizing: 'border-box',
+    flex: '0 0 auto',
+    '@media (max-width: 1050px)': {
+      display: 'none',
+    },
+  },
+  activityInitials: {
+    padding: 0,
+    margin: 'auto 2px',
+    boxSizing: 'border-box',
+    display: 'none',
+    flex: '0 0 auto',
+    '@media (max-width: 1050px)': {
+      display: 'block',
+    },
   },
   activityHighlight: {
     flex: 1,
@@ -138,6 +154,7 @@ const ActivityFeed = props => (
             flexFlow: 'row nowrap',
           }}>
             <span style={styles.activityName}>{activity.performed_by.name}</span>
+            <span style={styles.activityInitials}>{activity.performed_by.initials}</span>
             <span style={styles.activityHighlight}>{activity.highlight}</span>
             <span style={styles.idIcon}>
               <Icon icon="launch" style={{ marginRight: 5, fontSize: '1em' }} />

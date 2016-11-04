@@ -31,6 +31,11 @@ const StoryCard = props => (
         <Icon icon={typeIcons[props.story.story_type]} style={{ marginRight: 5 }} />
         {props.story.story_type}
       </li>
+      <li style={styles.labelsWrapper}>
+        {props.story.labels.length ? props.story.labels.map((label, labelIndex) => (
+          <span data-tip={props.labelFilters.includes(label.id) ? `Remove "${label.name}" from filter` : `Add "${label.name}" to filter`} key={`${props.storyIndex}-${labelIndex}`} style={styles.labelItem} onClick={() => props.handleLabelChange(label.id)}>{label.name}</span>
+        )) : false}
+      </li>
       <li style={renderStatusColor(props.story.current_state)}>
         {statuses.indexOf(props.story.current_state)} - {props.story.current_state}
       </li>
@@ -38,11 +43,6 @@ const StoryCard = props => (
     <p style={styles.storyName}>
       {props.story.name}
     </p>
-    <div style={styles.labelsWrapper}>
-      {props.story.labels.length ? props.story.labels.map((label, labelIndex) => (
-        <span data-tip={props.labelFilters.includes(label.id) ? `Remove "${label.name}" from filter` : `Add "${label.name}" to filter`} key={`${props.storyIndex}-${labelIndex}`} style={styles.labelItem} onClick={() => props.handleLabelChange(label.id)}>{label.name}</span>
-      )) : false}
-    </div>
     <span style={styles.lastUpdated}>Last updated {moment(props.story.updated_at).fromNow()}</span>
     <ReactTooltip effect="solid" place="top" />
   </a>

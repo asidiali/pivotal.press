@@ -1,9 +1,12 @@
 export default {
-  base: { paddingTop: 60, flex: '0 0 auto', width: '78vw' },
+  base: { paddingTop: 60, flex: '0 0 auto', width: '78vw', background: 'rgb(43, 91, 121)', '@media (max-width: 1200px)': {
+    width: '72vw',
+  }},
   storiesWrapper: {
     display: 'flex',
-    flexFlow: 'row wrap',
-    padding: '0.5%',
+    flexFlow: 'column nowrap',
+    padding: '0 0 10px 0',
+    boxSizing: 'border-box',
   },
   filtersWrapper: {
     position: 'fixed',
@@ -13,7 +16,7 @@ export default {
     width: '78vw',
     left: 0,
     right: '22vw',
-    backgroundColor: 'rgb(62, 114, 147)',
+    backgroundColor: 'rgb(43, 91, 121)',
     margin: 'auto 0',
     padding: '0 10px',
     boxSizing: 'border-box',
@@ -22,6 +25,9 @@ export default {
     flexFlow: 'row nowrap',
     overflowY: 'hidden',
     overflowX: 'auto',
+    '@media (max-width: 1200px)': {
+      width: '72vw',
+    },
   },
   searchInputWrapper: {
     position: 'relative',
