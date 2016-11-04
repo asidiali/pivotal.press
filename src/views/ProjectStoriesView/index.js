@@ -222,10 +222,10 @@ export default class ProjectStoriesView extends React.Component {
             styles={styles}
           />
 
-          <StatesFilter
+          {/*}<StatesFilter
             statesFilter={this.state.stagesFilter}
             handleStatesChange={this.handleStagesChange}
-          />
+          />{*/}
 
           {/*}<span style={{
             margin: 'auto 10px auto auto',
