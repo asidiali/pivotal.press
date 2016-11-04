@@ -6,7 +6,7 @@ export default {
     textDecoration: 'none',
     borderRadius: 3,
     flex: '0 0 auto',
-    margin: '5px 10px',
+    margin: 5,
     display: 'flex',
     flexFlow: 'column nowrap',
     padding: 10,
@@ -34,7 +34,7 @@ export default {
     transition: '100ms ease-out',
   },
   labelsWrapper: {
-    margin: 'auto 5px',
+    margin: '10px -5px',
     display: 'flex',
     flexFlow: 'row wrap',
     flex: 1,

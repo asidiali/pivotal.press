@@ -9,7 +9,8 @@ const Layout = props => (
     right: 0,
     width: '100vw',
     overflowX: 'hidden',
-    overflowY: 'auto',
+    overflowY: 'hidden',
+    display: 'flex',
   }}>
     {React.cloneElement(props.children, {
       fetchProjects: props.fetchProjects,

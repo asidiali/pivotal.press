@@ -1,12 +1,15 @@
 export default {
-  base: { paddingTop: 60, flex: '0 0 auto', width: '78vw', background: 'rgb(43, 91, 121)', '@media (max-width: 1200px)': {
+  base: { paddingTop: 60, overflow: 'hidden', flex: '0 0 auto', display: 'flex', width: '78vw', background: 'rgb(43, 91, 121)', '@media (max-width: 1200px)': {
     width: '72vw',
   }},
-  storiesWrapper: {
+  storiesColumnsWrapper: {
     display: 'flex',
-    flexFlow: 'column nowrap',
-    padding: '0 0 10px 0',
+    flex: 1,
+    flexFlow: 'row nowrap',
+    padding: 0,
     boxSizing: 'border-box',
+    overflowX: 'auto',
+    overflowY: 'hidden',
   },
   filtersWrapper: {
     position: 'fixed',

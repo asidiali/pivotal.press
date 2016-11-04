@@ -98,6 +98,9 @@ export default class ProjectStoriesView extends React.Component {
     if (this.state.stagesFilter === 'all') return true;
     return story.current_state === this.state.stagesFilter;
   }
+  filterByState = (story) => {
+    return story.current_state === state;
+  }
 
   filterByLabels = story => {
     let res = false;
@@ -145,18 +148,19 @@ export default class ProjectStoriesView extends React.Component {
         labels.push(val);
       }
     }
-    console.log(labels);
 
     this.setState({ labelFilters: labels });
     this.toggleLabelsPopover();
   }
 
-  renderFilteredStories = (search, type, owner, stage, label) => {
+  renderFilteredStories = (search, type, owner, state, label, specificState) => {
     const stories = this.props.stories
       .filter(search)
       .filter(owner)
       .filter(type)
-      .filter(stage)
+      .filter((story) => {
+        return story.current_state === specificState;
+      })
       .filter(label)
       .sort(sortStoriesByCreatedTime);
     return stories;
@@ -239,23 +243,60 @@ export default class ProjectStoriesView extends React.Component {
         </div>
 
         {this.props.stories && this.props.stories.length ? (
-          <div style={styles.storiesWrapper}>
-            {this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage, this.filterByLabels) ? this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByStage, this.filterByLabels).map((story, storyIndex) => (
-              <StoryCard
-                projectId={this.props.params.projectId}
-                key={storyIndex}
-                story={story}
-                onClick={this.toggleStoryDetails}
-                storyIndex={storyIndex}
-                setNotification={this.props.setNotification}
-                handleLabelChange={this.handleLabelChange}
-                labelFilters={this.state.labelFilters}
-                selectStory={this.selectStory}
-                selectedStory={this.state.selectedStory}
-              />
-            )) : (
-              <p style={styles.noStories}>No stories</p>
-            )}
+          <div style={styles.storiesColumnsWrapper}>
+            {statuses.map((state, stateIndex) => (
+              <div key={`state-column-${stateIndex}`} style={{
+                flex: '0 0 auto',
+                width: 350,
+                position: 'relative',
+                paddingTop: 40,
+                boxSizing: 'border-box',
+                overflowY: 'hidden',
+                display: 'flex',
+                flexFlow: 'column nowrap',
+                borderRight: '1px solid rgba(0,0,0,0.15)',
+              }}>
+                <div style={{
+                  color: statusColors[state].text,
+                  textTransform: 'uppercase',
+                  backgroundColor: statusColors[state].bg,
+                  padding: '10px 20px',
+                  borderBottom: '1px solid rgb(43, 91, 121)',
+                  flex: '0 0 auto',
+                  boxSizing: 'border-box',
+                  borderRadius: 3,
+                  margin: '5px 5px 0',
+                  fontWeight: 700,
+                  fontSize: '0.8em',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                }}>{state}</div>
+                <div style={{
+                  flex: 1,
+                  overflowY: 'auto',
+                  overflowX: 'hidden',
+                }}>
+                  {this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByState, this.filterByLabels, state) ? this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByState, this.filterByLabels, state).map((story, storyIndex) => (
+                    <StoryCard
+                      projectId={this.props.params.projectId}
+                      key={storyIndex}
+                      story={story}
+                      onClick={this.toggleStoryDetails}
+                      storyIndex={storyIndex}
+                      setNotification={this.props.setNotification}
+                      handleLabelChange={this.handleLabelChange}
+                      labelFilters={this.state.labelFilters}
+                      selectStory={this.selectStory}
+                      selectedStory={this.state.selectedStory}
+                    />
+                  )) : (
+                    <p style={styles.noStories}>No stories</p>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <div style={{ display: 'flex', height: '75vh',width: '100%', flexFlow: 'column nowrap', justifyContent: 'center', alignItems: 'center'}}>
@@ -311,11 +352,11 @@ const statusColors = {
   },
   started: {
     text: '#fff',
-    bg: '#444',
+    bg: 'orange',
   },
   finished: {
     text: '#fff',
-    bg: '#3E7293',
+    bg: 'salmon',
   },
   delivered: {
     text: '#fff',
