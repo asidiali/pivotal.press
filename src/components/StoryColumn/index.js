@@ -16,75 +16,93 @@ function renderStatusColor(state) {
   });
 }
 
-const renderFilteredStories = (search, type, owner, label, specificState, stories) => {
-  console.log(stories);
-  stories
-    .filter(search)
-    .filter(owner)
-    .filter(type)
-    .filter(label)
-    .sort(sortStoriesByCreatedTime);
-  return stories;
-}
-
 const sortStoriesByCreatedTime = (a, b) => {
   return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
 }
 
-const StoryColumn = props => (
-  <div key={`state-column-${props.stateIndex}`} style={{
-    flex: '0 0 auto',
-    width: 350,
-    position: 'relative',
-    paddingTop: 35,
-    boxSizing: 'border-box',
-    overflowY: 'hidden',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    backgroundColor: (props.stateIndex % 2 === 0) ? 'transparent' : 'rgba(0,0,0,0.035)',
-  }}>
-    <div style={{
-      color: statusColors[props.state].text,
-      textTransform: 'uppercase',
-      backgroundColor: statusColors[props.state].bg,
-      padding: '10px 12px',
-      // borderBottom: '1px solid rgb(43, 91, 121)',
-      flex: '0 0 auto',
-      boxSizing: 'border-box',
-      borderRadius: 0,
-      margin: 0,
-      fontWeight: 700,
-      fontSize: '0.8em',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-    }}>{props.state}</div>
-    <div style={{
-      flex: 1,
-      overflowY: 'auto',
-      overflowX: 'hidden',
-    }}>
-      {renderFilteredStories(props.filterBySearch, props.filterByType, props.filterByOwner, props.filterByLabels, props.state, props.stories) ? renderFilteredStories(props.filterBySearch, props.filterByType, props.filterByOwner, props.filterByLabels, props.state, props.stories).map((story, storyIndex) => (
-        <StoryCard
-          projectId={props.projectId}
-          key={storyIndex}
-          story={story}
-          state={props.state}
-          onClick={props.toggleStoryDetails}
-          storyIndex={storyIndex}
-          setNotification={props.setNotification}
-          handleLabelChange={props.handleLabelChange}
-          labelFilters={props.labelFilters}
-          selectStory={props.selectStory}
-          selectedStory={props.selectedStory}
-        />
-      )) : (
-        <p style={styles.noStories}>No stories</p>
-      )}
-    </div>
-  </div>
-);
+class StoryColumn extends React.Component {
+
+  state = {
+
+  }
+
+  componentDidMount() {
+    const self = this;
+    self.props.fetchProjectStories(self.props.projectId, self.props.state);
+    (function getStories(context) {
+      context.storyTimeout = setTimeout(() => {
+        context.props.fetchProjectStories(context.props.projectId, context.props.state, () => getStories(context));
+      }, 10000);
+    }(self));
+  }
+
+  renderFilteredStories = (search, type, owner, label, specificState, stories) => {
+    stories
+      .filter(search)
+      .filter(owner)
+      .filter(type)
+      .filter(label)
+      .sort(sortStoriesByCreatedTime);
+    return stories;
+  }
+
+  render() {
+    return (
+      <div key={`state-column-${this.props.stateIndex}`} style={{
+        flex: '0 0 auto',
+        width: 350,
+        position: 'relative',
+        paddingTop: 35,
+        boxSizing: 'border-box',
+        overflowY: 'hidden',
+        display: 'flex',
+        flexFlow: 'column nowrap',
+        backgroundColor: (this.props.stateIndex % 2 === 0) ? 'transparent' : 'rgba(0,0,0,0.035)',
+      }}>
+        <div style={{
+          color: statusColors[this.props.state].text,
+          textTransform: 'uppercase',
+          backgroundColor: statusColors[this.props.state].bg,
+          padding: '10px 12px',
+          // borderBottom: '1px solid rgb(43, 91, 121)',
+          flex: '0 0 auto',
+          boxSizing: 'border-box',
+          borderRadius: 0,
+          margin: 0,
+          fontWeight: 700,
+          fontSize: '0.8em',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+        }}>{this.props.state}</div>
+        <div style={{
+          flex: 1,
+          overflowY: 'auto',
+          overflowX: 'hidden',
+        }}>
+          {this.renderFilteredStories(this.props.filterBySearch, this.props.filterByType, this.props.filterByOwner, this.props.filterByLabels, this.props.state, this.props.stories) ? this.renderFilteredStories(this.props.filterBySearch, this.props.filterByType, this.props.filterByOwner, this.props.filterByLabels, this.props.state, this.props.stories).map((story, storyIndex) => (
+            <StoryCard
+              projectId={this.props.projectId}
+              key={storyIndex}
+              story={story}
+              state={this.props.state}
+              onClick={this.props.toggleStoryDetails}
+              storyIndex={storyIndex}
+              setNotification={this.props.setNotification}
+              handleLabelChange={this.props.handleLabelChange}
+              labelFilters={this.props.labelFilters}
+              selectStory={this.props.selectStory}
+              selectedStory={this.props.selectedStory}
+            />
+          )) : (
+            <p style={styles.noStories}>No stories</p>
+          )}
+        </div>
+      </div>
+    );
+  }
+}
 
 const typeIcons = {
   feature: 'layers',

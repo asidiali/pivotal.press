@@ -60,18 +60,6 @@ export default class ProjectStoriesView extends React.Component {
     self.props.fetchProjectMemberships(self.props.params.projectId);
     self.props.fetchProjectLabels(self.props.params.projectId);
 
-    statuses.forEach((state, stateIndex) => {
-      self.props.fetchProjectStories(self.props.params.projectId, state);
-      (function getStories(context) {
-        context.storyTimeout = setTimeout(() => {
-          context.props.fetchProjectStories(context.props.params.projectId, state, () => getStories(context));
-        }, 10000);
-      }(self));
-      console.log(`fetched ${state} stories`);
-      console.log(self.props);
-      if (stateIndex === statuses.length - 1) self.props.markStoriesAsLoaded();
-    });
-
     (function getActivity(context) {
       context.activityTimeout = setTimeout(() => {
         context.props.fetchProjectActivity(context.props.params.projectId, () => getActivity(context));
@@ -233,6 +221,7 @@ export default class ProjectStoriesView extends React.Component {
           {statuses.map((state, stateIndex) => (
             <StoryColumn
               state={state}
+              fetchProjectStories={this.props.fetchProjectStories}
               stateIndex={stateIndex}
               projectId={this.props.params.projectId}
               labelFilters={this.state.labelFilters}
