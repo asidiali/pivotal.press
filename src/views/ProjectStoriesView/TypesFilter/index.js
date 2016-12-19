@@ -15,7 +15,7 @@ const TypesFilter = props => (
     display: 'flex',
     alignItems: 'center',
   }}>
-    <Icon icon={typeIcons[props.storyTypeFilter]} style={{ fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px', flex: '0 0 auto'}} />
+    <Icon icon={typeIcons[props.storyTypeFilter]} style={{ fontSize: '1.25em', color: '#888', margin: 'auto 0 auto 20px', flex: '0 0 auto'}} />
     <DropDownMenu
       underlineStyle={{
         margin: 0,
@@ -24,9 +24,9 @@ const TypesFilter = props => (
       }}
       labelStyle={{
         paddingLeft: 10,
-        fontSize: '1em',
-        color: '#fff',
-        fontWeight: 400,
+        fontSize: '0.9em',
+        color: '#888',
+        fontWeight: 700,
       }}
       style={{ margin: 'auto 0', height: 'auto', flex: '0 0 auto' }}
       value={props.storyTypeFilter}

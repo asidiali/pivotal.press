@@ -16,7 +16,7 @@ const StatesFilter = props => (
     labelStyle={{
       paddingLeft: 10,
       fontSize: '1em',
-      color: '#fff',
+      color: '#888',
       fontWeight: 400,
       textTransform: 'capitalize',
     }}

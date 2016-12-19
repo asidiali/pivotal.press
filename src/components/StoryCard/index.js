@@ -39,9 +39,11 @@ const StoryCard = props => (
         <Icon icon={typeIcons[props.story.story_type]} style={{ marginRight: 5 }} />
         {props.story.story_type}
       </li>
-      <li style={renderStatusColor(props.story.current_state)}>
-        {statuses.indexOf(props.story.current_state)}
-      </li>
+      {props.story.estimate ? (
+        <li style={renderStatusColor(props.story.current_state)}>
+          {props.story.estimate}
+        </li>
+      ) : false}
     </ul>
     <p style={styles.storyName}>
       {props.story.name}

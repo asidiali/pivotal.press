@@ -21,7 +21,7 @@ const OwnersFilter = props => (
     flexFlow: 'row nowrap',
     alignItems: 'center',
   }}>
-    <Icon icon={(props.ownerFilter === 'all') ? 'group' : 'person'} style={{flex: '0 0 auto', fontSize: '1.25em', color: '#fff', margin: 'auto 0 auto 20px'}} />
+    <Icon icon={(props.ownerFilter === 'all') ? 'group' : 'person'} style={{flex: '0 0 auto', fontSize: '1.25em', color: '#888', margin: 'auto 0 auto 20px'}} />
     <DropDownMenu
       underlineStyle={{
         margin: 0,
@@ -30,11 +30,11 @@ const OwnersFilter = props => (
       }}
       labelStyle={{
         paddingLeft: 10,
-        fontSize: '1em',
-        color: '#fff',
-        fontWeight: 400,
+        fontSize: '0.9em',
+        color: '#888',
+        fontWeight: 700,
       }}
-      style={{ margin: 'auto 0', height: 'auto', flex: '0 0 auto', }}
+      style={{ margin: 'auto 0', height: 50, flex: '0 0 auto', }}
       value={props.ownerFilter}
       onChange={props.handleOwnerChange}
       maxHeight={300}

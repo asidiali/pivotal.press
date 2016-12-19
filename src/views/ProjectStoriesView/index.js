@@ -249,23 +249,23 @@ export default class ProjectStoriesView extends React.Component {
                 flex: '0 0 auto',
                 width: 350,
                 position: 'relative',
-                paddingTop: 40,
+                paddingTop: 35,
                 boxSizing: 'border-box',
                 overflowY: 'hidden',
                 display: 'flex',
                 flexFlow: 'column nowrap',
-                borderRight: '1px solid rgba(0,0,0,0.15)',
+                backgroundColor: (stateIndex % 2 === 0) ? 'transparent' : 'rgba(0,0,0,0.035)',
               }}>
                 <div style={{
                   color: statusColors[state].text,
                   textTransform: 'uppercase',
                   backgroundColor: statusColors[state].bg,
-                  padding: '10px 20px',
-                  borderBottom: '1px solid rgb(43, 91, 121)',
+                  padding: '10px 12px',
+                  // borderBottom: '1px solid rgb(43, 91, 121)',
                   flex: '0 0 auto',
                   boxSizing: 'border-box',
-                  borderRadius: 3,
-                  margin: '5px 5px 0',
+                  borderRadius: 0,
+                  margin: 0,
                   fontWeight: 700,
                   fontSize: '0.8em',
                   position: 'absolute',
@@ -300,7 +300,7 @@ export default class ProjectStoriesView extends React.Component {
             ))}
           </div>
         ) : (
-          <div style={{ display: 'flex', height: '75vh',width: '100%', flexFlow: 'column nowrap', justifyContent: 'center', alignItems: 'center'}}>
+          <div style={{ display: 'flex', height: '75vh', width: '100%', flexFlow: 'column nowrap', justifyContent: 'center', alignItems: 'center'}}>
             <Loader />
             <span style={{margin: '0px auto', fontSize: '0.8em', color: '#aaa', textTransform: 'uppercase', fontWeight: 700}}>Fetching stories</span>
           </div>

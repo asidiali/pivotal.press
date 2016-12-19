@@ -6,8 +6,7 @@ export default {
     right: 0,
     height: 60,
     zIndex: 999,
-    backgroundColor: '#444',
-    borderBottom: '1px solid rgba(0,0,0,0.15)',
+    backgroundColor: '#fff',
     display: 'flex',
     flexFlow: 'row nowrap',
     '@media (max-width: 1200px)': {
@@ -15,7 +14,7 @@ export default {
     },
   },
   brand: {
-    fontWeight: 300,
+    fontWeight: 700,
     margin: 'auto 10px auto 20px',
     fontSize: '0.9em',
     letterSpacing: 1,
@@ -24,12 +23,9 @@ export default {
     flexFlow: 'row nowrap',
     alignItems: 'center',
     flex: '0 0 auto',
-    color: '#ccc',
+    color: 'rgb(62, 114, 147)',
     '@media (max-width: 768px)': {
       fontSize: '1.15em',
-    },
-    ':hover': {
-      color: '#fff',
     },
   },
   brandText: {
@@ -40,7 +36,7 @@ export default {
   loggedInUser: {
     margin: 'auto 20px auto auto',
     fontSize: '0.9em',
-    color: '#ccc',
+    color: 'rgb(62, 114, 147)',
     fontWeight: 400,
     display: 'flex',
     flex: '0 0 auto',
@@ -68,7 +64,7 @@ export default {
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    color: '#fff',
+    color: '#000',
     // textTransform: 'uppercase',
     '@media (max-width: 768px)': {
       margin: 'auto 10px auto 0',

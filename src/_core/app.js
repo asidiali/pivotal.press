@@ -123,7 +123,12 @@ class App extends React.Component {
       headers,
       method: 'GET',
     }).then(res => res.json()).then((res) => {
-      if (this.state.stories !== res) this.setState({ stories: res });
+      console.log(res.length);
+      console.log(this.state.stories.length);
+      if (this.state.stories !== res) {
+        console.log('setting stories');
+        this.setState({ stories: res });
+      }
       if (callback) callback(res);
     });
 

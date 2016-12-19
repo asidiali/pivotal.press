@@ -1,7 +1,16 @@
 export default {
-  base: { paddingTop: 60, overflow: 'hidden', flex: '0 0 auto', display: 'flex', width: '78vw', background: 'transparent', '@media (max-width: 1200px)': {
-    width: '72vw',
-  }},
+  base: {
+    paddingTop: 60,
+    overflow: 'hidden',
+    flex: '0 0 auto',
+    display: 'flex',
+    width: '78vw',
+    margin: '0 0 0 auto',
+    background: 'transparent',
+    '@media (max-width: 1200px)': {
+      width: '72vw',
+    }
+  },
   storiesColumnsWrapper: {
     display: 'flex',
     flex: 1,
@@ -10,16 +19,16 @@ export default {
     boxSizing: 'border-box',
     overflowX: 'auto',
     overflowY: 'hidden',
+    backgroundColor: '#f5f5f5',
   },
   filtersWrapper: {
     position: 'fixed',
-    borderRight: '1px solid rgba(0,0,0,0.15)',
     top: 60,
     height: 60,
     width: '78vw',
-    left: 0,
-    right: '22vw',
-    backgroundColor: '#444',
+    right: 0,
+    left: '22vw',
+    backgroundColor: '#f5f5f5',
     margin: 'auto 0',
     padding: '0 10px',
     boxSizing: 'border-box',
@@ -38,8 +47,8 @@ export default {
     margin: 'auto 10px auto 0',
   },
   searchInput: {
-    backgroundColor: 'rgba(0,0,0,0.25)',
-    color: '#fff',
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    color: '#000',
     padding: '10px 10px 10px 40px',
     boxSizing: 'border-box',
     borderRadius: 3,
@@ -53,7 +62,7 @@ export default {
     top: '50%',
     transform: 'translateY(-50%)',
     left: 10,
-    color: '#fff',
+    color: '#000',
   },
   noStories: {
     margin: '40px auto auto',

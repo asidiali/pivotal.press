@@ -13,8 +13,9 @@ import ls from 'local-storage';
 const styles = {
   labelsPopoverWrapper: {
     flex: '0 0 auto',
-    color: '#fff',
-    fontWeight: 400,
+    color: '#888',
+    fontWeight: 700,
+    fontSize: '0.9em',
     display: 'flex',
     alignItems: 'center',
     margin: 'auto 10px',

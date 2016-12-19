@@ -69,7 +69,7 @@ class Nav extends React.Component {
             <span>&gt; &nbsp;</span>
           ) : false}
           {(showBack && showBack.text.toLowerCase() === 'projects') ? (
-            <span style={{backgroundColor: '#fff', flex: '0 0 auto', padding: 5, fontWeight: 700, boxSizing: 'border-box', fontSize: '0.9em', overflow: 'hidden', borderRadius: 5, color: '#222', borderLeft: `8px solid ${viewColor}`}}>{viewTitle}</span>
+            <span style={{backgroundColor: '#fff', border: `1px solid ${viewColor}`, flex: '0 0 auto', padding: 5, fontWeight: 700, boxSizing: 'border-box', fontSize: '0.9em', overflow: 'hidden', borderRadius: 5, color: '#222', borderLeft: `8px solid ${viewColor}`}}>{viewTitle}</span>
           ) : viewTitle}
         </span>
         {ls('pp-me') ? (
