@@ -27,19 +27,9 @@ export default class HomeView extends React.Component {
         <p style={{color: '#ddd', textAlign: 'center', fontWeight: 400, fontSize: '0.9em', margin: '0 10px'}}>Login with a valid PivotalTracker API Key:</p>
         <form style={styles.form} onSubmit={(e) => {
           e.preventDefault();
-          const headers = new Headers();
-          ls.set('pp-api', e.target.api_key.value);
-          headers.append('X-TrackerToken', ls('pp-api'));
-          // TODO paginate requests
-          fetch(`https://www.pivotaltracker.com/services/v5/me`, {
-            mode: 'cors',
-            headers,
-            method: 'GET',
-          }).then(res => res.json()).then((res) => {
-            if (res.kind === 'error') return alert('Invalid API key. Please check your key and try again.');
-            ls.set(`pp-me`, res);
+          this.props.fetchMe(e.target.api_key.value, () => {
             hashHistory.push('/projects');
-          });
+          })
         }}>
           <input
             style={styles.input}

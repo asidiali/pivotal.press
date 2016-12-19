@@ -1,6 +1,7 @@
 export default {
   base: {
     flex: 1,
+    backgroundColor: '#f5f5f5'
   },
   viewTitle: {},
   projectsWrapper: {
@@ -20,11 +21,8 @@ export default {
     justifyContent: 'flex-start',
     padding: 20,
     boxSizing: 'border-box',
-    // borderTop: '0px solid #ddd',
-    // borderRight: '1px solid #ddd',
-    // borderLeft: '1px solid #ddd',
-    // borderBottom: '1px solid #ddd',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.15)',
+    border: '1px solid #eee',
+    // boxShadow: '0 2px 4px rgba(0,0,0,0.15)',
     overflow: 'hidden',
     cursor: 'pointer',
     '@media (max-width: 1440px)': {

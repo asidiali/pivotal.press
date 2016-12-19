@@ -33,8 +33,9 @@ const OwnersFilter = props => (
         fontSize: '0.9em',
         color: '#888',
         fontWeight: 700,
+        margin: 'auto 0',
       }}
-      style={{ margin: 'auto 0', height: 50, flex: '0 0 auto', }}
+      style={{ margin: 'auto 0', flex: '0 0 auto', }}
       value={props.ownerFilter}
       onChange={props.handleOwnerChange}
       maxHeight={300}

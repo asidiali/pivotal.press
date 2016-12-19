@@ -8,6 +8,7 @@ import {
   Icon,
   Loader,
   StoryCard,
+  StoryColumn,
   StoryDetails,
 } from '../../components';
 
@@ -50,19 +51,26 @@ export default class ProjectStoriesView extends React.Component {
   componentDidMount() {
     const self = this;
     const CB = new Clipboard('.storyId');
-
+    console.log(self.props);
     CB.on('success', (e) => {
         self.props.setNotification(true, `${e.text} copied to clipboard`);
     });
 
-    self.props.fetchProjectStories(self.props.params.projectId);
     self.props.fetchProjectActivity(self.props.params.projectId);
+    self.props.fetchProjectMemberships(self.props.params.projectId);
+    self.props.fetchProjectLabels(self.props.params.projectId);
 
-    (function getStories(context) {
-      context.storyTimeout = setTimeout(() => {
-        context.props.fetchProjectStories(context.props.params.projectId, () => getStories(context));
-      }, 10000);
-    }(self));
+    statuses.forEach((state, stateIndex) => {
+      self.props.fetchProjectStories(self.props.params.projectId, state);
+      (function getStories(context) {
+        context.storyTimeout = setTimeout(() => {
+          context.props.fetchProjectStories(context.props.params.projectId, state, () => getStories(context));
+        }, 10000);
+      }(self));
+      console.log(`fetched ${state} stories`);
+      console.log(self.props);
+      if (stateIndex === statuses.length - 1) self.props.markStoriesAsLoaded();
+    });
 
     (function getActivity(context) {
       context.activityTimeout = setTimeout(() => {
@@ -154,13 +162,10 @@ export default class ProjectStoriesView extends React.Component {
   }
 
   renderFilteredStories = (search, type, owner, state, label, specificState) => {
-    const stories = this.props.stories
+    const stories = this.props[`${specificState}_stories`]
       .filter(search)
       .filter(owner)
       .filter(type)
-      .filter((story) => {
-        return story.current_state === specificState;
-      })
       .filter(label)
       .sort(sortStoriesByCreatedTime);
     return stories;
@@ -222,89 +227,29 @@ export default class ProjectStoriesView extends React.Component {
             styles={styles}
           />
 
-          {/*}<StatesFilter
-            statesFilter={this.state.stagesFilter}
-            handleStatesChange={this.handleStagesChange}
-          />{*/}
-
-          {/*}<span style={{
-            margin: 'auto 10px auto auto',
-            cursor: 'pointer',
-          }} data-tip="Refresh Stories" onClick={() => {
-              this.setState({
-                project_stories_fetched: false,
-                project_memberships_fetched: false,
-                project_labels_fetched: false,
-              });
-              this.fetchProjectData();
-          }}>
-            <Icon icon="refresh" style={{ color: '#ccc', fontSize: '1.5em'}} />
-          </span>{*/}
         </div>
 
-        {this.props.stories && this.props.stories.length ? (
-          <div style={styles.storiesColumnsWrapper}>
-            {statuses.map((state, stateIndex) => (
-              <div key={`state-column-${stateIndex}`} style={{
-                flex: '0 0 auto',
-                width: 350,
-                position: 'relative',
-                paddingTop: 35,
-                boxSizing: 'border-box',
-                overflowY: 'hidden',
-                display: 'flex',
-                flexFlow: 'column nowrap',
-                backgroundColor: (stateIndex % 2 === 0) ? 'transparent' : 'rgba(0,0,0,0.035)',
-              }}>
-                <div style={{
-                  color: statusColors[state].text,
-                  textTransform: 'uppercase',
-                  backgroundColor: statusColors[state].bg,
-                  padding: '10px 12px',
-                  // borderBottom: '1px solid rgb(43, 91, 121)',
-                  flex: '0 0 auto',
-                  boxSizing: 'border-box',
-                  borderRadius: 0,
-                  margin: 0,
-                  fontWeight: 700,
-                  fontSize: '0.8em',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                }}>{state}</div>
-                <div style={{
-                  flex: 1,
-                  overflowY: 'auto',
-                  overflowX: 'hidden',
-                }}>
-                  {this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByState, this.filterByLabels, state) ? this.renderFilteredStories(this.filterBySearch, this.filterByType, this.filterByOwner, this.filterByState, this.filterByLabels, state).map((story, storyIndex) => (
-                    <StoryCard
-                      projectId={this.props.params.projectId}
-                      key={storyIndex}
-                      story={story}
-                      state={state}
-                      onClick={this.toggleStoryDetails}
-                      storyIndex={storyIndex}
-                      setNotification={this.props.setNotification}
-                      handleLabelChange={this.handleLabelChange}
-                      labelFilters={this.state.labelFilters}
-                      selectStory={this.selectStory}
-                      selectedStory={this.state.selectedStory}
-                    />
-                  )) : (
-                    <p style={styles.noStories}>No stories</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div style={{ display: 'flex', height: '75vh', width: '100%', flexFlow: 'column nowrap', justifyContent: 'center', alignItems: 'center'}}>
-            <Loader />
-            <span style={{margin: '0px auto', fontSize: '0.8em', color: '#aaa', textTransform: 'uppercase', fontWeight: 700}}>Fetching stories</span>
-          </div>
-        )}
+        <div style={styles.storiesColumnsWrapper}>
+          {statuses.map((state, stateIndex) => (
+            <StoryColumn
+              state={state}
+              stateIndex={stateIndex}
+              projectId={this.props.params.projectId}
+              labelFilters={this.state.labelFilters}
+              selectStory={this.selectStory}
+              selectedStory={this.state.selectedStory}
+              filterBySearch={this.filterBySearch}
+              filterByType={this.filterByType}
+              filterByOwner={this.filterByOwner}
+              filterByLabels={this.filterByLabels}
+              stories={this.props[`${state}_stories`]}
+              toggleStoryDetails={this.toggleStoryDetails}
+              setNotification={this.props.setNotification}
+              handleLabelChange={this.handleLabelChange}
+            />
+          ))}
+        </div>
+
         <div style={Object.assign({}, styles.activeCardBackground, { display: this.state.selectedStory.id ? 'block' : 'none'})}> </div>
         <StoryDetails
           show={this.state.showStoryDetails}

@@ -42,7 +42,7 @@ export default {
     }
   },
   lastUpdated: {
-    color: '#aaa',
+    color: '#ccc',
     fontSize: '0.8em',
     margin: '5px 0 0',
     fontWeight: 700,

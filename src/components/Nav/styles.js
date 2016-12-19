@@ -6,11 +6,13 @@ export default {
     right: 0,
     height: 60,
     zIndex: 999,
+    width: '100vw',
     backgroundColor: '#fff',
     display: 'flex',
     flexFlow: 'row nowrap',
     '@media (max-width: 1200px)': {
-      right: '28vw',
+      width: '100vw',
+      right: 0,
     },
   },
   brand: {
