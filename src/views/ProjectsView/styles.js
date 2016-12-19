@@ -1,5 +1,7 @@
 export default {
-  base: {},
+  base: {
+    flex: 1,
+  },
   viewTitle: {},
   projectsWrapper: {
     display: 'flex',

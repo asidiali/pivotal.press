@@ -170,7 +170,7 @@ class App extends React.Component {
 
     if (!key || !me) return console.log('error - not authenticated to fetch project data (func: fetchProjectActivity)');
     const self = this;
-    if (projects.length) {
+    if (projects && projects.length) {
       const activity = {};
       projects.forEach((project, projectI) => {
         const headers = new Headers();
